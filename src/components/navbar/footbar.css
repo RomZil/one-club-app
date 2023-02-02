@@ -1,0 +1,18 @@
+.Footbar {}
+
+.icons {
+
+    height: 20px;
+    width: 20px;
+}
+
+.icon-text {
+    font-size: large
+}
+
+/* .top-right-stick {
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+} */

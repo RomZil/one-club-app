@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+import "./footbar.css";
+import { Button, Container, Navbar, Nav } from "react-bootstrap";
+import BootstrapSwitchButton from "bootstrap-switch-button-react";
+import { BsPersonCircle, BsPinMap } from "react-icons/bs";
+
+
+function Footbar() {
+
+   const [isMyClubs , setIsMyClubs] = useState(true);
+   
+
+  return (
+    <Navbar
+      className="navbar"
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      variant="dark"
+    >
+      <Container>
+        <Navbar.Brand href="#home">One Club</Navbar.Brand>
+        <Nav className="me-auto">
+          <BootstrapSwitchButton
+            className="switchButton"
+            class="rounded-pill"
+            checked={!isMyClubs} onstyle="secondary" offstyle="dark" style="border"
+            onlabel="My Clubs"
+            offlabel="All Clubs"
+            onChange={(checked) => {
+              setIsMyClubs((prvIsMyClubs) => !prvIsMyClubs);
+              console.log("isMyClubs " + isMyClubs);
+              console.log("checked " + checked);
+
+            }}
+          />
+        </Nav>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="top-right-stick">
+            <Nav.Link href="#map-page"><BsPinMap className="icons" /> 
+            <span className="icon-text"> Around Me </span> 
+            </Nav.Link>
+            <Nav.Link href="#profile-page"><BsPersonCircle className="icons" /> 
+            <span className="icon-text"> Profile </span>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
+export default Footbar;
