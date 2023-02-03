@@ -23,7 +23,7 @@ const App = () => {
                 key={categorie.id}
                 img={categorie.img}
                 name={categorie.name}
-                //  nextFuncName={categorie.Categories.nextFuncName}
+                perentId={categorie.perent_id}
               />
             ))}
           </Row>

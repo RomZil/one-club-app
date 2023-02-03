@@ -2,14 +2,24 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import "./item.css";
 
-function Item({ name , img , nextFuncName }) {
+function Item({ name , img , perentId }) {
+
+  const onClickItem = (perentId) => {
+    perentId == null ? (
+      // TODO - categorie selected => goto business suitable page
+      console.log("category selection")    
+    ) : (
+      // TODO - bussines selected => goto suitable item page
+      console.log("business selection")
+    )
+
+  }
+
+
   return (
-    <Card 
-    //  onClick={nextFuncName} 
-     className="item" 
-    //  style={{ width: "30%", height: "30%" }}
-    >
+    <Card className="item" >
       <Card.Img className="card-img" 
+       onClick={() => onClickItem( perentId )}
        variant="top" 
        src={img[0].url} />
       <Card.Body className="card-body">
