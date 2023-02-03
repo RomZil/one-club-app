@@ -13,7 +13,7 @@ const App = () => {
   console.log("App " + searchTerm);
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "darkgrey"}}>
       <Search title={searchTerm} />
       <Container className="grid-items">
         <Col>

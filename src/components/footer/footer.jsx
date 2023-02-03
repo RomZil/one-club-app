@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./footbar.css";
+import "./footer.css";
 import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { BsPersonCircle, BsPinMap } from "react-icons/bs";
 
 
-function Footbar() {
+function Footer() {
 
    const [isMyClubs , setIsMyClubs] = useState(true);
    
@@ -54,4 +54,4 @@ function Footbar() {
   );
 }
 
-export default Footbar;
+export default Footer;
