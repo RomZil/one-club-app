@@ -1,4 +1,6 @@
-.Footbar {}
+.Footbar {
+    position: absolute;
+}
 
 .icons {
 
@@ -8,6 +10,7 @@
 
 .icon-text {
     font-size: large
+    
 }
 
 /* .top-right-stick {
