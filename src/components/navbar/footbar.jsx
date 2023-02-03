@@ -24,9 +24,12 @@ function Footbar() {
           <BootstrapSwitchButton
             className="switchButton"
             class="rounded-pill"
-            checked={!isMyClubs} onstyle="secondary" offstyle="dark" style="border"
-            onlabel="My Clubs"
-            offlabel="All Clubs"
+            checked={!isMyClubs}
+            width={75} 
+            onstyle="secondary" 
+            offstyle="dark"
+            onlabel="Mine"
+            offlabel="All"
             onChange={(checked) => {
               setIsMyClubs((prvIsMyClubs) => !prvIsMyClubs);
               console.log("isMyClubs " + isMyClubs);
