@@ -1,0 +1,29 @@
+###
+GET http://localhost:3000/
+
+###
+
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "email" : "a@a.com",
+    "password": "qwerty"
+}
+
+###
+
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "email" : "a@a.com",
+    "password": "qwerty"
+}
+
+###
+GET http://localhost:3000/post
+
+###
+GET http://localhost:3000/post
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RmYzY5NjQ4ZTNkZDkyMzkxNzZlZTQiLCJpYXQiOjE2NzU2MTI0MTl9.rx_jH6yaqttJSSzbMAeoUauQs8myA32jX5UgweXsi2E
