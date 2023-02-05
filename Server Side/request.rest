@@ -26,4 +26,14 @@ GET http://localhost:3000/post
 
 ###
 GET http://localhost:3000/post
-Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RmYzY5NjQ4ZTNkZDkyMzkxNzZlZTQiLCJpYXQiOjE2NzU2MTI0MTl9.rx_jH6yaqttJSSzbMAeoUauQs8myA32jX5UgweXsi2E
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RmYzY5NjQ4ZTNkZDkyMzkxNzZlZTQiLCJpYXQiOjE2NzU2MTY4NDIsImV4cCI6MTY3NTYxNjg1N30.sHIRAJSEJoLcBTg7Mme8nplXBaLEAh-L-wXNlLRCu9U
+
+###
+
+POST http://localhost:3000/auth/refreshToken
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RmYzY5NjQ4ZTNkZDkyMzkxNzZlZTQiLCJpYXQiOjE2NzU2MTY2NjZ9.yPoiGmoqd72ZMPZMh_4nSDwHIpBKjQOX5PZTMA7Q-j0
+
+###
+
+POST http://localhost:3000/auth/refreshToken
+Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2RmYzY5NjQ4ZTNkZDkyMzkxNzZlZTQiLCJpYXQiOjE2NzU2MTY4NDJ9.2st126b-EPp5oXQOj_VnDb6frsDrmSM_ton5lFS2kKM
