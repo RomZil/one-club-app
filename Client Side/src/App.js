@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from "react";
+import Search from "./components/search/search";
+import Item from "./components/item/item";
+import { categories } from "../src/data/mockData.js";
+import { Col, Container, Row } from "react-bootstrap";
 
-function App() {
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [business, setBusiness] = useState([]);
+
+  console.log("App " + searchTerm);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ backgroundColor: "darkgrey"}}>
+      <Search title={searchTerm} />
+      <Container className="grid-items">
+        <Col>
+          <Row className="categories" style={{ marginLeft: 2 , gridGap: 15}} >
+            {categories.map((categorie) => (
+              <Item
+                key={categorie.id}
+                img={categorie.img}
+                name={categorie.name}
+                perentId={categorie.perent_id}
+              />
+            ))}
+          </Row>
+        </Col>
+      </Container>
     </div>
   );
-}
+};
 
 export default App;
