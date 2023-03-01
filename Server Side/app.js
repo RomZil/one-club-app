@@ -3,6 +3,9 @@ const express = require("express");
 const dotenv = require("dotenv").config({ path: __dirname + "/config/.env" });
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./models/schema');
+
 
 const app = express();
 const port = process.env.port;
@@ -17,6 +20,11 @@ db.on("error", (error) => {
   console.error(error);
 });
 db.once("open", () => console.log("connected to MongoDB"));
+
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true
+}))
 
 // Routes
 const authRouter = require("./routes/auth_routes");
@@ -33,3 +41,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+
