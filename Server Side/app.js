@@ -4,7 +4,7 @@ const dotenv = require("dotenv").config({ path: __dirname + "/config/.env" });
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./models/schema');
+const schema = require('./schema/schema');
 
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "1mb" }));
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", (error) => {
   console.error(error);
