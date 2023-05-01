@@ -5,6 +5,7 @@ import Search from "./components/search/search";
 import Item from "./components/item/item";
 import { categories } from "../src/data/mockData.js";
 import { Col, Container, Row } from "react-bootstrap";
+import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,14 +14,17 @@ const App = () => {
   console.log("App " + searchTerm);
 
   return (
-    <div className="App" style={{ backgroundColor: "darkgrey"}}>
+    <div className="App" style={{ backgroundColor: "darkgrey" }}>
       <Search title={searchTerm} />
       <Container className="grid-items">
+        <FilteresCategories id={0} />
+
         <Col>
-          <Row className="categories" style={{ marginLeft: 2 , gridGap: 15}} >
+          <Row className="categories" style={{ marginLeft: 2, gridGap: 15 }}>
             {categories.map((categorie) => (
               <Item
                 key={categorie.id}
+                id={categorie.id}
                 img={categorie.img}
                 name={categorie.name}
                 perentId={categorie.perent_id}
