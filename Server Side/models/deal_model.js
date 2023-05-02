@@ -14,6 +14,10 @@ const dealSchema = new mongoose.Schema({
   catrgory: {
     type: String,
   },
+  loyaltyCard: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "LoyaltyCard",
+  },
 });
 
 module.exports = Deal = mongoose.model("Deal", dealSchema);
