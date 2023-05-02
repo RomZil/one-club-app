@@ -22,8 +22,14 @@ module.exports = gql`
     getDeals(amount: Int): [Deal]
   }
 
+  input DealInput {
+    title: String!
+    description: String
+    imageURL: String
+    catrgory: String!
+  }
   type Mutation {
-    createDeal(dealInput: Deal): Deal!
+    createDeal(dealInput: DealInput): Deal!
     deleteDeal(ID: ID!): Boolean
   }
 `;
