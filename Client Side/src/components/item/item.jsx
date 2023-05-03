@@ -1,12 +1,14 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 import "./item.css";
 
 function Item({ name, img, perentId, id }) {
+  const navigate = useNavigate();
   const onClickItem = () => {
     perentId == null
-      ? // TODO - categorie selected => goto business suitable page
-        console.log("category selection" + id)
+      ? navigate("/FilteresCategories")
       : // TODO - bussines selected => goto suitable item page
         console.log("business selection");
   };
