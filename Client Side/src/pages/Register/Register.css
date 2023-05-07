@@ -1,6 +1,8 @@
-.label {
-    background-color: black;
-}
 #container {
-    margin-left: 2,
+    margin: 4rem 0 2rem;
+    
+
+}
+.input {
+    background-color: black;
 }

@@ -3,6 +3,9 @@ import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.js
 import { Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcom/welcome.jsx";
 import Register from "./pages/Register/Register.jsx";
+import LogIn from "./pages/LogIn/LogIn.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
+import MyClubs from "./pages/MyClubs/MyClubs.jsx";
 
 export const AppRouter = () => (
   <Routes>
@@ -10,5 +13,9 @@ export const AppRouter = () => (
     <Route path="/Home" element={<Home />} />
     // TODO: change the defult argument that get from rout
     <Route path="/FilteresCategories" element={<FilteresCategories />} />
+    <Route path="/Register" element={<Register />} />
+    <Route path="/LogIn" element={<LogIn />} />
+    <Route path="/Profile" element={<Profile />} />
+    <Route path="/MyClubs" element={<MyClubs />} />
   </Routes>
 );

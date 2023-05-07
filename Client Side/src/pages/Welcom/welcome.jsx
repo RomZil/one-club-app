@@ -1,14 +1,21 @@
 import "./Welcome.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { AppRouter } from "../../AppRouter";
 
 const Welcome = () => {
   const navigate = useNavigate();
-  function OnClickWelcome() {
-    navigate("/Home");
-  }
+
   return (
     <div id="welcomeContainer">
-      <button onClick={OnClickWelcome}>welcom</button>
+      <button
+        id="B_welcome"
+        onClick={() => {
+          navigate("/LogIn");
+        }}
+      >
+        start now
+      </button>
+      <Link to={"/Register"}>not registered? sign up now</Link>
     </div>
   );
 };

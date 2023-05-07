@@ -4,11 +4,8 @@ import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { BsPersonCircle, BsPinMap } from "react-icons/bs";
 
-
 function Footer() {
-
-   const [isMyClubs , setIsMyClubs] = useState(true);
-   
+  const [isMyClubs, setIsMyClubs] = useState(true);
 
   return (
     <Navbar
@@ -25,8 +22,8 @@ function Footer() {
             className="switchButton"
             class="rounded-pill"
             checked={!isMyClubs}
-            width={75} 
-            onstyle="secondary" 
+            width={75}
+            onstyle="secondary"
             offstyle="dark"
             onlabel="Mine"
             offlabel="All"
@@ -34,18 +31,19 @@ function Footer() {
               setIsMyClubs((prvIsMyClubs) => !prvIsMyClubs);
               console.log("isMyClubs " + isMyClubs);
               console.log("checked " + checked);
-
             }}
           />
         </Nav>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="top-right-stick">
-            <Nav.Link href="#map-page"><BsPinMap className="icons" /> 
-            <span className="icon-text"> Around Me </span> 
+            <Nav.Link href="#map-page">
+              <BsPinMap className="icons" />
+              <span className="icon-text"> Around Me </span>
             </Nav.Link>
-            <Nav.Link href="#profile-page"><BsPersonCircle className="icons" /> 
-            <span className="icon-text"> Profile </span>
+            <Nav.Link href="Profile">
+              <BsPersonCircle className="icons" />
+              <span className="icon-text"> Profile </span>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
