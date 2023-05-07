@@ -1,12 +1,17 @@
 import { Row, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import Item from "../../components/item/item";
 import { businesses } from "../../data/mockData";
-
-const FilteresCategories = ({ id }) => {
+import Search from "../../components/search/search";
+const FilteresCategories = () => {
+  const { state } = useLocation();
+  const { id } = state;
+  debugger;
   return (
     <div>
       <Col>
-        <Row className="categories" style={{ marginLeft: 2, gridGap: 15 }}>
+        <Search title={""} />
+        <Row className="businesses" style={{ marginLeft: 2, gridGap: 15 }}>
           {businesses
             .filter((businesse) => businesse.perent_id == id)
             .map((businesse) => (

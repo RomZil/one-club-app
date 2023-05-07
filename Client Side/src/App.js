@@ -16,8 +16,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="App" style={{ backgroundColor: "darkgrey" }}>
-        <Search title={searchTerm} />
+      <div className="App">
         <Container className="grid-items">
           <AppRouter />
         </Container>

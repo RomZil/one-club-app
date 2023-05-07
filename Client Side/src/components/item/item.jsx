@@ -8,7 +8,7 @@ function Item({ name, img, perentId, id }) {
   const navigate = useNavigate();
   const onClickItem = () => {
     perentId == null
-      ? navigate("/FilteresCategories")
+      ? navigate("/FilteresCategories", { state: { id } })
       : // TODO - bussines selected => goto suitable item page
         console.log("business selection");
   };
