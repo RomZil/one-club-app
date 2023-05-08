@@ -17,11 +17,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="App">
-        <Container
-          className="grid-items"
-          style={{ marginLeft: 2, gridGap: 15 }}
-        >
-          <AppRouter style={{ marginLeft: 2, gridGap: 15 }} />
+        <Container className="grid-items">
+          <AppRouter />
         </Container>
       </div>
     </BrowserRouter>

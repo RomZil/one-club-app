@@ -1,0 +1,28 @@
+#container{
+     margin-left: 2;
+
+     margin-top: 15;
+     padding: auto;
+}
+#club{
+
+    background-color: black;
+    width: 50%;
+    height: 40px;;
+    color: white;
+    border: 100px;
+    
+}
+#clubs{
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+}
+#head{
+    width: 100%;
+    height: inherit;
+    font-size: 1cm;
+    background-color: black;
+    color: white;
+    padding-top: 1cm;
+}

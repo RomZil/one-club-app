@@ -1,6 +1,6 @@
 // import "./Profile.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // RefreshDate();
 
@@ -9,7 +9,7 @@ const Profile = () => {
   const [updateEmail, setEmailValue] = useState("");
   const [updatePassword, setPasswordValue] = useState("");
   const [updateDate, setDateValue] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // TODO:  call to db and get the data
@@ -19,6 +19,7 @@ const Profile = () => {
   }, []);
 
   function UpdateToDB() {
+    navigate("/Home");
     //all the infon in vars
   }
 
@@ -37,7 +38,7 @@ const Profile = () => {
   return (
     <div id="container">
       <p>Profile</p>
-      <Link to="/LogIn">Go to your clubs </Link>
+      <Link to="/MyClubs">Go to your clubs </Link>
       <p>
         Name
         <input

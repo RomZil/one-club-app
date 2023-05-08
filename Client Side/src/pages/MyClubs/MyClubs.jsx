@@ -6,11 +6,11 @@ const MyClubs = () => {
   var Clubs = ["hever", "isracard"];
 
   return (
-    <Col>
-      {/* <ShowItem img={"k"} name={"temp"}></ShowItem> */}
-      <Row className="categories" style={{ marginLeft: 2, gridGap: 15 }}>
+    <Col id="container">
+      <Row id="clubs" style={{ marginLeft: 2, gridGap: 15 }}>
+        <div id="head">My Clubs</div>
         {Clubs.map((club) => (
-          <p>{club}</p>
+          <div id="club">{club}</div>
         ))}
       </Row>{" "}
     </Col>
