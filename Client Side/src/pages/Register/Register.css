@@ -1,8 +1,10 @@
 #container {
     margin: 4rem 0 2rem;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
-.input {
-    background-color: black;
+.p{
+    font-weight: bold;
 }

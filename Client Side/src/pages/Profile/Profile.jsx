@@ -37,41 +37,49 @@ const Profile = () => {
   };
   return (
     <div id="container">
-      <p>Profile</p>
-      <Link to="/MyClubs">Go to your clubs </Link>
-      <p>
-        Name
-        <input
-          type="text"
-          value={updateName}
-          onChange={handleNameChange}
-        />{" "}
-      </p>
-      <p>
-        Email
-        <input
-          type="email"
-          value={updateEmail}
-          onChange={handleEmailChange}
-        />{" "}
-      </p>
-      <p>
-        Password
-        <input
-          type="password"
-          value={updatePassword}
-          onChange={handlePasswordChange}
-        />{" "}
-      </p>
-      <p>
-        Date
-        <input
-          type="date"
-          value={updateDate}
-          onChange={handleDateChange}
-        />{" "}
-      </p>
-      <button className="registerBtn" onClick={UpdateToDB}>
+      <p id="title">Profile</p>
+      <Link id="link1" to="/MyClubs">
+        Go to your clubs
+      </Link>
+      <div id="container_all_input">
+        <div id="container_input">
+          <p>Name</p>
+          <input
+            id="input_w"
+            type="text"
+            value={updateName}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div id="container_input">
+          <p>Email</p>
+          <input
+            id="input_w"
+            type="email"
+            value={updateEmail}
+            onChange={handleEmailChange}
+          />
+        </div>
+        <div id="container_input">
+          <p>Password</p>
+          <input
+            id="input_w"
+            type="password"
+            value={updatePassword}
+            onChange={handlePasswordChange}
+          />
+        </div>
+        <div id="container_input">
+          <p>Date</p>
+          <input
+            id="input_w"
+            type="date"
+            value={updateDate}
+            onChange={handleDateChange}
+          />
+        </div>
+      </div>
+      <button id="b_sign" onClick={UpdateToDB}>
         update profile
       </button>
     </div>

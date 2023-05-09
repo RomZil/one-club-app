@@ -1,15 +1,17 @@
 import { Col, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
 import "./ShowItem.css";
+import { useLocation } from "react-router-dom";
 
-const ShowItem = ({ img, name }) => {
+const ShowItem = () => {
+  const { state } = useLocation();
+  const { img, name } = state;
   return (
-    <div className="container">
-      <Search title={""} />
+    <div id="container">
       <Col>
-        <image src={img}></image>
-      </Col>
-      <Col>
+        <Row>
+          <img src={img}></img>
+        </Row>
         <Row>
           <p>{name}</p>
         </Row>

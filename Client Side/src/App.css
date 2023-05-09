@@ -1,8 +1,85 @@
 .App {
   text-align: center;
   background-color: var(--gray);
+  width: 100%;
+
 }
 
 .grid-items {
+  width: 100%;
 
+}
+#text_input{
+  color: white;
+  font-weight: bold;
+}
+
+#title {
+    width: 100%;
+  height: inherit;
+  font-size: 1cm;
+  background-color: black;
+  color: white;
+  padding-top: 1cm;
+}
+
+#input{
+  border: 2px solid white;
+  border-radius: 5px;
+  background: black ;
+  height: 40px;
+border-color: aliceblue;
+color: white;
+width: 100%;
+background-color: black;
+
+}
+#input_w{
+border-color: rgb(250, 251, 252);
+color:black;
+width: 100%;
+border: 2px solid black;
+height: 45px;
+border-radius: 7px;
+
+}
+#titel2{
+
+  font-size: xx-large;
+  color: white;
+}
+#b_sign {
+  border: aliceblue;
+  padding-inline: 40px;
+  padding-block: 9px;
+  margin: 20px;
+  font-weight: bold;
+  width: 60%;
+  border-radius: 5px;
+}
+#container_input{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  align-items: flex-start;
+}
+#container_all_input{
+width: 80%;
+}
+#link{
+  float: right !important;
+}
+#link2{
+  font-size: small;
+
+}
+#titel3{
+  font-size: small;
+  color: white;
+}
+
+Link{
+  color: white;
 }

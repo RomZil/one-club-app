@@ -1,8 +1,13 @@
-#container{
-     margin-left: 2;
+*{
+    padding:none !important;
+    max-width: none !important;
+    margin-left: none !important;
+}
 
-     margin-top: 15;
-     padding: auto;
+#container{
+    width: 100%;
+     /* padding: auto; */
+    
 }
 #club{
 
@@ -10,19 +15,23 @@
     width: 50%;
     height: 40px;;
     color: white;
-    border: 100px;
+    border: 2px solid white;
+
     
 }
 #clubs{
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
+    display: flex;
+    /* align-items: 'center'; */
+    justify-content: center;
+    width: 100%;
+
+
 }
-#head{
+/* #head{
     width: 100%;
     height: inherit;
     font-size: 1cm;
     background-color: black;
     color: white;
     padding-top: 1cm;
-}
+} */
