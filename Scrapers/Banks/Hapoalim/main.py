@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-
 class Benefit:
     def __init__(self, title, desc):
         self.title = title
@@ -26,6 +25,6 @@ for job_element in job_elements:
 json_array = json.dumps([ob.__dict__ for ob in array_benefits])
 print(json_array)
 
-# Writing to sample.json
-with open("benefits.json", "w") as outfile:
-    outfile.write(json_array)
+# # Writing to sample.json
+# with open("benefits.json", "w") as outfile:
+#     outfile.write(json_array)
