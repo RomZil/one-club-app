@@ -7,7 +7,6 @@ const login = async (req, res, next) => {
   console.log("login");
   const email = req.body.email;
   const password = req.body.password;
-
   if (email == null || password == null) {
     return sendError(res, "bad email or password");
   }

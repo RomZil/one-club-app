@@ -18,15 +18,23 @@ const Register = () => {
     setNameValue("");
   }, []);
   function RegisterToDB() {
-    axios
-      .post("controllers/register", {
-        email: inputEmail,
-        password: inputPassword,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-    navigate("/Home");
+    try {
+      axios
+        .post("http://localhost:3000/auth/register", {
+          email: inputEmail,
+          password: inputPassword,
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            navigate("/Home");
+          }
+        })
+        .catch((error) => {
+          alert(error.response.data.message);
+        });
+    } catch (error) {
+      alert("Somthing roung, try again");
+    }
   }
 
   const handleNameChange = (event) => {

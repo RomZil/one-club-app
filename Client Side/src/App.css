@@ -40,13 +40,15 @@
   background-color: black;
   text-align: center;
 }
-#input_w {
-  border-color: rgb(250, 251, 252);
-  color: black;
-  width: 100%;
-  border: 2px solid black;
-  height: 45px;
-  border-radius: 7px;
+
+#input_w{
+border-color: rgb(250, 251, 252);
+color:black;
+width: 100%;
+border: 2px solid black;
+height: 45px;
+border-radius: 7px;
+
 }
 #titel2 {
   font-size: xx-large;

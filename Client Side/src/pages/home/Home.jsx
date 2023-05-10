@@ -7,26 +7,32 @@ import ShowItem from "../ShowItem/ShowItem.jsx";
 import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
 
-const Home = (filter) => {
-  // const { state } = useLocation();
-  // const { filter } = state;
+const Home = () => {
+  const { state } = useLocation();
+
   const [categories_filtered, setCategories_filtered] = useState([]);
 
   useEffect(() => {
-    if (filter != "all") {
+    if (state != null) {
+      const { filter } = state;
       setCategories_filtered(
-        // categories.filter((categorie) => categorie.name == "SPA")
-        categories.filter((categorie) => categorie.name != "")
+        categories.filter((categorie) => categorie.name == "SPA")
+        // categories.filter((categorie) => categorie.name != "")
       );
+      console.log(categories_filtered);
+    } else {
+      setCategories_filtered(categories);
     }
-    debugger;
   }, []);
 
   return (
     <Col>
       {/* <ShowItem img={"k"} name={"temp"}></ShowItem> */}
       <Search title={""} />
-      <Row className="categories" style={{ marginLeft: 2, gridGap: 15 }}>
+      <Row
+        className="categories"
+        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+      >
         {categories_filtered.map((categorie) => (
           <Item
             key={categorie.id}

@@ -1,4 +1,5 @@
 // Require
+const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv").config({ path: __dirname + "/config/.env" });
 const bodyParser = require("body-parser");
@@ -7,6 +8,7 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.port;
 
+app.use(cors("*"));
 app.use(bodyParser.urlencoded({ extended: true, limit: "1mb" }));
 app.use(bodyParser.json());
 

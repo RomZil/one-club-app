@@ -22,20 +22,30 @@ const LogIn = () => {
     setPasswordValue(event.target.value);
   };
 
-  function checkIfRegister() {
-    let data = true;
-    emitter.emit('isLoggedIn', data);
-    // axios
-    //   .post("", {
-    //     email: inputEmail,
-    //     password: inputPassword,
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     // TODO: if ok then set in the footer component isHamburger = true;
-    //     emitter.emit('isLoggedIn', true);
-    //   });
-    // navigate("/Home");
+  async function checkIfRegister() {
+    try {
+      axios
+        .post("http://localhost:3000/auth/login", {
+          email: inputEmail,
+          password: inputPassword,
+        })
+        .then((response) => {
+          debugger;
+          console.log("res" + response);
+          if (response.status == 200) {
+            emitter.emit('isLoggedIn', data);
+            navigate("/Home");
+          }
+        })
+        .catch((error) => {
+          debugger;
+          console.log("Error:", error.response.data); // Print the error message from the server
+          alert(error.response.data.message);
+        });
+    } catch (error) {
+      debugger;
+      alert("Somthing roung, try again");
+    }
   }
 
   return (
