@@ -1,10 +1,13 @@
 #link{
     float: right;
+    color: black;
+    font-family: sans-serif;
 }
 #link2{
     float: right;
+    color: black;
+    font-family: sans-serif;
     font-size: small;
-
 }
 #titel3{
     font-size: small;

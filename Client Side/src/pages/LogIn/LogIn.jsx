@@ -2,6 +2,7 @@ import "./LogIn.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import emitter from '../../shared/emitter';
 import { Col } from "react-bootstrap";
 
 const LogIn = () => {
@@ -22,15 +23,19 @@ const LogIn = () => {
   };
 
   function checkIfRegister() {
-    axios
-      .post("", {
-        email: inputEmail,
-        password: inputPassword,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-    navigate("/Home");
+    let data = true;
+    emitter.emit('isLoggedIn', data);
+    // axios
+    //   .post("", {
+    //     email: inputEmail,
+    //     password: inputPassword,
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //     // TODO: if ok then set in the footer component isHamburger = true;
+    //     emitter.emit('isLoggedIn', true);
+    //   });
+    // navigate("/Home");
   }
 
   return (
@@ -40,24 +45,25 @@ const LogIn = () => {
         <p id="titel3">sign in to continue </p>
         <div id="container_all_input">
           <div id="container_input">
-            <p id="text_input">Email</p>
+            <div id="text_input">Email</div>
             <input
-              id="input"
+              className="input"
               type="email"
               value={inputEmail}
               onChange={handleEmailChange}
             />
           </div>
+          <br></br>
           <div id="container_input">
-            <p id="text_input">Password</p>
+            <div id="text_input">Password</div>
             <input
-              id="input"
+              className="input"
               type="password"
               value={inputPassword}
               onChange={handlePasswordChange}
             />
           </div>
-          <Link id="link" to="/PorgotPassword">
+          <Link id="link" to="/ForgotPassword">
             Forgot password?
           </Link>
         </div>
@@ -66,7 +72,7 @@ const LogIn = () => {
         </button>
       </div>
       <Link id="link2" to="/Register">
-        Not registered? sign in now
+        Not registered? sign up now
       </Link>
     </div>
   );

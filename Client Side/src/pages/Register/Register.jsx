@@ -45,49 +45,55 @@ const Register = () => {
   return (
     <div id="container">
       <p id="titel2">Create a new accounte</p>
-      <Link to="/LogIn">Already Register? Log in here </Link>
+      <Link id="signInLink" to="/LogIn">Already Registered? Log in here </Link>
       <div id="container_all_input">
         <div id="container_input">
-          <p id="text_input">Name</p>
+          <div id="text_input">Name</div>
           <input
-            id="input"
+            className="input"
             type="text"
             value={inputName}
             onChange={handleNameChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p id="text_input">Email</p>
+          <div id="text_input">Email</div>
           <input
-            id="input"
+            className="input"
             type="email"
             value={inputEmail}
             onChange={handleEmailChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p id="text_input">Password</p>
+          <div id="text_input">Password</div>
           <input
-            id="input"
+            className="input"
             type="password"
             value={inputPassword}
             onChange={handlePasswordChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p id="text_input">Date</p>
-          <input
-            id="input"
+          <div id="text_input">Date</div>
+          <input     
+            className="input custom-date-input"
             type="date"
             value={inputDate}
             onChange={handleDateChange}
+            placeholder=""
           />
         </div>
       </div>
-      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}>
-        Register
+      <br />
+      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}> 
+      Register
       </button>
     </div>
+
   );
 };
 export default Register;

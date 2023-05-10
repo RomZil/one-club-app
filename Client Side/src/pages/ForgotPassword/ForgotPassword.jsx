@@ -1,11 +1,11 @@
-import "./PorgotPassword.css";
+import "./ForgotPassword.css";
 
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Col } from "react-bootstrap";
 
-const PorgotPassword = () => {
+const ForgotPassword = () => {
   const [inputEmail, setEmailValue] = useState("");
   const navigate = useNavigate();
 
@@ -31,11 +31,11 @@ const PorgotPassword = () => {
   return (
     <div>
       <div id="container">
-        <p id="titel2">Porgot Password</p>
+        <p id="titel2">Forgot Password</p>
         <p id="titel3">new password</p>
         <div id="container_all_input">
           <div id="container_input">
-            <p id="text_input">Email</p>
+            <div id="text_input">Email</div>
             <input
               id="input"
               type="email"
@@ -51,4 +51,4 @@ const PorgotPassword = () => {
     </div>
   );
 };
-export default PorgotPassword;
+export default ForgotPassword;

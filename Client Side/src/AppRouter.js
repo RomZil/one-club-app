@@ -6,7 +6,7 @@ import Register from "./pages/Register/Register.jsx";
 import LogIn from "./pages/LogIn/LogIn.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import MyClubs from "./pages/MyClubs/MyClubs.jsx";
-import PorgotPassword from "./pages/PorgotPassword/PorgotPassword.jsx";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
 import ShowItem from "./pages/ShowItem/ShowItem.jsx";
 
 export const AppRouter = () => (
@@ -19,7 +19,7 @@ export const AppRouter = () => (
     <Route path="/LogIn" element={<LogIn />} />
     <Route path="/Profile" element={<Profile />} />
     <Route path="/MyClubs" element={<MyClubs />} />
-    <Route path="/PorgotPassword" element={<PorgotPassword />} />
+    <Route path="/ForgotPassword" element={<ForgotPassword />} />
     <Route path="/ShowItem" element={<ShowItem />} />
   </Routes>
 );
