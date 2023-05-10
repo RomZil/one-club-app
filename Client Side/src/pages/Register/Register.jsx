@@ -18,15 +18,23 @@ const Register = () => {
     setNameValue("");
   }, []);
   function RegisterToDB() {
-    axios
-      .post("controllers/register", {
-        email: inputEmail,
-        password: inputPassword,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-    navigate("/Home");
+    try {
+      axios
+        .post("http://localhost:3000/auth/register", {
+          email: inputEmail,
+          password: inputPassword,
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            navigate("/Home");
+          }
+        })
+        .catch((error) => {
+          alert(error.response.data.message);
+        });
+    } catch (error) {
+      alert("Somthing roung, try again");
+    }
   }
 
   const handleNameChange = (event) => {
@@ -66,7 +74,7 @@ const Register = () => {
           />
         </div>
         <div id="container_input">
-          <p id="text_input">Password</p>
+          <p>Password</p>
           <input
             id="input"
             type="password"
@@ -75,7 +83,7 @@ const Register = () => {
           />
         </div>
         <div id="container_input">
-          <p id="text_input">Date</p>
+          <p>Date</p>
           <input
             id="input"
             type="date"

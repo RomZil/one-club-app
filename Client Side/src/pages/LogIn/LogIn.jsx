@@ -21,16 +21,29 @@ const LogIn = () => {
     setPasswordValue(event.target.value);
   };
 
-  function checkIfRegister() {
-    axios
-      .post("", {
-        email: inputEmail,
-        password: inputPassword,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-    navigate("/Home");
+  async function checkIfRegister() {
+    try {
+      axios
+        .post("http://localhost:3000/auth/login", {
+          email: inputEmail,
+          password: inputPassword,
+        })
+        .then((response) => {
+          debugger;
+          console.log("res" + response);
+          if (response.status == 200) {
+            navigate("/Home");
+          }
+        })
+        .catch((error) => {
+          debugger;
+          console.log("Error:", error.response.data); // Print the error message from the server
+          alert(error.response.data.message);
+        });
+    } catch (error) {
+      debugger;
+      alert("Somthing roung, try again");
+    }
   }
 
   return (

@@ -9,7 +9,7 @@ const Search = ({ title }) => {
   const nav = useNavigate();
   const searchBusiness = async (title) => {
     console.log("search " + title);
-    nav("/FilteresCategories", { state: { title } });
+    nav("/Home", { state: { title } });
     // TODO - get the data by name = title
   };
 
