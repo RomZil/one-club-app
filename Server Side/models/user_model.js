@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
   tokens: {
     type: [String],
   },
+  loyaltyCards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LoyaltyCard",
+    },
+  ],
 });
 
-module.exports = User = mongoose.model("Users", userSchema);
+module.exports = User = mongoose.model("User", userSchema);

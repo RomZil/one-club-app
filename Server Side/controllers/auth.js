@@ -1,5 +1,5 @@
 //import { User } from "../models/user_mode";
-const User = require("../models/user_mode");
+const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 
