@@ -5,20 +5,23 @@ const LoyaltyCard = require("../../models/loyaltyCard_model");
 const { spawn } = require("child_process");
 
 module.exports = schedule.scheduleJob("* * * * *", async function () {
-  // console.log("Start Running Hever");
-  // await AddHeverYellow();
-  // console.log("Finish Running Hever");
-  console.log("starts");
-  const python = spawn("python", ["./../Scrapers/Banks/Hapoalim/main.py"]);
-  python.stdout.on("data", function (data) {
-    console.log("Pipe data from python script ...");
-    let str = data.toString();
-    console.log(JSON.parse(str));
-  });
+  await deleteHeverYellow();
+
+  console.log("Start Running Hever");
+  await AddHeverYellow();
+  console.log("Finish Running Hever");
+
+  // console.log("starts");
+  // const python = spawn("python", ["./../Scrapers/Banks/Hapoalim/main.py"]);
+  // python.stdout.on("data", function (data) {
+  //   console.log("Pipe data from python script ...");
+  //   let str = data.toString();
+  //   console.log(JSON.parse(str));
+  // });
 });
 
 // module.exports = schedule.scheduleJob("* * * * *", function () {
-//   console.log("The answer to life, the universe, and everything!");
+
 // });
 
 async function deleteHeverYellow() {
@@ -46,7 +49,6 @@ async function AddHeverYellow() {
     });
     await loyaltyCard.save();
   }
-  await deleteHeverYellow();
 
   axios
     .get(url)
