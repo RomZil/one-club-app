@@ -20,7 +20,13 @@ const userSchema = new mongoose.Schema({
   loyaltyCardId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'loyaltyCard_mode',
-  }
+  },
+  loyaltyCards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LoyaltyCard",
+    },
+  ],
 });
 
 module.exports = User = mongoose.model("User", userSchema);

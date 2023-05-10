@@ -1,0 +1,37 @@
+*{
+    padding:none !important;
+    max-width: none !important;
+    margin-left: none !important;
+}
+
+#container{
+    width: 100%;
+     /* padding: auto; */
+    
+}
+#club{
+
+    background-color: black;
+    width: 50%;
+    height: 40px;;
+    color: white;
+    border: 2px solid white;
+
+    
+}
+#clubs{
+    display: flex;
+    /* align-items: 'center'; */
+    justify-content: center;
+    width: 100%;
+
+
+}
+/* #head{
+    width: 100%;
+    height: inherit;
+    font-size: 1cm;
+    background-color: black;
+    color: white;
+    padding-top: 1cm;
+} */

@@ -1,5 +1,5 @@
 //import { User } from "../models/user_mode";
-const User = require("../models/user_mode");
+const User = require("../models/user_model");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 
@@ -7,7 +7,6 @@ const login = async (req, res, next) => {
   console.log("login");
   const email = req.body.email;
   const password = req.body.password;
-
   if (email == null || password == null) {
     return sendError(res, "bad email or password");
   }

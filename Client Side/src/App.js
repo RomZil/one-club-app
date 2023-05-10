@@ -14,30 +14,23 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
+import { AppRouter } from "./AppRouter";
+import { BrowserRouter } from "react-router-dom";
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [business, setBusiness] = useState([]);
+  // const [business, setBusiness] = useState([]);
 
   console.log("App " + searchTerm);
 
   return (
-    <div className="App" style={{ backgroundColor: "darkgrey" }}>
-      <Search title={searchTerm} />
-      <Container className="grid-items">
-        <Col>
-          <Row className="categories" style={{ marginLeft: 2, gridGap: 15 }} >
-            {categories.map((categorie) => (
-              <Item
-                key={categorie.id}
-                img={categorie.img}
-                name={categorie.name}
-                perentId={categorie.perent_id}
-              />
-            ))}
-          </Row>
-        </Col>
-      </Container>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Container className="grid-items">
+          <AppRouter />
+        </Container>
+      </div>
+    </BrowserRouter>
   );
 };
 

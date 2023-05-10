@@ -1,0 +1,17 @@
+#welcomeContainer {
+    margin: 4rem 0 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#B_welcome {
+    border-radius: 30px;
+    margin: auto;
+    width: 50%;
+    background-color: black;
+    padding: 10px;
+    color: white;
+}
+.Link {
+}
