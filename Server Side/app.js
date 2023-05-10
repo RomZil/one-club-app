@@ -1,4 +1,5 @@
 // Require
+const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv").config({ path: __dirname + "/config/.env" });
 const bodyParser = require("body-parser");
@@ -17,6 +18,7 @@ const server = new ApolloServer({
   resolvers,
 });
 
+app.use(cors("*"));
 app.use(bodyParser.urlencoded({ extended: true, limit: "1mb" }));
 app.use(bodyParser.json());
 
