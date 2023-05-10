@@ -52,8 +52,7 @@ const Register = () => {
 
   return (
     <div id="container">
-      <p id="titel2">Create a new accounte</p>
-      <Link id="signInLink" to="/LogIn">Already Registered? Log in here </Link>
+      <p id="titel2">Sign Up</p>
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
@@ -100,6 +99,8 @@ const Register = () => {
       <button id="b_sign" className="registerBtn" onClick={RegisterToDB}> 
       Register
       </button>
+      <br />
+      <Link className="link2" to="/LogIn">Already Registered? Log in here </Link>
     </div>
 
   );

@@ -2,10 +2,6 @@
 .p{
     font-weight: bold;
 }
-#signInLink{
-    color: black;
-    font-family: sans-serif;
-}
 
 .custom-date-input::-webkit-calendar-picker-indicator {
   filter: invert(1); /* This will invert the color of the calendar icon */

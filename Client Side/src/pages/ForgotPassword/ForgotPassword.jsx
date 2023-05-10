@@ -32,12 +32,11 @@ const ForgotPassword = () => {
     <div>
       <div id="container">
         <p id="titel2">Forgot Password</p>
-        <p id="titel3">new password</p>
         <div id="container_all_input">
           <div id="container_input">
             <div id="text_input">Email</div>
             <input
-              id="input"
+              className="input"
               type="email"
               value={inputEmail}
               onChange={handleEmailChange}

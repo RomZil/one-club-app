@@ -37,42 +37,45 @@ const Profile = () => {
   };
   return (
     <div id="container">
-      <p id="title">Profile</p>
+      <p id="titel2">Profile</p>
       <Link id="link1" to="/MyClubs">
         Go to your clubs
       </Link>
       <div id="container_all_input">
         <div id="container_input">
-          <p>Name</p>
+          <div id="text_input">Name</div>
           <input
-            id="input_w"
+            className="input_w"
             type="text"
             value={updateName}
             onChange={handleNameChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p>Email</p>
+          <div id="text_input">Email</div>
           <input
-            id="input_w"
+            className="input_w"
             type="email"
             value={updateEmail}
             onChange={handleEmailChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p>Password</p>
+          <div id="text_input">Password</div>
           <input
-            id="input_w"
+            className="input_w"
             type="password"
             value={updatePassword}
             onChange={handlePasswordChange}
           />
         </div>
+        <br />
         <div id="container_input">
-          <p>Date</p>
+          <div id="text_input">Date</div>
           <input
-            id="input_w"
+            className="input_w"
             type="date"
             value={updateDate}
             onChange={handleDateChange}
