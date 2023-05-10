@@ -1,7 +1,6 @@
-//const { loyaltyCards, deals, users } = require('../sampleData.js')
-
-const LoyaltyCard = require('../models/loyalCard_mode');
+const LoyaltyCard = require('../models/loyaltyCard_mode');
 const User = require('../models/user_mode');
+const Deal = require('../models/deal_mode');
 
 
 const {
@@ -24,16 +23,14 @@ const LoyaltyCardType = new GraphQLObjectType({
 })
 
 // deal type
-/*const DealType = new GraphQLObjectType({
+const DealType = new GraphQLObjectType({
     name: 'Deal',
     fields: () => ({
         id: { type: GraphQLID },
-        name: { type: GraphQLString },
+        title: { type: GraphQLString },
         description: { type: GraphQLString },
-        location: { type: GraphQLString },
-
     })
-})*/
+})
 
 // user type
 const UserType = new GraphQLObjectType({
@@ -70,19 +67,19 @@ const RootQuery = new GraphQLObjectType({
                 return LoyaltyCard.findById(args.id);
             },
         },
-        /*  deals: {
-              type: new GraphQLList(DealType),
-              resolve(parent, args) {
-                  return deals;
-              }
-          },
-          deal: {
-              type: DealType,
-              args: { id: { type: GraphQLID } },
-              resolve(parent, args) {
-                  return deals.find((deal) => deal.id === args.id);
-              }
-          },*/
+        deals: {
+            type: new GraphQLList(DealType),
+            resolve(parent, args) {
+                return Deal.find();
+            }
+        },
+        deal: {
+            type: DealType,
+            args: { id: { type: GraphQLID } },
+            resolve(parent, args) {
+                return Deal.findById(args.id);
+            }
+        },
         users: {
             type: new GraphQLList(UserType),
             resolve(parent, args) {
@@ -98,12 +95,43 @@ const RootQuery = new GraphQLObjectType({
         }
     }
 });
-/*
+
 //Mutations
 
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
+        // Add a user
+        addUser: {
+            type: UserType,
+            args: {
+                name: { type: GraphQLString },
+                email: { type: GraphQLString },
+                password: { type: GraphQLString },
+            },
+            resolve(parent, args) {
+                const user = new User({
+                    name: args.name,
+                    email: args.email,
+                    password: args.password,
+                });
+
+                return user.save();
+            },
+        },
+        // Delete a user
+        deleteUser: {
+            type: UserType,
+            args: {
+                id: { type: GraphQLID },
+            },
+            resolve(parent, args) {
+                return User.findByIdAndRemove(args.id);
+            },
+        },
+    },
+});
+/*
         addLoyaltyCard: {
             type: LoyaltyCardType,
             args: {
@@ -124,5 +152,5 @@ const mutation = new GraphQLObjectType({
 
 module.exports = new GraphQLSchema({
     query: RootQuery,
-    mutation
+    mutation,
 })

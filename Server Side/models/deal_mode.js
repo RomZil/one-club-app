@@ -1,21 +1,21 @@
 // import mongoose from "mongoose";
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  name: {
+const dealSchema = new mongoose.Schema({
+  title: {
     type: String,
     required: true,
   },
-  email: {
+  description: {
+    type: String,
+  },
+  img: {
+    type: String,
+    data: Buffer,
+  },
+  category: {
     type: String,
     required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  tokens: {
-    type: [String],
   },
   loyaltyCardId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -23,4 +23,4 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-module.exports = User = mongoose.model("User", userSchema);
+module.exports = Deal = mongoose.model("Deal", dealSchema);

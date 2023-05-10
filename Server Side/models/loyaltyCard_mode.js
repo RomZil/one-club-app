@@ -5,11 +5,6 @@ const loyalCardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  deals: {
-    type: String,
-    required: true,
-  },
-
 });
 
 module.exports = LoyalCard = mongoose.model("LoyalCard", loyalCardSchema);
