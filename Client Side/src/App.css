@@ -1,7 +1,104 @@
+:root {
+  --gray: ##a9a9a9;
+  --deepNavy: #0D1B2A ;
+  --softNavy: #1B263B ;
+  --blue: #415A77 ;
+  --lightBlue: #778DA9 ;
+  --white: #E0E1DD ;
+}
 .App {
   text-align: center;
+  background-color: var(--gray);
+  width: 100%;
+}
+
+#container {
+  margin: 4rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .grid-items {
+  width: 100%;
+}
+#text_input {
+  color: var(--white);
+  font-weight: bold;
+}
 
+#title {
+  width: 100%;
+  height: inherit;
+  font-size: 1cm;
+  background-color: black;
+  color: var(--white);
+  padding-top: 1cm;
+}
+
+.input {
+  border: 2px solid var(--white);
+  border-radius: 5px;
+  height: 40px;
+  border-color: var(--white);
+  color: var(--white);
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+}
+
+.input_w{
+  border: 2px solid var(--white);
+  border-radius: 5px;
+  height: 40px;
+  border-color: var(--white);
+  color: var(--white);
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+
+}
+#titel2 {
+  font-size: xx-large;
+  color: var(--white);
+}
+#b_sign {
+  border: var(--white);
+  padding-inline: 40px;
+  padding-block: 9px;
+  margin: 20px;
+  font-weight: bold;
+  width: 60%;
+  border-radius: 5px;
+  background-color: var(--blue);
+  color: var(--white);
+}
+#container_input {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  align-items: flex-start;
+}
+#container_all_input {
+  width: 80%;
+}
+#link {
+  float: right !important;
+}
+.link2 {
+  float: right;
+  color: black;
+  font-family: sans-serif;
+  font-size: small;
+}
+#titel3 {
+  font-size: small;
+  color: var(--white);
+}
+
+Link {
+  color: var(--white);
 }
