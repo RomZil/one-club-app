@@ -26,7 +26,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Col>
+    <div>
       {/* <ShowItem img={"k"} name={"temp"}></ShowItem> */}
       <Search title={""} />
       <Row
@@ -42,8 +42,8 @@ const Home = () => {
             perentId={categorie.perent_id}
           />
         ))}
-      </Row>{" "}
-    </Col>
+      </Row>
+    </div>
   );
 };
 

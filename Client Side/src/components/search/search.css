@@ -1,4 +1,4 @@
-.search {
+/* .search {
     width: 71%;
     margin: 4rem 0 2rem;
     z-index: -1;
@@ -58,3 +58,9 @@
     
   }
 
+
+ */
+
+ .searchBar {
+  background-color: transparent;
+ }

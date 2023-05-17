@@ -8,6 +8,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/footer/footer";
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   // const [business, setBusiness] = useState([]);
@@ -15,13 +16,17 @@ const App = () => {
   console.log("App " + searchTerm);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Container className="grid-items">
-          <AppRouter />
-        </Container>
-      </div>
-    </BrowserRouter>
+    <>
+      <Footer />
+      < br />
+      <BrowserRouter>
+        <div className="App">
+          <Container className="grid-items">
+            <AppRouter />
+          </Container>
+        </div>
+      </BrowserRouter>
+    </>
   );
 };
 

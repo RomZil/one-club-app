@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import "./search.css";
 import { useNavigate } from "react-router-dom";
+import { MDBCol, MDBInput } from "mdbreact";
 
 const Search = ({ title }) => {
   const [searchTerm, setSearchTerm] = useState(title);
@@ -14,17 +15,21 @@ const Search = ({ title }) => {
   };
 
   return (
-    <div className="search">
-      <input
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search Here"
-      />
-      <BsSearch
-        className="icons-search"
-        onClick={() => searchBusiness(searchTerm)}
-      />
-    </div>
+    // <div className="search">
+    //   <input
+    //     value={searchTerm}
+    //     onChange={(e) => setSearchTerm(e.target.value)}
+    //     placeholder="Search Here"
+    //   />
+    //   <BsSearch
+    //     className="icons-search"
+    //     onClick={() => searchBusiness(searchTerm)}
+    //   />
+    // </div>
+
+    <MDBCol md="6">
+      <MDBInput className="searchBar" hint="Search" type="text" containerClass="mt-0" />
+    </MDBCol>
   );
 };
 
