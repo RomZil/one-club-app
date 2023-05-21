@@ -14,7 +14,9 @@ const Home = () => {
 
   useEffect(() => {
     if (title != null) {
-      const tmp = categories.filter((category) => category.name === title);
+      const tmp = categories.filter((category) => {
+        return category.name.includes(title.toUpperCase());
+      });
       setCategories_filtered(tmp);
     } else {
       setCategories_filtered(categories);
