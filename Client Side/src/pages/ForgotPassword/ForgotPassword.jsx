@@ -25,7 +25,7 @@ const ForgotPassword = () => {
       .then((response) => {
         console.log(response);
       });
-    navigate("/Home");
+    navigate("/Home", { state: "" });
   }
 
   return (

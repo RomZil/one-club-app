@@ -13,7 +13,6 @@ export const AppRouter = () => (
   <Routes>
     <Route path="/" element={<Welcome />} />
     <Route path="/Home" element={<Home />} />
-    // TODO: change the defult argument that get from rout
     <Route path="/FilteresCategories" element={<FilteresCategories />} />
     <Route path="/Register" element={<Register />} />
     <Route path="/LogIn" element={<LogIn />} />

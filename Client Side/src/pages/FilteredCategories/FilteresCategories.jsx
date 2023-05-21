@@ -6,7 +6,6 @@ import Search from "../../components/search/search";
 const FilteresCategories = () => {
   const { state } = useLocation();
   const { id } = state;
-  debugger;
   return (
     <div>
       <Col>
