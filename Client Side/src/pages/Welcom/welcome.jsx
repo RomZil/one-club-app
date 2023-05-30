@@ -10,7 +10,9 @@ const Welcome = () => {
       <button
         id="B_welcome"
         onClick={() => {
-          navigate("/LogIn");
+          // navigate("/LogIn");
+          //todo!!!!! change to login
+          navigate("/Home", { state: { title: null } });
         }}
       >
         start now

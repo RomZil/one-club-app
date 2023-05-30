@@ -9,37 +9,34 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const { state } = useLocation();
-
   const [categories_filtered, setCategories_filtered] = useState([]);
+  const { title } = state;
 
   useEffect(() => {
-    if (state != null) {
-      const { filter } = state;
-      setCategories_filtered(
-        categories.filter((categorie) => categorie.name == "SPA")
-        // categories.filter((categorie) => categorie.name != "")
-      );
-      console.log(categories_filtered);
+    if (title != null) {
+      const tmp = categories.filter((category) => {
+        return category.name.includes(title.toUpperCase());
+      });
+      setCategories_filtered(tmp);
     } else {
       setCategories_filtered(categories);
     }
-  }, []);
+  }, [state]);
 
   return (
     <div>
-      {/* <ShowItem img={"k"} name={"temp"}></ShowItem> */}
       <Search title={""} />
       <Row
         className="categories"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
       >
-        {categories_filtered.map((categorie) => (
+        {categories_filtered.map((category) => (
           <Item
-            key={categorie.id}
-            id={categorie.id}
-            img={categorie.img}
-            name={categorie.name}
-            perentId={categorie.perent_id}
+            key={Math.floor(Math.random() * 100000)} // Assign stable key using category.id
+            id={category.id}
+            img={category.img}
+            name={category.name}
+            parentId={category.parent_id}
           />
         ))}
       </Row>
