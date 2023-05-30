@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { MDBCol, MDBInput } from "mdbreact";
 import { useState } from "react";
 import { categories } from "../../data/mockData.js";
 import "./search.css";
@@ -20,6 +21,21 @@ export default function Search() {
   };
 
   return (
+    // <div className="search">
+    //   <input
+    //     value={searchTerm}
+    //     onChange={(e) => setSearchTerm(e.target.value)}
+    //     placeholder="Search Here"
+    //   />
+    //   <BsSearch
+    //     className="icons-search"
+    //     onClick={() => searchBusiness(searchTerm)}
+    //   />
+    // </div>
+
+    // <MDBCol md="6">
+    //   <MDBInput className="searchBar" hint="Search" type="text" containerClass="mt-0" />
+    // </MDBCol>
     <div className="App">
       <h1>Search</h1>
 

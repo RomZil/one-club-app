@@ -43,6 +43,7 @@ const LogIn = () => {
     } catch (error) {
       alert("Somthing roung, try again");
     }
+    emitter.emit('isLoggedIn', true);
   }
 
   return (

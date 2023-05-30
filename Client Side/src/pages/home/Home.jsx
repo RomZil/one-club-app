@@ -25,23 +25,21 @@ const Home = () => {
 
   return (
     <div>
-      <Col>
-        <Search title={""} />
-        <Row
-          className="categories"
-          style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
-        >
-          {categories_filtered.map((category) => (
-            <Item
-              key={Math.floor(Math.random() * 100000)} // Assign stable key using category.id
-              id={category.id}
-              img={category.img}
-              name={category.name}
-              parentId={category.parent_id}
-            />
-          ))}
-        </Row>
-      </Col>
+      <Search title={""} />
+      <Row
+        className="categories"
+        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+      >
+        {categories_filtered.map((category) => (
+          <Item
+            key={Math.floor(Math.random() * 100000)} // Assign stable key using category.id
+            id={category.id}
+            img={category.img}
+            name={category.name}
+            parentId={category.parent_id}
+          />
+        ))}
+      </Row>
     </div>
   );
 };

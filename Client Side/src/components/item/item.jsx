@@ -25,6 +25,16 @@ function Item({ name, img, perentId, id }) {
         <Card.Title className="card-desc">{name}</Card.Title>
       </Card.Body>
     </Card>
+
+    // <div className="row product">
+    //   <div className="col-md-2">
+    //     <img src={img[0].url} alt={name} />
+    //   </div>
+    //   <div className="col-md-8 product-detail">
+    //     <h4>{name}</h4>
+    //     {/* <div dangerouslySetInnerHTML={{ __html: description }}></div> */}
+    //   </div>
+    // </div>
   );
 }
 
