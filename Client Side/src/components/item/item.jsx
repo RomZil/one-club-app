@@ -10,7 +10,7 @@ function Item({ name, img, perentId, id }) {
     perentId == null
       ? navigate("/FilteresCategories", { state: { id } })
       : // TODO - bussines selected => goto suitable item page
-        navigate("/ShowItem", { state: { name, img } });
+        navigate("/ShowItem", { state: { id } });
   };
 
   return (
