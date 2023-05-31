@@ -6,6 +6,7 @@ import { Col, Row } from "react-bootstrap";
 import ShowItem from "../ShowItem/ShowItem.jsx";
 import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
+import BackButton from "../../components/backButton/backButton.jsx";
 
 const Home = () => {
   const { state } = useLocation();
