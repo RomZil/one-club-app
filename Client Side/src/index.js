@@ -8,7 +8,6 @@ import Footer from "./components/footer/footer";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <Footer  />
     <App />
   </>
 );

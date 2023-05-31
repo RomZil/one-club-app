@@ -1,18 +1,28 @@
+:root {
+    --gray: #a9a9a9;
+    --deepNavy: #0D1B2A ;
+    --softNavy: #1B263B ;
+    --blue: #415A77 ;
+    --lightBlue: #778DA9 ;
+    --white: #E0E1DD ;
+  }
+
 .item {
-    border-radius: 1rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     height: fit-content;
-    width: fit-content;
+    width: 40%;
     padding: inherit;
+    background-color: var(--gray);
+
 }
 
 .card-img {
     display: flex;
     font-size: 1rem;
     font-weight: bold;
-    padding: 0.5rem;
-    height: 110px;
-    width: 100px;
-    border-radius: 1.5rem;
+    height: 90px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .card-desc {
@@ -24,6 +34,6 @@
 }
 
 .card-body {
-    height: 50px;
+ 
 }
 

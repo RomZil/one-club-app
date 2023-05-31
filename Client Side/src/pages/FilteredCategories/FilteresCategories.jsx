@@ -6,12 +6,12 @@ import Search from "../../components/search/search";
 const FilteresCategories = () => {
   const { state } = useLocation();
   const { id } = state;
-  debugger;
   return (
     <div>
-      <Col>
         <Search title={""} />
-        <Row className="businesses" style={{ marginLeft: 2, gridGap: 15 }}>
+        <Row 
+        className="businesses" 
+        style={{  display: "flex", justifyContent: "center", gridGap: 15 }}>
           {businesses
             .filter((businesse) => businesse.perent_id == id)
             .map((businesse) => (
@@ -24,7 +24,6 @@ const FilteresCategories = () => {
               />
             ))}
         </Row>
-      </Col>
     </div>
   );
 };
