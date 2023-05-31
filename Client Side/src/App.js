@@ -7,11 +7,14 @@ import Item from "./components/item/item";
 import { categories } from "../src/data/mockData.js";
 import Clients from "./components/clients";
 import { Col, Container, Row } from "react-bootstrap";
-
+import { useHistory } from "react-router-dom";
+import { Route, Link, Routes, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/footer/footer";
+import BackButton from "./components/backButton/backButton";
 
 const client = new ApolloClient({
   uri: "http://http://localhost:4000/graphql",
@@ -20,18 +23,26 @@ const client = new ApolloClient({
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [business, setBusiness] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   console.log("App " + searchTerm);
 
   return (
     <>
       <Footer />
-      < br />
+
+      <br />
       <BrowserRouter>
         <div className="App">
           <Container className="grid-items">
-            <AppRouter />
+            <AppRouter>
+              {/* <BackButton /> */}
+              {!isLoggedIn && (
+                <>
+                  <BackButton />
+                </>
+              )}
+            </AppRouter>
           </Container>
         </div>
       </BrowserRouter>

@@ -4,9 +4,8 @@ const express = require("express");
 const dotenv = require("dotenv").config({ path: __dirname + "/config/.env" });
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema/schema');
-
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schema/schema");
 
 const { ApolloServer } = require("apollo-server");
 const app = express();
@@ -39,10 +38,13 @@ db.once("open", () => {
   });
 });
 
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true
-}))
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    graphiql: true,
+  })
+);
 
 // Routes
 const authRouter = require("./routes/auth_routes");
@@ -52,8 +54,26 @@ app.use("/auth", authRouter);
 const postRouter = require("./routes/post_routes");
 app.use("/post", postRouter);
 
+const Deal = require("./models/deal_model");
+const LoyaltyCard = require("./models/loyaltyCard_model");
+const Category = require("./models/category_model");
+
+app.get("/test", async (req, res, next) => {
+  let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
+
+  const deal = new Deal({
+    title: "Test",
+    description: "Test",
+    catrgory: new Category({ name: "חשמל ואלקטרוניקה" }),
+    imageURL: "",
+    loyaltyCard: loyaltyCard,
+  });
+
+  deal.save();
+
+  res.send("Test");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
-
-
