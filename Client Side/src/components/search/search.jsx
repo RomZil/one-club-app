@@ -26,7 +26,6 @@ export default function Search() {
 
   return (
     <div className="App">
-
       {/* <h1>Search</h1>
 
       <div className="search">
@@ -40,8 +39,15 @@ export default function Search() {
       </div> */}
 
       <MDBCol md="6">
-       <MDBInput className="searchBar" hint="Search" type="text" containerClass="mt-0" value={value} onChange={onSearch}  />
-     </MDBCol>
+        <MDBInput
+          className="searchBar"
+          hint="Search"
+          type="text"
+          containerClass="mt-0"
+          value={value}
+          onChange={onSearch}
+        />
+      </MDBCol>
 
       {/* <div className="dropdown">
         {categories
