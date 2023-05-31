@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   loyaltyCardId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'loyaltyCard_mode',
+    ref: "loyaltyCard_mode",
   },
   loyaltyCards: [
     {

@@ -21,7 +21,7 @@ async function addHapoalim() {
   }
   console.log("starts");
   const python = spawn("python", ["./../Scrapers/Banks/Hapoalim/main.py"]);
-  python.stdout.on("data", function (data) {
+  python.stdout.on("data", async function (data) {
     console.log("Pipe data from python script ...");
     let str = data.toString();
     // console.log(JSON.parse(str));
@@ -31,13 +31,13 @@ async function addHapoalim() {
       const deal = new Deal({
         title: dataFromJson[i].title,
         description: dataFromJson.desc,
-        catrgory: "קולנוע",
+        catrgory: new Category({ name: "קולנוע" }),
         imageURL: "",
         loyaltyCard: loyaltyCard,
       });
 
       console.log(deal.title);
-      deal.save();
+      await deal.save();
     }
   });
 }

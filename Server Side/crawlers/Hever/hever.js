@@ -2,6 +2,8 @@ const schedule = require("node-schedule");
 const axios = require("axios");
 const Deal = require("../../models/deal_model");
 const LoyaltyCard = require("../../models/loyaltyCard_model");
+const Category = require("../../models/category_model");
+
 const { spawn } = require("child_process");
 
 module.exports = schedule.scheduleJob("* * * * *", async function () {
@@ -10,19 +12,7 @@ module.exports = schedule.scheduleJob("* * * * *", async function () {
   console.log("Start Running Hever");
   await AddHeverYellow();
   console.log("Finish Running Hever");
-
-  // console.log("starts");
-  // const python = spawn("python", ["./../Scrapers/Banks/Hapoalim/main.py"]);
-  // python.stdout.on("data", function (data) {
-  //   console.log("Pipe data from python script ...");
-  //   let str = data.toString();
-  //   console.log(JSON.parse(str));
-  // });
 });
-
-// module.exports = schedule.scheduleJob("* * * * *", function () {
-
-// });
 
 async function deleteHeverYellow() {
   console.log("Deleting Hever");
@@ -52,18 +42,18 @@ async function AddHeverYellow() {
 
   axios
     .get(url)
-    .then((response) => {
+    .then(async (response) => {
       //console.log(response.data);
       for (let i = 0; i < response.data.length; i++) {
         const deal = new Deal({
           title: response.data[i].company,
           description: "30% הנחה",
-          catrgory: response.data[i].company_category,
+          catrgory: new Category({ name: response.data[i].company_category }),
           imageURL: imageURLStart + response.data[i].logo,
           loyaltyCard: loyaltyCard,
         });
 
-        deal.save();
+        await deal.save();
       }
     })
     .catch((error) => {
