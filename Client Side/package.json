@@ -28,11 +28,7 @@
     "react-icons": "^4.9.0",
     "react-modern-calendar-datepicker": "^3.1.6",
     "react-router-dom": "^6.11.2",
-<<<<<<< HEAD
     "react-scripts": "^5.0.1",
-=======
-    "react-scripts": "5.0.1",
->>>>>>> 459060b993be0cf73de076fa06f07b8327f92171
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.11",
     "web-vitals": "^3.3.2"

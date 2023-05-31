@@ -22,17 +22,12 @@ const login = async (req, res, next) => {
       return sendError(res, "bad email or password");
     }
     // Access Token:
-    const accessToken = await jwt.sign(
-      { _id: user._id },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-    );
+    const accessToken = await jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+    });
 
     // Refresh Token
-    const refreshToken = await jwt.sign(
-      { _id: user._id },
-      process.env.REFRESH_TOKEN_SECRET
-    );
+    const refreshToken = await jwt.sign({ _id: user._id }, process.env.REFRESH_TOKEN_SECRET);
 
     if (user.tokens == null) {
       user.tokens = [refreshToken];
@@ -53,10 +48,11 @@ const login = async (req, res, next) => {
 const register = async (req, res, next) => {
   console.log("register");
 
+  const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
 
-  if (email == null || password == null) {
+  if (name == null || email == null || password == null) {
     return sendError(res);
   }
 
@@ -75,6 +71,7 @@ const register = async (req, res, next) => {
     let salt = await bcrypt.genSalt(10);
     let encryptedPassword = await bcrypt.hash(password, salt);
     const user = new User({
+      name: name,
       email: email,
       password: encryptedPassword,
     });
@@ -141,17 +138,12 @@ const refreshToken = async (req, res, next) => {
       }
 
       // Access Token:
-      const accessToken = await jwt.sign(
-        { _id: user._id },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
-      );
+      const accessToken = await jwt.sign({ _id: user._id }, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+      });
 
       // Refresh Token
-      const refreshToken = await jwt.sign(
-        { _id: user._id },
-        process.env.REFRESH_TOKEN_SECRET
-      );
+      const refreshToken = await jwt.sign({ _id: user._id }, process.env.REFRESH_TOKEN_SECRET);
 
       user.tokens[user.tokens.indexOf(token)] = refreshToken;
       await user.save();
