@@ -11,33 +11,22 @@ export default function Search() {
 
   const onChange = (event) => {
     setValue(event.target.value);
-  };
-
-  const onSearch = (searchTerm) => {
-    setValue(searchTerm);
     const title = value;
     nav("/Home", { state: { title } });
-    console.log("search ", searchTerm);
+    console.log("search ", value);
+  };
+
+  const onSearch = (event) => {
+    let term = event.target.value;
+    setValue(term);
+    const title = term;
+    nav("/Home", { state: { title } });
+    console.log("search ", term);
   };
 
   return (
-    // <div className="search">
-    //   <input
-    //     value={searchTerm}
-    //     onChange={(e) => setSearchTerm(e.target.value)}
-    //     placeholder="Search Here"
-    //   />
-    //   <BsSearch
-    //     className="icons-search"
-    //     onClick={() => searchBusiness(searchTerm)}
-    //   />
-    // </div>
-
-    // <MDBCol md="6">
-    //   <MDBInput className="searchBar" hint="Search" type="text" containerClass="mt-0" />
-    // </MDBCol>
     <div className="App">
-      <h1>Search</h1>
+      {/* <h1>Search</h1>
 
       <div className="search">
         <div className="search-inner">
@@ -47,8 +36,20 @@ export default function Search() {
           {" "}
           Search{" "}
         </BsSearch>
-      </div>
-      <div className="dropdown">
+      </div> */}
+
+      <MDBCol md="6">
+        <MDBInput
+          className="searchBar"
+          hint="Search"
+          type="text"
+          containerClass="mt-0"
+          value={value}
+          onChange={onSearch}
+        />
+      </MDBCol>
+
+      {/* <div className="dropdown">
         {categories
           .filter((item) => {
             const searchTerm = value.toUpperCase();
@@ -70,7 +71,7 @@ export default function Search() {
               {item.name}
             </div>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 }

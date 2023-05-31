@@ -71,7 +71,8 @@
 
 .searchBar {
   background-color: transparent;
-}
+  border-color: #0D1B2A ;
+ }
 
 .icons-search {
   height: 30px;
