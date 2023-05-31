@@ -30,7 +30,7 @@ async function addHapoalim() {
     for (let i = 0; i < dataFromJson.length; i++) {
       const deal = new Deal({
         title: dataFromJson[i].title,
-        description: dataFromJson.desc,
+        description: dataFromJson[i].desc,
         catrgory: new Category({ name: "קולנוע" }),
         imageURL: "",
         loyaltyCard: loyaltyCard,
