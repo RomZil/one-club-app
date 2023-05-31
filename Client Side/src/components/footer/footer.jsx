@@ -40,7 +40,7 @@ function Footer() {
     >
       <Container>
         <Navbar.Brand href="#home">One Club</Navbar.Brand>
-        { isLoggedIn && <><Nav className="me-auto">
+        { !isLoggedIn && <><Nav className="me-auto">
           <BootstrapSwitchButton
             className="switchButton"
             class="rounded-pill"

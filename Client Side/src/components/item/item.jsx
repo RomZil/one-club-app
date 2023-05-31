@@ -9,8 +9,8 @@ function Item({ name, img, perentId, id }) {
   const onClickItem = () => {
     perentId == null
       ? navigate("/FilteresCategories", { state: { id } })
-      : // TODO - bussines selected => goto suitable item page
-        navigate("/ShowItem", { state: { id } });
+      : navigate("/ShowItem", { state: { id } });
+
   };
 
   return (
