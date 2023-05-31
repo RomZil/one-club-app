@@ -17,10 +17,11 @@ export default function Search() {
   };
 
   const onSearch = (event) => {
-    setValue(event.target.value);
-    const title = value;
+    let term = event.target.value;
+    setValue(term);
+    const title = term;
     nav("/Home", { state: { title } });
-    console.log("search ", value);
+    console.log("search ", term);
   };
 
   return (
