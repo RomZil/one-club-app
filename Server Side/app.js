@@ -54,24 +54,17 @@ app.use("/auth", authRouter);
 const postRouter = require("./routes/post_routes");
 app.use("/post", postRouter);
 
-const Deal = require("./models/deal_model");
-const LoyaltyCard = require("./models/loyaltyCard_model");
-const Category = require("./models/category_model");
-
 app.get("/test", async (req, res, next) => {
-  let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
-
-  const deal = new Deal({
-    title: "Test",
-    description: "Test",
-    catrgory: new Category({ name: "חשמל ואלקטרוניקה" }),
-    imageURL: "",
-    loyaltyCard: loyaltyCard,
-  });
-
-  deal.save();
-
-  res.send("Test");
+  // let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
+  // const deal = new Deal({
+  //   title: "Test",
+  //   description: "Test",
+  //   catrgory: new Category({ name: "חשמל ואלקטרוניקה" }),
+  //   imageURL: "",
+  //   loyaltyCard: loyaltyCard,
+  // });
+  // deal.save();
+  // res.send("Test");
 });
 
 app.listen(port, () => {
