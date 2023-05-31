@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import Item from "../../components/item/item.jsx";
 import { categories } from "../../data/mockData.js";
 import { Col, Row } from "react-bootstrap";
-import ShowItem from "../ShowItem/ShowItem.jsx";
 import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
+import "./Home.css";
 import BackButton from "../../components/backButton/backButton.jsx";
 
 const Home = () => {
@@ -27,6 +27,8 @@ const Home = () => {
   return (
     <div>
       <Search title={""} />
+      <h1 className="headline">Categories</h1>
+      <br />
       <Row
         className="categories"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
