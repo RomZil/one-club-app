@@ -2,6 +2,10 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -12,6 +16,10 @@ const userSchema = new mongoose.Schema({
   },
   tokens: {
     type: [String],
+  },
+  loyaltyCardId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'loyaltyCard_mode',
   },
   loyaltyCards: [
     {

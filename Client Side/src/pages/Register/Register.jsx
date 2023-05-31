@@ -26,7 +26,7 @@ const Register = () => {
         })
         .then((response) => {
           if (response.status == 200) {
-            navigate("/Home");
+            navigate("/Home", { state: "" });
           }
         })
         .catch((error) => {
@@ -86,7 +86,7 @@ const Register = () => {
         <br />
         <div id="container_input">
           <div id="text_input">Date</div>
-          <input     
+          <input
             className="input custom-date-input"
             type="date"
             value={inputDate}
@@ -96,13 +96,14 @@ const Register = () => {
         </div>
       </div>
       <br />
-      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}> 
-      Register
+      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}>
+        Register
       </button>
       <br />
-      <Link className="link2" to="/LogIn">Already Registered? Log in here </Link>
+      <Link className="link2" to="/LogIn">
+        Already Registered? Log in here{" "}
+      </Link>
     </div>
-
   );
 };
 export default Register;
