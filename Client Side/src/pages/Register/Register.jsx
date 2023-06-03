@@ -21,6 +21,7 @@ const Register = () => {
     try {
       axios
         .post("http://localhost:3000/auth/register", {
+          name:inputName,
           email: inputEmail,
           password: inputPassword,
         })

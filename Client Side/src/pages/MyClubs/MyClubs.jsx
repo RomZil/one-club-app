@@ -9,10 +9,7 @@ const MyClubs = () => {
   return (
     <Col id="container">
       <Row id="clubs" style={{ gridGap: 15 }}>
-        <div id="title">My Clubs</div>
-        <Link id="link" to="/Profile">
-          Go to your profile
-        </Link>
+        <div id="titel2">My Clubs</div>
         {Clubs.map((club) => (
           <div id="club">{club}</div>
         ))}
