@@ -10,6 +10,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
 import { AppRouter } from "./AppRouter";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/footer/footer";
 
 
 const user = new ApolloClient({
@@ -32,7 +33,6 @@ const App = () => {
       <BrowserRouter>
         <div className="App">
           <Container className="grid-items">
-            <Users />
             <AppRouter />
           </Container>
         </div>

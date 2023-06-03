@@ -18,7 +18,6 @@ const GET_DEAL = gql`
         description
       }
     }
-  }
 `;
 
 export { GET_DEALS, GET_DEAL };
