@@ -19,7 +19,8 @@ const Profile = () => {
   }, []);
 
   function UpdateToDB() {
-    navigate("/Home");
+    navigate("/Home", { state: "" });
+
     //all the infon in vars
   }
 

@@ -9,8 +9,8 @@ function Item({ name, img, perentId, id }) {
   const onClickItem = () => {
     perentId == null
       ? navigate("/FilteresCategories", { state: { id } })
-      : // TODO - bussines selected => goto suitable item page
-        navigate("/ShowItem", { state: { name, img } });
+      : navigate("/ShowItem", { state: { id } });
+
   };
 
   return (
@@ -25,6 +25,16 @@ function Item({ name, img, perentId, id }) {
         <Card.Title className="card-desc">{name}</Card.Title>
       </Card.Body>
     </Card>
+
+    // <div className="row product">
+    //   <div className="col-md-2">
+    //     <img src={img[0].url} alt={name} />
+    //   </div>
+    //   <div className="col-md-8 product-detail">
+    //     <h4>{name}</h4>
+    //     {/* <div dangerouslySetInnerHTML={{ __html: description }}></div> */}
+    //   </div>
+    // </div>
   );
 }
 

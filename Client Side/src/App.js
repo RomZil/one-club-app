@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import Search from "./components/search/search";
 import Item from "./components/item/item";
 import { categories } from "../src/data/mockData.js";
@@ -20,21 +20,25 @@ const user = new ApolloClient({
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [business, setBusiness] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   console.log("App " + searchTerm);
 
   return (
+    <>
+    <Footer />
+    <br />
     <ApolloProvider client={user}>
-    <BrowserRouter>
-      <div className="App">
-        <Container className="grid-items">
-          <Users />
-          <AppRouter />
-        </Container>
-      </div>
-    </BrowserRouter>
+      <BrowserRouter>
+        <div className="App">
+          <Container className="grid-items">
+            <Users />
+            <AppRouter />
+          </Container>
+        </div>
+      </BrowserRouter>
     </ApolloProvider>
+    </>
   );
 };
 

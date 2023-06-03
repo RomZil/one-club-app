@@ -2,7 +2,7 @@ import "./LogIn.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import emitter from '../../shared/emitter';
+import emitter from "../../shared/emitter";
 import { Col } from "react-bootstrap";
 
 const LogIn = () => {
@@ -32,8 +32,8 @@ const LogIn = () => {
         .then((response) => {
           console.log("res" + response);
           if (response.status == 200) {
-            emitter.emit('isLoggedIn', true);
-            navigate("/Home");
+            emitter.emit("isLoggedIn", true);
+            navigate("/Home", { state: "" });
           }
         })
         .catch((error) => {
@@ -43,6 +43,7 @@ const LogIn = () => {
     } catch (error) {
       alert("Somthing roung, try again");
     }
+    emitter.emit('isLoggedIn', true);
   }
 
   return (

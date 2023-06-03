@@ -21,12 +21,13 @@ const Register = () => {
     try {
       axios
         .post("http://localhost:3000/auth/register", {
+          name: inputName,
           email: inputEmail,
           password: inputPassword,
         })
         .then((response) => {
           if (response.status == 200) {
-            navigate("/Home");
+            navigate("/Home", { state: "" });
           }
         })
         .catch((error) => {
@@ -56,37 +57,22 @@ const Register = () => {
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
-          <input
-            className="input"
-            type="text"
-            value={inputName}
-            onChange={handleNameChange}
-          />
+          <input className="input" type="text" value={inputName} onChange={handleNameChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Email</div>
-          <input
-            className="input"
-            type="email"
-            value={inputEmail}
-            onChange={handleEmailChange}
-          />
+          <input className="input" type="email" value={inputEmail} onChange={handleEmailChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Password</div>
-          <input
-            className="input"
-            type="password"
-            value={inputPassword}
-            onChange={handlePasswordChange}
-          />
+          <input className="input" type="password" value={inputPassword} onChange={handlePasswordChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Date</div>
-          <input     
+          <input
             className="input custom-date-input"
             type="date"
             value={inputDate}
@@ -96,13 +82,14 @@ const Register = () => {
         </div>
       </div>
       <br />
-      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}> 
-      Register
+      <button id="b_sign" className="registerBtn" onClick={RegisterToDB}>
+        Register
       </button>
       <br />
-      <Link className="link2" to="/LogIn">Already Registered? Log in here </Link>
+      <Link className="link2" to="/LogIn">
+        Already Registered? Log in here{" "}
+      </Link>
     </div>
-
   );
 };
 export default Register;
