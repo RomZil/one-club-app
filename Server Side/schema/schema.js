@@ -1,6 +1,6 @@
-const LoyaltyCard = require('../models/loyaltyCard_mode');
-const User = require('../models/user_mode');
-const Deal = require('../models/deal_mode');
+const LoyaltyCard = require('../models/loyaltyCard_model');
+const User = require('../models/user_model');
+const Deal = require('../models/deal_model');
 
 
 const {

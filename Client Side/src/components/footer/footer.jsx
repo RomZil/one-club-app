@@ -40,7 +40,7 @@ function Footer() {
     >
       <Container>
         <Navbar.Brand href="#home">One Club</Navbar.Brand>
-        { isLoggedIn && <><Nav className="me-auto">
+        {!isLoggedIn && <><Nav className="me-auto">
           <BootstrapSwitchButton
             className="switchButton"
             class="rounded-pill"
@@ -57,18 +57,18 @@ function Footer() {
             }}
           />
         </Nav>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" /><Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="top-right-stick">
-            <Nav.Link href="#map-page">
-              <BsPinMap className="icons" />
-              <span className="icon-text"> Around Me </span>
-            </Nav.Link>
-            <Nav.Link href="Profile">
-              <BsPersonCircle className="icons" />
-              <span className="icon-text"> Profile </span>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse></> }
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" /><Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="top-right-stick">
+              <Nav.Link href="#map-page">
+                <BsPinMap className="icons" />
+                <span className="icon-text"> Around Me </span>
+              </Nav.Link>
+              <Nav.Link href="Profile">
+                <BsPersonCircle className="icons" />
+                <span className="icon-text"> Profile </span>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse></>}
       </Container>
     </Navbar>
   );
