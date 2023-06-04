@@ -39,9 +39,6 @@ const Profile = () => {
   return (
     <div id="container">
       <p id="titel2">Profile</p>
-      <Link id="link1" to="/MyClubs">
-        Go to your clubs
-      </Link>
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
@@ -86,6 +83,9 @@ const Profile = () => {
       <button id="b_sign" onClick={UpdateToDB}>
         update profile
       </button>
+      <Link className="link2" to="/MyClubs">
+        Go to your clubs
+      </Link>
     </div>
   );
 };
