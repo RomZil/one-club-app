@@ -7,7 +7,7 @@ const { spawn } = require("child_process");
 module.exports = schedule.scheduleJob("*/5 * * * *", async function () {
   await deleteHapoalim();
   console.log("Start Running Hever");
-  await addHapoalim();
+  //  await addHapoalim();
   console.log("Finish Running Hever");
 });
 

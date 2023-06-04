@@ -33,7 +33,7 @@ const LogIn = () => {
           console.log("res" + response);
           if (response.status == 200) {
             emitter.emit("isLoggedIn", true);
-            navigate("/Home", { state: "" });
+            navigate("/Home", { state: { title: null } });
           }
         })
         .catch((error) => {
@@ -43,7 +43,7 @@ const LogIn = () => {
     } catch (error) {
       alert("Somthing roung, try again");
     }
-    emitter.emit('isLoggedIn', true);
+    emitter.emit("isLoggedIn", true);
   }
 
   return (
