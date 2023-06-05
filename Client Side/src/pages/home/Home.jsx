@@ -7,27 +7,35 @@ import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
 import "./Home.css";
 import BackButton from "../../components/backButton/backButton.jsx";
-import Deals from "../../shared/deals.jsx";
+import { Deals } from "../../shared/deals.jsx";
+import { GET_DEALS } from "../../components/queries/dealQueries.js";
+import { useQuery } from "@apollo/client";
+import Spinner from "../../components/spinner/spinner.jsx";
 
-const Home = () => {
+export default function Home() {
+  const { isLoading, error, data } = useQuery(GET_DEALS);
+
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
   const { title } = state;
 
+  // const data = Deals();
   useEffect(() => {
-    if (title != null) {
-      const tmp = categories.filter((category) => {
-        return category.name.includes(title.toUpperCase());
+    if (data != undefined && title != null) {
+      console.log(data);
+      const tmp = data.deals.filter((category) => {
+        return category.title.includes(title.toUpperCase());
       });
       setCategories_filtered(tmp);
     } else {
       setCategories_filtered(categories);
     }
-  }, [state]);
+  }, [data, state]);
+
+  if (error) return <p> Somthing wrong</p>;
 
   return (
     <div>
-      <Deals></Deals>
       <Search title={""} />
       <h1 className="headline">Categories</h1>
       <br />
@@ -47,6 +55,4 @@ const Home = () => {
       </Row>
     </div>
   );
-};
-
-export default Home;
+}
