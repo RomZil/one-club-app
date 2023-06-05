@@ -49,7 +49,9 @@ export default function Clubs() {
         ))}
       </Row>{" "}
       <div>{""}</div>
-      <Button onClick={updateMyClubs}>UPDATE</Button>
+      <button id="b_sign" className="registerBtn" onClick={updateMyClubs}>
+        UPDATE
+      </button>
     </Col>
   );
 }
