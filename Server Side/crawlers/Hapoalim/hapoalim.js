@@ -4,11 +4,11 @@ const Deal = require("../../models/deal_model");
 const LoyaltyCard = require("../../models/loyaltyCard_model");
 const { spawn } = require("child_process");
 
-module.exports = schedule.scheduleJob("*/5 * * * *", async function () {
-  await deleteHapoalim();
-  console.log("Start Running Hever");
-  await addHapoalim();
-  console.log("Finish Running Hever");
+module.exports = schedule.scheduleJob("* * * * *", async function () {
+  // await deleteHapoalim();
+  // console.log("Start Running Hever");
+  // await addHapoalim();
+  // console.log("Finish Running Hever");
 });
 
 async function addHapoalim() {

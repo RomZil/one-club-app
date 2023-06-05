@@ -16,7 +16,7 @@ const dealSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
-  loyaltyCard: {
+  loyaltyCardId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "LoyaltyCard",
   },
