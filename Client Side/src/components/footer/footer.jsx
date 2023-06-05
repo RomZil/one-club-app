@@ -34,7 +34,7 @@ function Footer() {
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
         <Navbar.Brand href="#home">One Club</Navbar.Brand>
-        {!isLoggedIn && (
+        {isLoggedIn && (
           <>
             <Nav className="me-auto">
               <BootstrapSwitchButton
