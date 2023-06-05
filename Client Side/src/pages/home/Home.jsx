@@ -7,6 +7,7 @@ import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
 import "./Home.css";
 import BackButton from "../../components/backButton/backButton.jsx";
+import Deals from "../../shared/deals.jsx";
 
 const Home = () => {
   const { state } = useLocation();
@@ -26,6 +27,7 @@ const Home = () => {
 
   return (
     <div>
+      <Deals></Deals>
       <Search title={""} />
       <h1 className="headline">Categories</h1>
       <br />

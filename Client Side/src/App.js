@@ -14,7 +14,7 @@ import Footer from "./components/footer/footer";
 
 
 const user = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://localhost:3000/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -27,17 +27,17 @@ const App = () => {
 
   return (
     <>
-    <Footer />
-    <br />
-    <ApolloProvider client={user}>
-      <BrowserRouter>
-        <div className="App">
-          <Container className="grid-items">
-            <AppRouter />
-          </Container>
-        </div>
-      </BrowserRouter>
-    </ApolloProvider>
+      <Footer />
+      <br />
+      <ApolloProvider client={user}>
+        <BrowserRouter>
+          <div className="App">
+            <Container className="grid-items">
+              <AppRouter />
+            </Container>
+          </div>
+        </BrowserRouter>
+      </ApolloProvider>
     </>
   );
 };
