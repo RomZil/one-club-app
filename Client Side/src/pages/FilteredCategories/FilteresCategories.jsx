@@ -3,12 +3,15 @@ import { useLocation } from "react-router-dom";
 import Item from "../../components/item/item";
 import { businesses } from "../../data/mockData";
 import Search from "../../components/search/search";
+import BackButton from "../../components/backButton/backButton";
 const FilteresCategories = () => {
   const { state } = useLocation();
   const { id } = state;
 
   return (
     <div>
+      <BackButton />
+      <br />
       <Search title={""} />
       <h1 className="headline">Businesses</h1>
       <br />
