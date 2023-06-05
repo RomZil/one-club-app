@@ -21,8 +21,6 @@ export default function Clubs() {
     console.log(myClubs);
   }
 
-  // function onClickCheckBox(name) {
-
   // }
   if (loading) return <Spinner />;
   if (error) return <p>Somthing Went Wrong</p>;
