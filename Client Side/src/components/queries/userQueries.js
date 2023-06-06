@@ -12,4 +12,18 @@ query getUsers {
 }
 `;
 
+const GET_USER = gql`
+  query getUser($email: EMAIL!) {
+    deal(email: $email) {
+      users{
+        id
+        name
+        email
+        password
+        loyaltyCards
+      }
+      }
+    }
+`;
+
 export {GET_USERS};
