@@ -4,10 +4,12 @@ import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { BsPersonCircle, BsPinMap } from "react-icons/bs";
 import emitter from "../../shared/emitter";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
   const [isMyClubs, setIsMyClubs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const nav = useNavigate();
 
   const handleMyClubsChange = (event) => {
     setIsMyClubs(event.target.value);
@@ -33,7 +35,13 @@ function Footer() {
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">One Club</Navbar.Brand>
+        <Navbar.Brand
+          onClick={() => {
+            nav("/Home", { state: { title: null } });
+          }}
+        >
+          One Club
+        </Navbar.Brand>
         {isLoggedIn && (
           <>
             <Nav className="me-auto">

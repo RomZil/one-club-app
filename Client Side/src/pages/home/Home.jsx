@@ -13,18 +13,17 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
 
 export default function Home() {
-  const { isLoading, error, data } = useQuery(GET_DEALS);
+  const { loading, error, data } = useQuery(GET_DEALS);
 
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
+
   const { title } = state;
 
-  // const data = Deals();
   useEffect(() => {
-    if (data != undefined && title != null) {
-      console.log(data);
+    if (data != undefined && title != null && title != "") {
       const tmp = data.deals.filter((category) => {
-        return category.title.includes(title.toUpperCase());
+        return category.title.toUpperCase().includes(title.toUpperCase());
       });
       setCategories_filtered(tmp);
     } else {
@@ -33,6 +32,7 @@ export default function Home() {
   }, [data, state]);
 
   if (error) return <p> Somthing wrong</p>;
+  if (loading) return <Spinner />;
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default function Home() {
             key={Math.floor(Math.random() * 100000)} // Assign stable key using category.id
             id={category.id}
             img={category.img}
-            name={category.name}
+            title={category.title}
             parentId={category.parent_id}
           />
         ))}
