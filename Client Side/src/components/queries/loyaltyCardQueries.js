@@ -5,7 +5,11 @@ const GET_LOYALTYCARDS = gql`
     loyaltyCards {
       id
       name
-      deals
+      deals {
+        id
+        title
+        description
+      }
     }
   }
 `;
@@ -15,7 +19,7 @@ const GET_LOYALTYCARD = gql`
     loyaltyCard(id: $id) {
       id
       name
-      deals {
+      deal {
         id
         title
         description

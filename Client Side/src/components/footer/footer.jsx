@@ -64,6 +64,10 @@ function Footer() {
                   <BsPersonCircle className="icons" />
                   <span className="icon-text"> Profile </span>
                 </Nav.Link>
+                <Nav.Link href="UserByEmail">
+                  <BsPersonCircle className="icons" />
+                  <span className="icon-text"> user </span>
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </>

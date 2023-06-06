@@ -8,6 +8,7 @@ import Profile from "./pages/Profile/Profile.jsx";
 import MyClubs from "./pages/MyClubs/MyClubs.jsx";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
 import ShowItem from "./pages/ShowItem/ShowItem.jsx";
+import User from "./shared/userById.jsx";
 
 export const AppRouter = () => (
   <Routes>
@@ -20,5 +21,6 @@ export const AppRouter = () => (
     <Route path="/MyClubs" element={<MyClubs />} />
     <Route path="/ForgotPassword" element={<ForgotPassword />} />
     <Route path="/ShowItem" element={<ShowItem />} />
+    <Route path="/UserByEmail" element={<User />} />
   </Routes>
 );

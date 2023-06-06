@@ -10,7 +10,12 @@ const LoyaltyCardType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    deals: { type: GraphQLString },
+    deal: {
+      type: DealType,
+      resolve(parent, args) {
+        return Deal.findById(parent.dealId);
+      },
+    },
   }),
 });
 
@@ -33,11 +38,11 @@ const UserType = new GraphQLObjectType({
     email: { type: GraphQLString },
     password: { type: GraphQLString },
     tokens: { type: GraphQLString },
-    loyaltyCards: { type: GraphQLString },
+    // loyaltyCards: { type: GraphQLString },
     loyaltyCard: {
       type: LoyaltyCardType,
       resolve(parent, args) {
-        return LoyaltyCard.find((loyaltyCard) => loyaltyCard.name === parent.loyaltyCards);
+        return LoyaltyCard.findById(parent.loyaltyCardId);
       },
     },
   }),
