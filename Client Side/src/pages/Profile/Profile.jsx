@@ -1,6 +1,9 @@
 // import "./Profile.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { GET_USER, GET_USERS } from "../../components/queries/userQueries";
+import { useQuery } from "@apollo/client";
+import Spinner from "../../components/spinner/spinner";
 
 // RefreshDate();
 
@@ -11,12 +14,22 @@ const Profile = () => {
   const [updateDate, setDateValue] = useState("");
   const navigate = useNavigate();
 
+  const { loading, error, data } = useQuery(GET_USER, {
+    variables: { id: "647e3080221bb9a4e3ec8f34" },
+  });
+  // const { loading, error, data } = useQuery(GET_USERS);
+
+  console.log(data);
   useEffect(() => {
-    // TODO:  call to db and get the data
-    setNameValue("unger");
-    setEmailValue("adi@gmail.com");
-    setPasswordValue("123456");
-  }, []);
+    if (data != undefined) {
+      setNameValue(data.user.name);
+      setEmailValue(data.user.email);
+      setPasswordValue(data.user.password);
+    }
+  }, [data]);
+
+  if (error) return <p>{error.message}</p>;
+  if (loading) return <Spinner />;
 
   function UpdateToDB() {
     navigate("/Home", { state: "" });
