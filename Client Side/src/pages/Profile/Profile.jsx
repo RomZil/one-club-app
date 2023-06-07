@@ -17,7 +17,6 @@ const Profile = () => {
   const { loading, error, data } = useQuery(GET_USER, {
     variables: { id: "647e3080221bb9a4e3ec8f34" },
   });
-  // const { loading, error, data } = useQuery(GET_USERS);
 
   console.log(data);
   useEffect(() => {
