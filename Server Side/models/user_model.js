@@ -17,17 +17,17 @@ const userSchema = new mongoose.Schema({
   tokens: {
     type: [String],
   },
-  loyaltyCardId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "LoyaltyCard",
+  // loyaltyCardId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "LoyaltyCard",
     // ref: 'loyaltyCard_mode',
-  },
-  // loyaltyCards: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "LoyaltyCard",
-  //   },
-  // ],
+  // },
+  loyaltyCards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LoyaltyCard",
+    },
+  ],
 });
 
 module.exports = User = mongoose.model("User", userSchema);
