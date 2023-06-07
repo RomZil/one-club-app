@@ -1,25 +1,21 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import defult from "../../images/default.png";
 import "./item.css";
 
 function Item({ title, img, perentId, id }) {
   const navigate = useNavigate();
   const onClickItem = () => {
-    perentId == null
-      ? navigate("/FilteresCategories", { state: { id } })
-      : navigate("/ShowItem", { state: { id } });
+    // perentId == null
+    //   ? navigate("/FilteresCategories", { state: { id } })
+    // :
+    navigate("/ShowItem", { state: { id } });
   };
 
   return (
-    <Card className="item">
-      <Card.Img
-        className="card-img"
-        onClick={onClickItem}
-        variant="top"
-        // src={img[0].url}
-      />
+    <Card onClick={onClickItem} className="item">
+      <Card.Img className="card-img" variant="top" src={img || defult} />
       <Card.Body className="card-body">
         <Card.Title className="card-desc">{title}</Card.Title>
       </Card.Body>

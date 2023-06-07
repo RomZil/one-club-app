@@ -26,9 +26,10 @@ export default function Home() {
         return category.title.toUpperCase().includes(title.toUpperCase());
       });
       setCategories_filtered(tmp);
-    } else {
-      setCategories_filtered(categories);
     }
+    // else {
+    //   setCategories_filtered(categories);
+    // }
   }, [data, state]);
 
   if (error) return <p> Somthing wrong</p>;
@@ -37,7 +38,7 @@ export default function Home() {
   return (
     <div>
       <Search title={""} />
-      <h1 className="headline">Categories</h1>
+      {/* <h1 className="headline">Categories</h1> */}
       <br />
       <Row
         className="categories"
@@ -45,11 +46,11 @@ export default function Home() {
       >
         {categories_filtered.map((category) => (
           <Item
-            key={Math.floor(Math.random() * 100000)} // Assign stable key using category.id
+            key={category.id} // Assign stable key using category.id
             id={category.id}
             img={category.img}
             title={category.title}
-            parentId={category.parent_id}
+            parentId={"1"}
           />
         ))}
       </Row>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./footer.css";
 import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import { BsPersonCircle, BsPinMap } from "react-icons/bs";
+import { BsPersonCircle, BsPinMap, BsDoorOpen } from "react-icons/bs";
 import emitter from "../../shared/emitter";
 import { useNavigate } from "react-router-dom";
 
@@ -86,7 +86,7 @@ function Footer() {
                   }}
                   href="/"
                 >
-                  <BsPersonCircle className="icons" />
+                  <BsDoorOpen className="icons" />
                   <span className="icon-text">Log Out</span>
                 </Nav.Link>
               </Nav>
