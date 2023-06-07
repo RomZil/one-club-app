@@ -8,7 +8,14 @@ import { BsPersonCircle, BsPinMap } from "react-icons/bs";
 function Footer() {
 
    const [isMyClubs , setIsMyClubs] = useState(true);
-   
+   const [isLogIn, setisLogIn] = useState(false);
+
+   useEffect(() => {
+    const storedCount = localStorage.getItem('isLogIn');
+    if (storedCount) {
+      setCount(parseInt(storedCount));
+    }
+  }, []);
 
   return (
     <Navbar
@@ -47,6 +54,10 @@ function Footer() {
             <Nav.Link href="#profile-page"><BsPersonCircle className="icons" /> 
             <span className="icon-text"> Profile </span>
             </Nav.Link>
+            <Nav.Link href="/welcome"><BsPersonCircle className="icons" /> 
+            <span className="icon-text" onClick={() => {localStorage.clear()}}> Log Out </span>
+            </Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
       </Container>

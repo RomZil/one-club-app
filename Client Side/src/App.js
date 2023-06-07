@@ -23,6 +23,8 @@ const App = () => {
 
   console.log("App " + searchTerm);
 
+  // localStorage.setItem("isLoggedIn", false);
+
   return (
     <>
       <BrowserRouter>

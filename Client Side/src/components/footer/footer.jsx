@@ -16,22 +16,30 @@ function Footer() {
   };
 
   useEffect(() => {
-    const eventHandler = (data) => {
-      console.log("Received data:", data);
-      // Handle the emitted data
-      setIsLoggedIn(data);
-      // TODO: dont forget when log out isLoggedIn = false;
-    };
+    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+    // if (storedIsLoggedIn) {
+    //   setIsLoggedIn(storedIsLoggedIn === false);
+    // }
+    setIsLoggedIn(storedIsLoggedIn);
 
-    // Subscribe to the event
-    emitter.on("isLoggedIn", eventHandler);
+    // const eventHandler = (data) => {
+    //   console.log("Received data:", data);
+    //   // Handle the emitted data
+    //   setIsLoggedIn(data);
+    //   // TODO: dont forget when log out isLoggedIn = false;
+    // };
 
-    return () => {
-      // Unsubscribe when the component unmounts
-      emitter.off("isLoggedIn", eventHandler);
-    };
+    // // Subscribe to the event
+    // emitter.on("isLoggedIn", eventHandler);
+
+    // return () => {
+    //   // Unsubscribe when the component unmounts
+    //   emitter.off("isLoggedIn", eventHandler);
+    // };
   }, []);
-
+  // useEffect(() => {
+  //   setIsLoggedIn(JSON.parse(localStorage.getItem("isLogIn")));
+  // }, []);
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
@@ -71,6 +79,15 @@ function Footer() {
                 <Nav.Link href="Profile">
                   <BsPersonCircle className="icons" />
                   <span className="icon-text"> Profile </span>
+                </Nav.Link>
+                <Nav.Link
+                  onClick={() => {
+                    localStorage.clear();
+                  }}
+                  href="/"
+                >
+                  <BsPersonCircle className="icons" />
+                  <span className="icon-text">Log Out</span>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
