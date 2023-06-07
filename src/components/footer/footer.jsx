@@ -19,7 +19,7 @@ function Footer() {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="#home">One Club</Navbar.Brand>
+        <Navbar.Brand onClick={}>One Club</Navbar.Brand>
         <Nav className="me-auto">
           <BootstrapSwitchButton
             className="switchButton"

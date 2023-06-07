@@ -2,7 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import "./item.css";
 
-function Item({ name, img, perentId }) {
+function Item({ title, img, perentId }) {
   const onClickItem = (perentId) => {
     perentId == null
       ? // TODO - categorie selected => goto business suitable page
@@ -20,7 +20,7 @@ function Item({ name, img, perentId }) {
         src={img[0].url}
       />
       <Card.Body className="card-body">
-        <Card.Title className="card-desc">{name}</Card.Title>
+        <Card.Title className="card-desc">{title}</Card.Title>
       </Card.Body>
     </Card>
   );

@@ -1,21 +1,28 @@
 import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { GET_DEAL, GET_DEALS } from "../components/queries/dealQueries"; 
-import { useQuery } from '@apollo/client';
+import { GET_DEAL, GET_DEALS } from "../components/queries/dealQueries";
+import { useQuery } from "@apollo/client";
 import Spinner from "../components/spinner/spinner";
 
-export default function Deals() {
+const Deals = () => {
+  const { isLoading, error, data } = useQuery(GET_DEALS);
 
-  const { loading, error, data } = useQuery(GET_DEALS);
+  return data;
 
-  if (loading) return <Spinner />;
-  if (error) return <p>Something Went Wrong</p>;
+  // if (isLoading) {
+  //   return { isLoading: true, data: null, error: null };
+  // }
 
-  return (
-    <>
-    {data.deals.map((deal) => (
-          <div id="deal">{deal.title}</div>
-          ))}
-    </>
-);
+  // if (error) {
+  //  return { isLoading: false, data: null, error };
+  // }
+
+  // return { isLoading: false, data, error: null };
 };
+//   // return
+//   //   if (loading) return <Spinner />;
+//   //   if (error) return <p>Something Went Wrong</p>;
+
+//   return data;
+// };
+export { Deals };

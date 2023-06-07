@@ -30,7 +30,7 @@ const LogIn = () => {
           password: inputPassword,
         })
         .then((response) => {
-          console.log("res" + response);
+          console.log("res " + response.data);
           if (response.status == 200) {
             emitter.emit("isLoggedIn", true);
             navigate("/Home", { state: { title: null } });
