@@ -28,8 +28,9 @@ const Register = () => {
         })
         .then((response) => {
           if (response.status == 200) {
-            emitter.emit("isLoggedIn", true);
+            localStorage.setItem("isLoggedIn", true);
             navigate("/Home", { state: { title: null } });
+            window.location.reload();
           }
         })
         .catch((error) => {
@@ -87,16 +88,6 @@ const Register = () => {
           />
         </div>
         <br />
-        <div id="container_input">
-          <div id="text_input">Date</div>
-          <input
-            className="input custom-date-input"
-            type="date"
-            value={inputDate}
-            onChange={handleDateChange}
-            placeholder=""
-          />
-        </div>
       </div>
       <br />
       <button id="b_sign" className="registerBtn" onClick={RegisterToDB}>

@@ -72,25 +72,6 @@ const Profile = () => {
           />
         </div>
         <br />
-        <div id="container_input">
-          <div id="text_input">Password</div>
-          <input
-            className="input_w"
-            type="password"
-            value={updatePassword}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <br />
-        <div id="container_input">
-          <div id="text_input">Date</div>
-          <input
-            className="input_w"
-            type="date"
-            value={updateDate}
-            onChange={handleDateChange}
-          />
-        </div>
       </div>
       <button id="b_sign" onClick={UpdateToDB}>
         update profile
