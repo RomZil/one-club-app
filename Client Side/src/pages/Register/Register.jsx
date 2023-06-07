@@ -2,6 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import emitter from "../../shared/emitter";
 import { Col } from "react-bootstrap";
 
 const Register = () => {
@@ -27,6 +28,7 @@ const Register = () => {
         })
         .then((response) => {
           if (response.status == 200) {
+            emitter.emit("isLoggedIn", true);
             navigate("/Home", { state: { title: null } });
           }
         })
