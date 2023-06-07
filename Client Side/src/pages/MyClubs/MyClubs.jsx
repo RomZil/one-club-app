@@ -1,5 +1,5 @@
 import "./MyClubs.css";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
 import { Link } from "react-router-dom";
 import {
@@ -26,32 +26,44 @@ export default function Clubs() {
   if (error) return <p>Somthing Went Wrong</p>;
 
   return (
-    <Col id="container">
-      <Row id="clubs" style={{ gridGap: 15 }}>
-        <div id="title">My Clubs</div>
-        <Link id="link" to="/Profile">
-          Go to your profile
-        </Link>
-
-        {data.loyaltyCards.map((loyaltyCard) => (
-          <div
-            style={{
-              display: "contents",
-            }}
-          >
-            <div id="club">{loyaltyCard.name}</div>
-            <MDBCheckbox
-              onClick={() => setMyClubs([...myClubs, loyaltyCard.name])}
-              onClickname="flexCheck"
-              id="flexCheckDefault"
-            />
-          </div>
-        ))}
-      </Row>{" "}
-      <div>{""}</div>
-      <button id="b_sign" className="registerBtn" onClick={updateMyClubs}>
-        UPDATE
-      </button>
-    </Col>
+    <>
+    <div id="container" >
+      <div id="titel2">My Clubs</div>
+      <br />
+      <Link className="link2" to="/Profile">
+        Go to your profile
+      </Link>
+      <br />
+      <Form>
+        <Row className="clubs" style={{ gridGap: 15 }}>
+          {data.loyaltyCards.map((loyaltyCard) => (
+            <div
+              style={{
+                display: "contents",
+              }}
+            >
+              <Form.Group className="mb-3">
+                <Form.Control
+                  className="loyaltyCards"
+                  disabled="true"
+                  type="text"
+                  placeholder={loyaltyCard.name}
+                />
+              </Form.Group>
+              <MDBCheckbox
+                onClick={() => setMyClubs([...myClubs, loyaltyCard.name])}
+                onClickname="flexCheck"
+                id="flexCheckDefault"
+              />
+            </div>
+          ))}
+        </Row>{" "}
+        <div>{""}</div>
+        <button id="b_sign" className="registerBtn" onClick={updateMyClubs}>
+          UPDATE
+        </button>
+      </Form>
+      </div>
+    </>
   );
 }
