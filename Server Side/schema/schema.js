@@ -31,7 +31,7 @@ const DealType = new GraphQLObjectType({
     category: {
       type: CategoryType,
       resolve(parent, args) {
-        return Category.findById(parent.categoryId);
+        return Category.findById(parent.category);
       },
     },
   }),
@@ -62,7 +62,7 @@ const CategoryType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    aliases: { type: GraphQLString },
+    aliases: { type: new GraphQLList(GraphQLString) },
   }),
 });
 

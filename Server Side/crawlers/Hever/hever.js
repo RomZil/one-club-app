@@ -50,7 +50,7 @@ async function AddHeverYellow() {
           description: "30% הנחה",
           catrgory: new Category({ name: response.data[i].company_category }),
           imageURL: imageURLStart + response.data[i].logo,
-          loyaltyCard: loyaltyCard,
+          loyaltyCardId: loyaltyCard,
         });
 
         await deal.save();
