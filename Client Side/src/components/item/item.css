@@ -1,3 +1,5 @@
+
+
 :root {
     --gray: #a9a9a9;
     --deepNavy: #0D1B2A ;
@@ -23,6 +25,8 @@
     height: 90px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+    src: url("../../images/default.png")
+    
 }
 
 .card-desc {
