@@ -9,7 +9,7 @@ import {
 import { GET_DEALS } from "../../components/queries/dealQueries";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
-import { MDBCheckbox } from "mdb-react-ui-kit";
+// import { MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
 
 export default function Clubs() {
@@ -50,11 +50,11 @@ export default function Clubs() {
                   placeholder={loyaltyCard.name}
                 />
               </Form.Group>
-              <MDBCheckbox
+              {/* <MDBCheckbox
                 onClick={() => setMyClubs([...myClubs, loyaltyCard.name])}
                 onClickname="flexCheck"
                 id="flexCheckDefault"
-              />
+              /> */}
             </div>
           ))}
         </Row>{" "}

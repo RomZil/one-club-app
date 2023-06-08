@@ -17,11 +17,14 @@ const userSchema = new mongoose.Schema({
   tokens: {
     type: [String],
   },
-  loyaltyCardId: {
+  loyaltyCardId: [
+    {
     type: mongoose.Schema.Types.ObjectId,
     ref: "LoyaltyCard",
+    },
+  ],
     // ref: 'loyaltyCard_mode',
-  },
+  // },
   // loyaltyCards: [
   //   {
   //     type: mongoose.Schema.Types.ObjectId,
