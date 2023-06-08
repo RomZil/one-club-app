@@ -13,7 +13,7 @@ import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/footer/footer";
 
 const user = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -23,19 +23,21 @@ const App = () => {
 
   console.log("App " + searchTerm);
 
+  // localStorage.setItem("isLoggedIn", false);
+
   return (
     <>
-      <Footer />
-      <br />
-      <ApolloProvider client={user}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Footer />
+        <br />
+        <ApolloProvider client={user}>
           <div className="App">
             <Container className="grid-items">
               <AppRouter />
             </Container>
           </div>
-        </BrowserRouter>
-      </ApolloProvider>
+        </ApolloProvider>
+      </BrowserRouter>
     </>
   );
 };

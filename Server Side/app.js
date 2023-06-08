@@ -43,6 +43,14 @@ app.use(
   graphqlHTTP({
     schema,
     graphiql: true,
+    customFormatErrorFn: (error) => {
+      console.error("GraphQL Error:", error);
+      return {
+        message: error.message,
+        locations: error.locations,
+        path: error.path,
+      };
+    },
   })
 );
 

@@ -26,7 +26,7 @@ const FilteresCategories = () => {
               key={businesse.id}
               id={businesse.id}
               img={businesse.img}
-              name={businesse.name}
+              title={businesse.title}
               perentId={businesse.perent_id}
             />
           ))}

@@ -11,9 +11,9 @@ const BackButton = () => {
   };
 
   return (
-    <Button variant="outline-dark" onClick={goBack}>
-      <BsFillArrowLeftCircleFill />
-    </Button>
+    // <Button variant="outline-dark" onClick={goBack}>
+    <BsFillArrowLeftCircleFill onClick={goBack} />
+    // </Button>
   );
 };
 export default BackButton;
