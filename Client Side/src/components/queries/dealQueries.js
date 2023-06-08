@@ -1,11 +1,16 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_DEALS = gql`
   query getDeals {
     deals {
+      id
+      title
+      description
+      categories{
         id
-        title
-        description
+        name
+        aliases
+      }
     }
   }
 `;
@@ -13,11 +18,16 @@ const GET_DEALS = gql`
 const GET_DEAL = gql`
   query getDeal($id: ID!) {
     deal(id: $id) {
+      id
+      title
+      description
+      category{
         id
-        title
-        description
+        name
+        aliases
       }
     }
+  }
 `;
 
 export { GET_DEALS, GET_DEAL };

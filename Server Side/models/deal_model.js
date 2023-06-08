@@ -12,7 +12,11 @@ const dealSchema = new mongoose.Schema({
   imageURL: {
     type: String,
   },
+<<<<<<< HEAD
   category: {
+=======
+  catergory: {
+>>>>>>> origin/GraphQL
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
@@ -24,7 +28,11 @@ const dealSchema = new mongoose.Schema({
 
 dealSchema.pre("save", async function (next) {
   let deal = this;
+<<<<<<< HEAD
   let category = deal.category.name;
+=======
+  let category = deal.catergory.name;
+>>>>>>> origin/GraphQL
   let categoryObj = await Category.findOne({ name: category });
 
   if (categoryObj == null) {
@@ -45,7 +53,11 @@ dealSchema.pre("save", async function (next) {
       aliases: aliases,
     });
     let savedCategory = await categoryObj.save();
+<<<<<<< HEAD
     deal.category = savedCategory;
+=======
+    deal.catergory = savedCategory;
+>>>>>>> origin/GraphQL
   }
   next();
 });

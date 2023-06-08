@@ -30,10 +30,12 @@ const LogIn = () => {
           password: inputPassword,
         })
         .then((response) => {
-          console.log("res" + response);
+          console.log("res " + response.data);
           if (response.status == 200) {
-            emitter.emit("isLoggedIn", true);
+            // emitter.emit("isLoggedIn", true);
+            localStorage.setItem("isLoggedIn", true);
             navigate("/Home", { state: { title: null } });
+            window.location.reload();
           }
         })
         .catch((error) => {
@@ -43,7 +45,7 @@ const LogIn = () => {
     } catch (error) {
       alert("Somthing roung, try again");
     }
-    emitter.emit("isLoggedIn", true);
+    // emitter.emit("isLoggedIn", true);
   }
 
   return (

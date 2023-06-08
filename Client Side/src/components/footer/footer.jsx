@@ -2,38 +2,54 @@ import React, { useEffect, useState } from "react";
 import "./footer.css";
 import { Button, Container, Navbar, Nav } from "react-bootstrap";
 import BootstrapSwitchButton from "bootstrap-switch-button-react";
-import { BsPersonCircle, BsPinMap } from "react-icons/bs";
+import { BsPersonCircle, BsPinMap, BsDoorOpen } from "react-icons/bs";
 import emitter from "../../shared/emitter";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
   const [isMyClubs, setIsMyClubs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const nav = useNavigate();
 
   const handleMyClubsChange = (event) => {
     setIsMyClubs(event.target.value);
   };
 
   useEffect(() => {
-    const eventHandler = (data) => {
-      console.log("Received data:", data);
-      // Handle the emitted data
-      setIsLoggedIn(data);
-      // TODO: dont forget when log out isLoggedIn = false;
-    };
+    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+    // if (storedIsLoggedIn) {
+    //   setIsLoggedIn(storedIsLoggedIn === false);
+    // }
+    setIsLoggedIn(storedIsLoggedIn);
 
-    // Subscribe to the event
-    emitter.on("isLoggedIn", eventHandler);
+    // const eventHandler = (data) => {
+    //   console.log("Received data:", data);
+    //   // Handle the emitted data
+    //   setIsLoggedIn(data);
+    //   // TODO: dont forget when log out isLoggedIn = false;
+    // };
 
-    return () => {
-      // Unsubscribe when the component unmounts
-      emitter.off("isLoggedIn", eventHandler);
-    };
+    // // Subscribe to the event
+    // emitter.on("isLoggedIn", eventHandler);
+
+    // return () => {
+    //   // Unsubscribe when the component unmounts
+    //   emitter.off("isLoggedIn", eventHandler);
+    // };
   }, []);
-
+  // useEffect(() => {
+  //   setIsLoggedIn(JSON.parse(localStorage.getItem("isLogIn")));
+  // }, []);
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">One Club</Navbar.Brand>
+        <Navbar.Brand
+          onClick={() => {
+            nav("/Home", { state: { title: null } });
+          }}
+        >
+          One Club
+        </Navbar.Brand>
         {isLoggedIn && (
           <>
             <Nav className="me-auto">
@@ -64,9 +80,14 @@ function Footer() {
                   <BsPersonCircle className="icons" />
                   <span className="icon-text"> Profile </span>
                 </Nav.Link>
-                <Nav.Link href="UserByEmail">
-                  <BsPersonCircle className="icons" />
-                  <span className="icon-text"> user </span>
+                <Nav.Link
+                  onClick={() => {
+                    localStorage.clear();
+                  }}
+                  href="/"
+                >
+                  <BsDoorOpen className="icons" />
+                  <span className="icon-text">Log Out</span>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
