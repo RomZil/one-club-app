@@ -28,6 +28,12 @@ const DealType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
+    category: {
+      type: CategoryType,
+      resolve(parent, args) {
+        return Category.findById(parent.category);
+      },
+    },
   }),
 });
 
@@ -56,7 +62,7 @@ const CategoryType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    aliases: { type: GraphQLString },
+    aliases: { type: new GraphQLList(GraphQLString) },
   }),
 });
 
@@ -154,6 +160,7 @@ const mutation = new GraphQLObjectType({
       },
     },
 
+    // Update a user
     updateUser: {
       type: UserType,
       args: {
