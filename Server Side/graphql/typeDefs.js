@@ -1,13 +1,17 @@
-const { gql } = require("apollo-server");
+const { gql } = require("@apollo/server");
 
-module.exports = gql`
+module.exports = `#graphql
   type Deal {
     title: String!
     description: String
     imageURL: String
-    catrgory: String!
+    catrgory: Category!
+    loyaltyCardId: LoyaltyCard
   }
   type LoyaltyCard {
+    name: String!
+  }
+  type Category {
     name: String!
   }
   type User {
@@ -20,6 +24,7 @@ module.exports = gql`
   type Query {
     user(ID: ID!): User
     getDeals(amount: Int): [Deal]
+    getLoyaltyCards: [LoyaltyCard]
   }
 
   input DealInput {

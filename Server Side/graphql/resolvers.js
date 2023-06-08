@@ -1,20 +1,21 @@
 const Deal = require("../models/deal_model");
 const User = require("../models/user_model");
+const LoyaltyCard = require("../models/loyaltyCard_model");
 
 module.exports = {
   Query: {
-    async user(_, { ID }) {
+    async user(parent, { ID }, contextValue, info) {
       return await User.findById(ID);
     },
-    async getDeals(_, { amount }) {
+    async getDeals(parent, { amount }, contextValue) {
       return await Deal.find().limit(amount);
+    },
+    async getLoyaltyCards(parent, { args }, contextValue, info) {
+      return await LoyaltyCard.find();
     },
   },
   Mutation: {
-    async createDeal(
-      _,
-      { dealInput: { title, description, imageURL, catrgory } }
-    ) {
+    async createDeal(_, { dealInput: { title, description, imageURL, catrgory } }) {
       const createdDeal = new Deal({
         title: title,
         description: description,

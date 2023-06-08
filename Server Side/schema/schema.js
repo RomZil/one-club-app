@@ -1,6 +1,6 @@
-const LoyaltyCard = require('../models/loyaltyCard_model');
-const User = require('../models/user_model');
-const Deal = require('../models/deal_model');
+const LoyaltyCard = require("../models/loyaltyCard_model");
+const User = require("../models/user_model");
+const Deal = require("../models/deal_model");
 
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLList, GraphQLNonNull } = require("graphql");
 
