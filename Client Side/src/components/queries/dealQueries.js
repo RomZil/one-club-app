@@ -6,6 +6,11 @@ const GET_DEALS = gql`
       id
       title
       description
+      categories{
+        id
+        name
+        aliases
+      }
     }
   }
 `;
@@ -16,6 +21,11 @@ const GET_DEAL = gql`
       id
       title
       description
+      category{
+        id
+        name
+        aliases
+      }
     }
   }
 `;

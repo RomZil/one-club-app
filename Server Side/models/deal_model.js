@@ -12,7 +12,7 @@ const dealSchema = new mongoose.Schema({
   imageURL: {
     type: String,
   },
-  catergory: {
+  catergoryId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
