@@ -6,7 +6,7 @@ const Category = require("../../models/category_model");
 
 const { spawn } = require("child_process");
 
-module.exports = schedule.scheduleJob("*/5 * * * *", async function () {
+module.exports = schedule.scheduleJob("* * * * *", async function () {
   await deleteHeverYellow();
 
   console.log("Start Running Hever");
@@ -48,7 +48,7 @@ async function AddHeverYellow() {
         const deal = new Deal({
           title: response.data[i].company,
           description: "30% הנחה",
-          catrgory: new Category({ name: response.data[i].company_category }),
+          category: new Category({ name: response.data[i].company_category }),
           imageURL: imageURLStart + response.data[i].logo,
           loyaltyCardId: loyaltyCard,
         });

@@ -7,20 +7,20 @@ module.exports = {
     async user(parent, { ID }, contextValue, info) {
       return await User.findById(ID);
     },
-    async getDeals(parent, { amount }, contextValue) {
-      return await Deal.find().limit(amount);
+    async getDeals(parent, args, contextValue) {
+      return await Deal.find();
     },
     async getLoyaltyCards(parent, { args }, contextValue, info) {
       return await LoyaltyCard.find();
     },
   },
   Mutation: {
-    async createDeal(_, { dealInput: { title, description, imageURL, catrgory } }) {
+    async createDeal(_, { dealInput: { title, description, imageURL, category } }) {
       const createdDeal = new Deal({
         title: title,
         description: description,
         imageURL: imageURL,
-        catrgory: catrgory,
+        category: category,
       });
       const res = await createdDeal.save();
       return {
