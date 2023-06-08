@@ -6,8 +6,9 @@ import Spinner from "../components/spinner/spinner";
 
 const Deals = () => {
   const { isLoading, error, data } = useQuery(GET_DEALS);
-
-  return data;
+  if (loading) return <Spinner />;
+  if (error) return <p>Something Went Wrong</p>;
+  // return data;
 
   // if (isLoading) {
   //   return { isLoading: true, data: null, error: null };

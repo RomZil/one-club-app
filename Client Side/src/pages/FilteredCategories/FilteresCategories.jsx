@@ -1,12 +1,37 @@
 import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Item from "../../components/item/item";
-import { businesses } from "../../data/mockData";
 import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
+import { useEffect, useState } from "react";
+import { GET_DEALS } from "../../components/queries/dealQueries.js";
+import { useQuery } from "@apollo/client";
+import Spinner from "../../components/spinner/spinner";
 const FilteresCategories = () => {
+  const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id } = state;
+
+  const {
+    loading: loadingDeals,
+    error: errorDeals,
+    data: dataDeals,
+  } = useQuery(GET_DEALS);
+
+  useEffect(() => {
+    // console.log(dataDeals);
+    if (dataDeals != undefined) {
+      // dataDeals.deals
+      //   .filter((deal) => deal.category == id)
+      //   .map((deal) => () => {
+      //     console.log(deal);
+      //   });
+      setDeals(dataDeals.deals);
+    }
+  }, [state, dataDeals]);
+
+  if (loadingDeals) return <Spinner />;
+  if (errorDeals) return <p>Something Went Wrong</p>;
 
   return (
     <div>
@@ -19,15 +44,15 @@ const FilteresCategories = () => {
         className="businesses"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
       >
-        {businesses
-          .filter((businesse) => businesse.perent_id == id)
-          .map((businesse) => (
+        {dataDeals.deals
+          // .filter((deal) => deal.category == id)
+          .map((deal) => (
             <Item
-              key={businesse.id}
-              id={businesse.id}
-              img={businesse.img}
-              title={businesse.title}
-              perentId={businesse.perent_id}
+              key={deal.id}
+              id={deal.id}
+              img={deal.imageURL}
+              title={deal.title}
+              perentId={id}
             />
           ))}
       </Row>
