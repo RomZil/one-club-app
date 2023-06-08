@@ -1,6 +1,8 @@
 const LoyaltyCard = require('../models/loyaltyCard_model');
 const User = require('../models/user_model');
 const Deal = require('../models/deal_model');
+const Category = require('../models/category_model');
+
 
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLList, GraphQLNonNull } = require("graphql");
 
@@ -48,6 +50,16 @@ const UserType = new GraphQLObjectType({
   }),
 });
 
+// category type
+const CategoryType = new GraphQLObjectType({
+  name: "Category",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    aliases: { type: GraphQLString },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
@@ -90,6 +102,19 @@ const RootQuery = new GraphQLObjectType({
         return User.findById(args.id);
       },
     },
+    categories: {
+      type: new GraphQLList(CategoryType),
+      resolve(parent, args) {
+        return Category.find();
+      },
+    },
+    category: {
+      type: CategoryType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Category.findById(args.id);
+      },
+    },
   },
 });
 
@@ -105,12 +130,14 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
+        loyaltyCardId: { type: GraphQLID },
       },
       resolve(parent, args) {
         const user = new User({
           name: args.name,
           email: args.email,
           password: args.password,
+          loyaltyCardId: args.loyaltyCardId,
         });
 
         return user.save();
@@ -126,8 +153,35 @@ const mutation = new GraphQLObjectType({
         return User.findByIdAndRemove(args.id);
       },
     },
+
+    updateUser: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+        loyaltyCardId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        return User.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              password: args.password,
+              loyaltyCardId: args.loyaltyCardId,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
   },
 });
+
+
 /*
         addLoyaltyCard: {
             type: LoyaltyCardType,
@@ -146,6 +200,7 @@ const mutation = new GraphQLObjectType({
         }
     }
 })*/
+
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
