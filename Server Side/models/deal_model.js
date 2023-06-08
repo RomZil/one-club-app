@@ -22,36 +22,36 @@ const dealSchema = new mongoose.Schema({
   },
 });
 
-// dealSchema.pre("save", async function (next) {
-//   let deal = this;
-//   let category = deal.catergory.name;
-//   let categoryObj = await Category.findOne({ name: category });
+dealSchema.pre("save", async function (next) {
+  let deal = this;
+  let category = deal.catergory.name;
+  let categoryObj = await Category.findOne({ name: category });
 
-//   if (categoryObj == null) {
-//     let aliases = [];
-//     aliases.push(category);
-//     if (hasWhiteSpace(category)) {
-//       let wordsCategory = category.split(" ");
-//       for (let i = 1; i < wordsCategory.length; i++) {
-//         if (wordsCategory[i].charAt(0) === "ו") {
-//           wordsCategory[i] = wordsCategory[i].substring(1);
-//         }
-//       }
+  if (categoryObj == null) {
+    let aliases = [];
+    aliases.push(category);
+    if (hasWhiteSpace(category)) {
+      let wordsCategory = category.split(" ");
+      for (let i = 1; i < wordsCategory.length; i++) {
+        if (wordsCategory[i].charAt(0) === "ו") {
+          wordsCategory[i] = wordsCategory[i].substring(1);
+        }
+      }
 
-//       aliases.push(...wordsCategory);
-//     }
-//     categoryObj = new Category({
-//       name: category,
-//       aliases: aliases,
-//     });
-//     let savedCategory = await categoryObj.save();
-//     deal.catergory = savedCategory;
-//   }
-//   next();
-// });
+      aliases.push(...wordsCategory);
+    }
+    categoryObj = new Category({
+      name: category,
+      aliases: aliases,
+    });
+    let savedCategory = await categoryObj.save();
+    deal.catergory = savedCategory;
+  }
+  next();
+});
 
 module.exports = Deal = mongoose.model("Deal", dealSchema);
 
-// function hasWhiteSpace(s) {
-//   return s.indexOf(" ") >= 0;
-// }
+function hasWhiteSpace(s) {
+  return s.indexOf(" ") >= 0;
+}
