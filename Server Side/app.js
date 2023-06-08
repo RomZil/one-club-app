@@ -40,7 +40,7 @@ db.once("open", async () => {
     "/",
     bodyParser.json(),
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: getUserAuth(req) }),
+      context: async ({ req }) => ({ _id: getUserAuth(req) }),
     })
   );
 

@@ -46,6 +46,8 @@ dealSchema.pre("save", async function (next) {
     });
     let savedCategory = await categoryObj.save();
     deal.category = savedCategory;
+  } else {
+    deal.category = categoryObj;
   }
   next();
 });
