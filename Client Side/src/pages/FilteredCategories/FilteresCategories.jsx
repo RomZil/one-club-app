@@ -10,7 +10,7 @@ import Spinner from "../../components/spinner/spinner";
 const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
-  const { id } = state;
+  const { id, title } = state;
 
   const {
     loading: loadingDeals,
@@ -21,12 +21,20 @@ const FilteresCategories = () => {
   useEffect(() => {
     // console.log(dataDeals);
     if (dataDeals != undefined) {
-      // dataDeals.deals
-      //   .filter((deal) => deal.category == id)
-      //   .map((deal) => () => {
-      //     console.log(deal);
-      //   });
-      setDeals(dataDeals.deals);
+      if (title != undefined) {
+        const x = dataDeals.deals.filter((deals) => {
+          return deals.title.toUpperCase().includes(title.toUpperCase());
+        });
+        setDeals(x);
+      }
+      if (id != undefined) {
+        const x = dataDeals.deals
+          .filter((deal) => deal.category == id)
+          .map((deal) => () => {
+            console.log(deal);
+          });
+        setDeals(dataDeals.deals);
+      }
     }
   }, [state, dataDeals]);
 
@@ -35,16 +43,15 @@ const FilteresCategories = () => {
 
   return (
     <div>
+      <Search title={title} />
       <BackButton />
-      <br />
-      <Search title={""} />
-      <h1 className="headline">Businesses</h1>
+      <h1 className="headline">DEALS</h1>
       <br />
       <Row
         className="businesses"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
       >
-        {dataDeals.deals
+        {deals
           // .filter((deal) => deal.category == id)
           .map((deal) => (
             <Item
@@ -52,7 +59,7 @@ const FilteresCategories = () => {
               id={deal.id}
               img={deal.imageURL}
               title={deal.title}
-              perentId={id}
+              perentId={1}
             />
           ))}
       </Row>
