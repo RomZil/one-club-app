@@ -49,7 +49,7 @@ const LogIn = () => {
   }
 
   return (
-    <div>
+    <div className="page">
       <div id="container">
         <p id="titel2">Login</p>
         <div id="container_all_input">
@@ -80,10 +80,10 @@ const LogIn = () => {
         <button id="b_sign" className="registerBtn" onClick={checkIfRegister}>
           Log In
         </button>
+        <Link className="link2" to="/Register">
+          Not registered? sign up now
+        </Link>
       </div>
-      <Link className="link2" to="/Register">
-        Not registered? sign up now
-      </Link>
     </div>
   );
 };

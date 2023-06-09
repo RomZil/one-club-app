@@ -3,6 +3,7 @@
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
     background-color: #0D1B2A ;
+    height: 60px;
 }
 
 .icons {
@@ -14,4 +15,9 @@
 .icon-text {
     font-size: large
     
+}
+
+.img {
+    width: 70px;
+    height: 30px;
 }
