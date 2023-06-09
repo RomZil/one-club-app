@@ -1,5 +1,64 @@
-
-#titel3{
-    font-size: small;
-    color: white;
+/* LogIn.css */
+.page {
+    overflow-y:hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
+#container {
+    width: 70%;
+    height: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  #titel2 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #container_all_input {
+    margin-top: 20px;
+  }
+  
+  #container_input {
+    margin-bottom: 10px;
+  }
+  
+  #text_input {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .link2 {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: black;
+  }
+  
+  #b_sign {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #cb951c , #eccb4a);
+    color: #fff;
+    cursor: pointer;
+  }
+  
