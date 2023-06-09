@@ -5,7 +5,7 @@ module.exports = `#graphql
     title: String!
     description: String
     imageURL: String
-    catrgory: Category!
+    category: Category!
     loyaltyCardId: LoyaltyCard
   }
   type LoyaltyCard {
@@ -36,7 +36,7 @@ module.exports = `#graphql
     title: String!
     description: String
     imageURL: String
-    catrgory: String!
+    category: String!
   }
 
   

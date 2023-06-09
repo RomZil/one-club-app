@@ -10,7 +10,8 @@ module.exports = {
       return await User.findById(ID);
     },
     async getDeals(parent, args, contextValue) {
-      return await Deal.find();
+      let x = await Deal.find().populate("loyaltyCardId").populate("category");
+      return x;
     },
     async getLoyaltyCards(parent, { args }, contextValue, info) {
       return await LoyaltyCard.find();

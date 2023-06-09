@@ -6,7 +6,7 @@ const Category = require("../../models/category_model");
 
 const { spawn } = require("child_process");
 
-module.exports = schedule.scheduleJob("* * * * *", async function () {
+module.exports = schedule.scheduleJob("*/10 * * * *", async function () {
   await deleteHeverYellow();
 
   console.log("Start Running Hever");
@@ -25,7 +25,7 @@ async function deleteHeverYellow() {
   }
 
   //let dealsHever = await Deal.find({ loyaltyCard: loyaltyCard });
-  await Deal.deleteMany({ loyaltyCard: loyaltyCard });
+  await Deal.deleteMany({ loyaltyCardId: loyaltyCard });
 }
 
 async function AddHeverYellow() {
@@ -43,7 +43,7 @@ async function AddHeverYellow() {
   axios
     .get(url)
     .then(async (response) => {
-      //console.log(response.data);
+      console.log(response.data.length);
       for (let i = 0; i < response.data.length; i++) {
         const deal = new Deal({
           title: response.data[i].company,
