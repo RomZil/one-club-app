@@ -1,5 +1,7 @@
 //import { User } from "../models/user_mode";
 const User = require("../models/user_model");
+const LoyaltyCard = require("../models/loyaltyCard_model");
+
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 
@@ -34,6 +36,9 @@ const login = async (req, res, next) => {
     } else {
       user.tokens.push(refreshToken);
     }
+
+    let loyaltyCard = await LoyaltyCard.find();
+    user.loyaltyCardId = loyaltyCard;
     await user.save();
 
     res.status(200).send({

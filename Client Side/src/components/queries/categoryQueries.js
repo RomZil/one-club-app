@@ -1,11 +1,9 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_CATEGORIES = gql`
-  query getCategories {
-    categories {
-        id
-        name
-        aliases
+  query GetCategories {
+    getCategories {
+      name
     }
   }
 `;
@@ -13,11 +11,11 @@ const GET_CATEGORIES = gql`
 const GET_CATEGORY = gql`
   query getCategory($id: ID!) {
     category(id: $id) {
-        id
-        name
-        aliases
-      }
+      id
+      name
+      aliases
     }
+  }
 `;
 
 export { GET_CATEGORIES, GET_CATEGORY };

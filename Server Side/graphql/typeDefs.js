@@ -9,20 +9,23 @@ module.exports = `#graphql
     loyaltyCardId: LoyaltyCard
   }
   type LoyaltyCard {
+    id:ID!
     name: String!
   }
   type Category {
+    id:ID!
     name: String!
   }
   type User {
+    name: String!
     email: String!
     password: String!
     tokens: [String]
-    loyaltyCards: [LoyaltyCard]
+    loyaltyCardId: [LoyaltyCard]
   }
 
   type Query {
-    user(ID: ID!): User
+    getUser: User!
     getDeals(amount: Int): [Deal]
     getLoyaltyCards: [LoyaltyCard]
     getLoyaltyCardByUser: [LoyaltyCard]
@@ -39,15 +42,18 @@ module.exports = `#graphql
     category: String!
   }
 
-  
   input UserUpdateInput {
     name: String!
     email: String!
     password: String!
   }
+  input UserUpdateLoyaltyCards {
+    id:ID!
+  }
   type Mutation {
     createDeal(dealInput: DealInput): Deal!
     deleteDeal(ID: ID!): Boolean
-    updateUser(userUpdateInput: UserUpdateInput): User
+    updateUserFields(userUpdateInput: UserUpdateInput): User
+    updateUserLoyaltyCards(loyaltyCards: [UserUpdateLoyaltyCards]): User
   }
 `;

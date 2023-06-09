@@ -29,6 +29,7 @@ const Register = () => {
         .then((response) => {
           if (response.status == 200) {
             localStorage.setItem("isLoggedIn", true);
+            localStorage.setItem("token", response.data.accessToken);
             navigate("/Home", { state: { title: null } });
             window.location.reload();
           }
@@ -60,32 +61,17 @@ const Register = () => {
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
-          <input
-            className="input"
-            type="text"
-            value={inputName}
-            onChange={handleNameChange}
-          />
+          <input className="input" type="text" value={inputName} onChange={handleNameChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Email</div>
-          <input
-            className="input"
-            type="email"
-            value={inputEmail}
-            onChange={handleEmailChange}
-          />
+          <input className="input" type="email" value={inputEmail} onChange={handleEmailChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Password</div>
-          <input
-            className="input"
-            type="password"
-            value={inputPassword}
-            onChange={handlePasswordChange}
-          />
+          <input className="input" type="password" value={inputPassword} onChange={handlePasswordChange} />
         </div>
         <br />
       </div>

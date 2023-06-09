@@ -3,15 +3,16 @@ const User = require("../models/user_model");
 const LoyaltyCard = require("../models/loyaltyCard_model");
 const Category = require("../models/category_model");
 const bcrypt = require("bcrypt");
+var mongoose = require("mongoose");
 
 module.exports = {
   Query: {
-    async user(parent, { ID }, contextValue, info) {
-      return await User.findById(ID);
+    async getUser(parent, args, contextValue, info) {
+      let x = await User.findById(contextValue._id).populate({ path: "loyaltyCardId" });
+      return x;
     },
     async getDeals(parent, args, contextValue) {
-      let x = await Deal.find().populate("loyaltyCardId").populate("category");
-      return x;
+      return await Deal.find().populate("loyaltyCardId").populate("category");
     },
     async getLoyaltyCards(parent, { args }, contextValue, info) {
       return await LoyaltyCard.find();
@@ -74,7 +75,7 @@ module.exports = {
       return isDeleted;
     },
 
-    async updateUser(parent, { dealInput: { name, email, password } }, contextValue, info) {
+    async updateUserFields(parent, { userInput: { name, email, password } }, contextValue, info) {
       let user = await User.findById(contextValue._id);
       user.name = name;
       user.email = email;
@@ -83,6 +84,17 @@ module.exports = {
       let encryptedPassword = await bcrypt.hash(password, salt);
 
       user.password = encryptedPassword;
+
+      return User.findByIdAndUpdate(user.id, user, { new: true });
+    },
+    async updateUserLoyaltyCards(parent, { loyaltyCards }, contextValue, info) {
+      let user = await User.findById(contextValue._id);
+      user.loyaltyCardId = [];
+      for (let i = 0; i < loyaltyCards.length; i++) {
+        let currId = new mongoose.Types.ObjectId(loyaltyCards[i].id);
+
+        user.loyaltyCardId.push(currId);
+      }
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
     },

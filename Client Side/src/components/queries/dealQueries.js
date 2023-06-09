@@ -1,15 +1,12 @@
 import { gql } from "@apollo/client";
 
 const GET_DEALS = gql`
-  query getDeals {
-    deals {
-      id
+  query GetDeals {
+    getDeals {
       title
       description
-      categories{
-        id
+      category {
         name
-        aliases
       }
     }
   }
@@ -21,7 +18,7 @@ const GET_DEAL = gql`
       id
       title
       description
-      category{
+      category {
         id
         name
         aliases

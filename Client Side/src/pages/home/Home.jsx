@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     if (data != undefined && title != null && title != "") {
-      const tmp = data.deals.filter((category) => {
+      const tmp = data.getDeals.filter((category) => {
         return category.title.toUpperCase().includes(title.toUpperCase());
       });
       setCategories_filtered(tmp);
@@ -40,10 +40,7 @@ export default function Home() {
       <Search title={""} />
       {/* <h1 className="headline">Categories</h1> */}
       <br />
-      <Row
-        className="categories"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
-      >
+      <Row className="categories" style={{ display: "flex", justifyContent: "center", gridGap: 15 }}>
         {categories_filtered.map((category) => (
           <Item
             key={category.id} // Assign stable key using category.id

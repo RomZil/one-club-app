@@ -4,17 +4,16 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../components/spinner/spinner";
 
 export default function Category() {
+  const { loading, error, data } = useQuery(GET_CATEGORIES);
 
-    const { loading, error, data } = useQuery(GET_CATEGORIES);
+  if (loading) return <Spinner />;
+  if (error) return <p>Something Went Wrong</p>;
 
-    if (loading) return <Spinner />;
-    if (error) return <p>Something Went Wrong</p>;
-
-    return (
-        <>
-        {data.categories.map((category) => (
-              <div id="category">{category.name}</div>
-              ))}
-        </>
-    );
+  return (
+    <>
+      {data.getCategories.map((category) => (
+        <div id="category">{category.name}</div>
+      ))}
+    </>
+  );
 }
