@@ -14,8 +14,10 @@ const Profile = () => {
   const [updatePassword, setPasswordValue] = useState("");
   const [updateDate, setDateValue] = useState("");
   const navigate = useNavigate();
-  const [updateUser, { loding: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser }] =
-    useMutation(UPDATE_USER);
+  const [
+    updateUser,
+    { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
+  ] = useMutation(UPDATE_USER);
 
   const { loading, error, data } = useQuery(GET_USER);
 
@@ -25,9 +27,6 @@ const Profile = () => {
       setNameValue(data.getUser.name);
       setEmailValue(data.getUser.email);
       setPasswordValue(data.getUser.password);
-      updateUser({
-        variables: { name: "asd", email: "asd", password: "000" },
-      });
     }
   }, [data]);
 
@@ -35,9 +34,14 @@ const Profile = () => {
   if (loading) return <Spinner />;
 
   function UpdateToDB() {
-    navigate("/Home", { state: "" });
-
-    //all the infon in vars
+    updateUser({
+      variables: {
+        id: String(updateName),
+        name: String(updateEmail),
+        password: "00",
+      },
+    });
+    navigate("/Home", { state: { title: null } });
   }
 
   function NavMyClub() {
@@ -62,12 +66,22 @@ const Profile = () => {
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
-          <input className="input_w" type="text" value={updateName} onChange={handleNameChange} />
+          <input
+            className="input_w"
+            type="text"
+            value={updateName}
+            onChange={handleNameChange}
+          />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Email</div>
-          <input className="input_w" type="email" value={updateEmail} onChange={handleEmailChange} />
+          <input
+            className="input_w"
+            type="email"
+            value={updateEmail}
+            onChange={handleEmailChange}
+          />
         </div>
         <br />
       </div>
