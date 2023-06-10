@@ -11,16 +11,16 @@ import { useMutation, useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import { MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
-import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutations";
+// import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutations";
 
 export default function MyClubs() {
   const { state } = useLocation();
   const { regMyClubs } = state;
   const { loading, error, data } = useQuery(GET_LOYALTYCARDS);
-  const [
-    updateUserLoyaltyCards,
-    { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
-  ] = useMutation(UPDATE_USER_LOYALTY_CARD);
+  // const [
+  //   updateUserLoyaltyCards,
+  //   { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
+  // ] = useMutation(UPDATE_USER_LOYALTY_CARD);
 
   const [myClubs, setMyClubs] = useState([]);
 

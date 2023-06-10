@@ -24,12 +24,12 @@ export default function EditUserForm({ user }) {
 
   const [updateUser] = useMutation(UPDATE_USER, {
     variables: { id: user.id, name, email, password, loyaltyCards },
-    refetchQueries: [{ query: GET_USER, variables: { id: user.id } }],
+    // refetchQueries: [{ query: GET_USER, variables: { id: user.id } }],
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    debugger;
+
     if (!name || !email || !password) {
       return alert("Please fill out all fields");
     }

@@ -1,12 +1,10 @@
 // import "./Profile.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GET_USER, GET_USERS } from "../../components/queries/userQueries";
+import { GET_USER } from "../../components/queries/userQueries";
+import { useMutation, useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import { UPDATE_USER } from "../../components/mutations/userMutations";
-import { useMutation, useQuery } from "@apollo/client";
-
-// RefreshDate();
 
 const Profile = () => {
   const [updateName, setNameValue] = useState("");
@@ -19,25 +17,28 @@ const Profile = () => {
     { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
   ] = useMutation(UPDATE_USER);
 
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error: userError, data: userData } = useQuery(GET_USER);
 
-  console.log("data", data);
   useEffect(() => {
-    if (data != undefined) {
-      setNameValue(data.getUser.name);
-      setEmailValue(data.getUser.email);
-      setPasswordValue(data.getUser.password);
+    if (userData != undefined) {
+      setNameValue(userData.getUser.name);
+      setEmailValue(userData.getUser.email);
+      setPasswordValue(userData.getUser.password);
     }
-  }, [data]);
+    updateUser({ variables: { name: updateName, email: updateEmail } });
+  }, [userData]);
 
-  if (error) return <p>{error.message}</p>;
+  if (userError) return <p>{userError.message}</p>;
+  if (errorUpdateUser) return <p>{errorUpdateUser}</p>;
+
   if (loading) return <Spinner />;
+  if (loadingUpdateUser) return <Spinner />;
 
   function UpdateToDB() {
     updateUser({
       variables: {
-        id: String(updateName),
-        name: String(updateEmail),
+        name: String(updateName),
+        email: String(updateEmail),
         password: "00",
       },
     });
@@ -45,7 +46,9 @@ const Profile = () => {
   }
 
   function NavMyClub() {
-    navigate("/MyClubs", { state: { regMyClubs: data.getUser.loyaltyCardId } });
+    navigate("/MyClubs", {
+      state: { regMyClubs: userData.getUser.loyaltyCardId },
+    });
   }
 
   const handleNameChange = (event) => {

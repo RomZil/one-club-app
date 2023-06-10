@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+
 const UPDATE_USER = gql`
   mutation UpdateUserFields($name: String, $email: String, $password: String) {
     updateUserFields(
@@ -11,4 +12,4 @@ const UPDATE_USER = gql`
   }
 `;
 
-export { UPDATE_USER_LOYALTY_CARD, UPDATE_USER };
+export { UPDATE_USER };
