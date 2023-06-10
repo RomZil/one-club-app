@@ -19,4 +19,13 @@ const GET_CATEGORY = gql`
   }
 `;
 
-export { GET_CATEGORIES, GET_CATEGORY };
+
+const GET_CATEGORIES_BY_USER = gql`
+query GetCategoriesByUser {
+  getCategoriesByUser {
+      id
+      name
+  }
+}
+`;
+export { GET_CATEGORIES, GET_CATEGORY , GET_CATEGORIES_BY_USER };

@@ -11,36 +11,24 @@ function Footer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const nav = useNavigate();
 
-  const handleMyClubsChange = (event) => {
-    setIsMyClubs(event.target.value);
-  };
-
+  
   useEffect(() => {
     const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
     // if (storedIsLoggedIn) {
-    //   setIsLoggedIn(storedIsLoggedIn === false);
-    // }
-    setIsLoggedIn(storedIsLoggedIn);
+      //   setIsLoggedIn(storedIsLoggedIn === false);
+      // }
+      setIsLoggedIn(storedIsLoggedIn);
+    }, []);
 
-    // const eventHandler = (data) => {
-    //   console.log("Received data:", data);
-    //   // Handle the emitted data
-    //   setIsLoggedIn(data);
-    //   // TODO: dont forget when log out isLoggedIn = false;
-    // };
+    useEffect(() => {
+      localStorage.setItem("isMyClubs", isMyClubs);
+    },[isMyClubs] )
+    
+    function handleMyClubsChange(){
+      setIsMyClubs(!isMyClubs);
+    };
 
-    // // Subscribe to the event
-    // emitter.on("isLoggedIn", eventHandler);
-
-    // return () => {
-    //   // Unsubscribe when the component unmounts
-    //   emitter.off("isLoggedIn", eventHandler);
-    // };
-  }, []);
-  // useEffect(() => {
-  //   setIsLoggedIn(JSON.parse(localStorage.getItem("isLogIn")));
-  // }, []);
-  return (
+    return (
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
         <Navbar.Brand
@@ -56,17 +44,13 @@ function Footer() {
               <BootstrapSwitchButton
                 className="switchButton"
                 class="rounded-pill"
-                checked={!isMyClubs}
+                checked={isMyClubs}
                 width={75}
                 onstyle="secondary"
                 offstyle="dark"
                 onlabel="Mine"
                 offlabel="All"
-                onChange={(checked) => {
-                  handleMyClubsChange((prvIsMyClubs) => !prvIsMyClubs);
-                  console.log("isMyClubs " + isMyClubs);
-                  console.log("checked " + checked);
-                }}
+                onChange={handleMyClubsChange}
               />
             </Nav>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
