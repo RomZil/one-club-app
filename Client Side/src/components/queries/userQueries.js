@@ -1,30 +1,29 @@
-import {gql} from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const GET_USERS = gql`
-query getUsers {
-    users{
-        id
-        name
-        email
-        password
-        loyaltyCards
-      }
-}
+  query getUsers {
+    users {
+      id
+      name
+      email
+      password
+      loyaltyCards
+    }
+  }
 `;
 
 const GET_USER = gql`
-  query getUser($id: ID!) {
-    user(id: $id) {
+  query GetUser {
+    getUser {
+      name
+      email
+      password
+      loyaltyCardId {
         id
         name
-        email
-        password
-        loyaltyCard {
-          id
-          name
-        }
       }
     }
+  }
 `;
 
-export {GET_USERS, GET_USER};
+export { GET_USERS, GET_USER };

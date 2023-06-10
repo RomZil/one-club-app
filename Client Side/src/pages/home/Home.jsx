@@ -21,7 +21,9 @@ export default function Home() {
   const { title } = state;
 
   useEffect(() => {
+    debugger;
     if (data != undefined && title != null && title != "") {
+      debugger;
       const tmp = data.getDeals.filter((category) => {
         return category.title.toUpperCase().includes(title.toUpperCase());
       });

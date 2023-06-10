@@ -75,7 +75,7 @@ module.exports = {
       return isDeleted;
     },
 
-    async updateUserFields(parent, { userInput: { name, email, password } }, contextValue, info) {
+    async updateUserFields(parent, { userUpdateInput: { name, email, password } }, contextValue, info) {
       let user = await User.findById(contextValue._id);
       user.name = name;
       user.email = email;

@@ -1,18 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 const ADD_USER = gql`
-  mutation addUser(
-    $name: String! 
-    $email: String!
-    $password: String!
-    $loyaltyCardID: ID!
-    ) {
-    addUser(
-      name: $name
-      email: $email
-      password: $password
-      loyaltyCardId: $loyaltyCardId
-      ) {
+  mutation addUser($name: String!, $email: String!, $password: String!, $loyaltyCardID: ID!) {
+    addUser(name: $name, email: $email, password: $password, loyaltyCardId: $loyaltyCardId) {
       id
       name
       email
@@ -23,39 +13,24 @@ const ADD_USER = gql`
 `;
 
 const DELETE_USER = gql`
-mutation deleteUser($id: ID!) {
-    deleteUser(id: $id){
-        id
-        name
-        email
-        password
-    }
-}
-`;
-
-const UPDATE_USER = gql`
-  mutation UpdateUser(
-    $id: ID!
-    $name: String!
-    $email: String!
-    $password: String!
-    $loyaltyCards: String!
-  ) {
-    updateUser(
-      id: $id
-      name: $name
-      email: $email
-      password: $password
-      loyaltyCards: $loyaltyCards
-    ) {
+  mutation deleteUser($id: ID!) {
+    deleteUser(id: $id) {
       id
       name
       email
       password
-      loyaltyCards
     }
   }
 `;
 
+const UPDATE_USER = gql`
+  mutation UpdateUserFields($name: String!, $email: String!, $password: String!) {
+    updateUserFields(userUpdateInput: { name: $name, email: $email, password: $password }) {
+      name
+      email
+      password
+    }
+  }
+`;
 
 export { DELETE_USER, ADD_USER, UPDATE_USER };

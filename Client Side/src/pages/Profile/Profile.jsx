@@ -14,16 +14,14 @@ const Profile = () => {
   const [updateDate, setDateValue] = useState("");
   const navigate = useNavigate();
 
-  const { loading, error, data } = useQuery(GET_USER, {
-    variables: { id: "647e3080221bb9a4e3ec8f34" },
-  });
+  const { loading, error, data } = useQuery(GET_USER);
 
   console.log(data);
   useEffect(() => {
     if (data != undefined) {
-      setNameValue(data.user.name);
-      setEmailValue(data.user.email);
-      setPasswordValue(data.user.password);
+      setNameValue(data.getUser.name);
+      setEmailValue(data.getUser.email);
+      setPasswordValue(data.getUser.password);
     }
   }, [data]);
 
@@ -54,22 +52,12 @@ const Profile = () => {
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
-          <input
-            className="input_w"
-            type="text"
-            value={updateName}
-            onChange={handleNameChange}
-          />
+          <input className="input_w" type="text" value={updateName} onChange={handleNameChange} />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Email</div>
-          <input
-            className="input_w"
-            type="email"
-            value={updateEmail}
-            onChange={handleEmailChange}
-          />
+          <input className="input_w" type="email" value={updateEmail} onChange={handleEmailChange} />
         </div>
         <br />
       </div>
