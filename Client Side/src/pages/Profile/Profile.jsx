@@ -1,12 +1,10 @@
 // import "./Profile.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { GET_USER, GET_USERS } from "../../components/queries/userQueries";
+import { GET_USER } from "../../components/queries/userQueries";
+import { useMutation, useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import { UPDATE_USER } from "../../components/mutations/userMutations";
-import { useMutation, useQuery } from "@apollo/client";
-
-// RefreshDate();
 
 const Profile = () => {
   const [updateName, setNameValue] = useState("");
@@ -14,34 +12,43 @@ const Profile = () => {
   const [updatePassword, setPasswordValue] = useState("");
   const [updateDate, setDateValue] = useState("");
   const navigate = useNavigate();
-  const [updateUser, { loding: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser }] =
-    useMutation(UPDATE_USER);
+  const [
+    updateUser,
+    { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
+  ] = useMutation(UPDATE_USER);
 
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error: userError, data: userData } = useQuery(GET_USER);
 
-  console.log("data", data);
   useEffect(() => {
-    if (data != undefined) {
-      setNameValue(data.getUser.name);
-      setEmailValue(data.getUser.email);
-      setPasswordValue(data.getUser.password);
-      updateUser({
-        variables: { name: "asd", email: "asd", password: "000" },
-      });
+    if (userData != undefined) {
+      setNameValue(userData.getUser.name);
+      setEmailValue(userData.getUser.email);
+      setPasswordValue(userData.getUser.password);
     }
-  }, [data]);
+    updateUser({ variables: { name: updateName, email: updateEmail } });
+  }, [userData]);
 
-  if (error) return <p>{error.message}</p>;
+  if (userError) return <p>{userError.message}</p>;
+  if (errorUpdateUser) return <p>{errorUpdateUser}</p>;
+
   if (loading) return <Spinner />;
+  if (loadingUpdateUser) return <Spinner />;
 
   function UpdateToDB() {
-    navigate("/Home", { state: "" });
-
-    //all the infon in vars
+    updateUser({
+      variables: {
+        name: String(updateName),
+        email: String(updateEmail),
+        password: "00",
+      },
+    });
+    navigate("/Home", { state: { title: null } });
   }
 
   function NavMyClub() {
-    navigate("/MyClubs", { state: { regMyClubs: data.getUser.loyaltyCardId } });
+    navigate("/MyClubs", {
+      state: { regMyClubs: userData.getUser.loyaltyCardId },
+    });
   }
 
   const handleNameChange = (event) => {
@@ -62,12 +69,22 @@ const Profile = () => {
       <div id="container_all_input">
         <div id="container_input">
           <div id="text_input">Name</div>
-          <input className="input_w" type="text" value={updateName} onChange={handleNameChange} />
+          <input
+            className="input_w"
+            type="text"
+            value={updateName}
+            onChange={handleNameChange}
+          />
         </div>
         <br />
         <div id="container_input">
           <div id="text_input">Email</div>
-          <input className="input_w" type="email" value={updateEmail} onChange={handleEmailChange} />
+          <input
+            className="input_w"
+            type="email"
+            value={updateEmail}
+            onChange={handleEmailChange}
+          />
         </div>
         <br />
       </div>

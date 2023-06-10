@@ -25,7 +25,8 @@ module.exports = {
     },
     async getDealsByUser(parent, { args }, contextValue, info) {
       let deals = [];
-      let loyaltyCards = await User.findById(contextValue._id).loyaltyCardId;
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
 
       for (let i = 0; i < loyaltyCards.length; i++) {
         let currLoyaltyCard = loyaltyCards[i];
@@ -89,13 +90,18 @@ module.exports = {
 
     async updateUserFields(parent, { userUpdateInput: { name, email, password } }, contextValue, info) {
       let user = await User.findById(contextValue._id);
-      user.name = name;
-      user.email = email;
+      if (name != undefined) {
+        user.name = name;
+      }
+      if (email != undefined) {
+        user.email = email;
+      }
+      if (password != undefined) {
+        let salt = await bcrypt.genSalt(10);
+        let encryptedPassword = await bcrypt.hash(password, salt);
 
-      let salt = await bcrypt.genSalt(10);
-      let encryptedPassword = await bcrypt.hash(password, salt);
-
-      user.password = encryptedPassword;
+        user.password = encryptedPassword;
+      }
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
     },
