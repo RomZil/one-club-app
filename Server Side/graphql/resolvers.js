@@ -25,7 +25,8 @@ module.exports = {
     },
     async getDealsByUser(parent, { args }, contextValue, info) {
       let deals = [];
-      let loyaltyCards = await User.findById(contextValue._id).loyaltyCardId;
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
 
       for (let i = 0; i < loyaltyCards.length; i++) {
         let currLoyaltyCard = loyaltyCards[i];
