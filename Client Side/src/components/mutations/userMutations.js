@@ -11,15 +11,4 @@ const UPDATE_USER = gql`
   }
 `;
 
-const UPDATE_USER_LOYALTY_CARD = gql`
-  mutation UpdateUserLoyaltyCards {
-    updateUserLoyaltyCards {
-      loyaltyCardId {
-        id
-        name
-      }
-    }
-  }
-`;
-
 export { UPDATE_USER_LOYALTY_CARD, UPDATE_USER };

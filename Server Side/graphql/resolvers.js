@@ -14,6 +14,9 @@ module.exports = {
     async getDeals(parent, args, contextValue) {
       return await Deal.find().populate("loyaltyCardId").populate("category");
     },
+    async getDealbyID(parent, { ID }, contextValue) {
+      return await Deal.findById(ID).populate("loyaltyCardId").populate("category");
+    },
     async getLoyaltyCards(parent, { args }, contextValue, info) {
       return await LoyaltyCard.find();
     },
@@ -22,7 +25,8 @@ module.exports = {
     },
     async getDealsByUser(parent, { args }, contextValue, info) {
       let deals = [];
-      let loyaltyCards = await User.findById(contextValue._id).loyaltyCardId;
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
 
       for (let i = 0; i < loyaltyCards.length; i++) {
         let currLoyaltyCard = loyaltyCards[i];
@@ -40,7 +44,8 @@ module.exports = {
     },
     async getCategoriesByUser(parent, { args }, contextValue, info) {
       let deals = [];
-      let loyaltyCards = await User.findById(contextValue._id).loyaltyCardId;
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
 
       for (let i = 0; i < loyaltyCards.length; i++) {
         let currLoyaltyCard = loyaltyCards[i];
@@ -50,10 +55,18 @@ module.exports = {
 
       const categories = new Set();
       for (let i = 0; i < deals.length; i++) {
-        categories.push(deals[i].category);
+        let str = JSON.stringify(deals[i].category);
+        let result = str.slice(1, -1);
+        categories.add(result);
       }
 
-      return Array.from(categories);
+      let arrCategories = Array.from(categories);
+      let categoriesToReturn = [];
+      for (let i = 0; i < arrCategories.length; i++) {
+        categoriesToReturn[i] = await Category.findById(arrCategories[i]);
+      }
+
+      return categoriesToReturn;
     },
   },
   Mutation: {
@@ -77,13 +90,18 @@ module.exports = {
 
     async updateUserFields(parent, { userUpdateInput: { name, email, password } }, contextValue, info) {
       let user = await User.findById(contextValue._id);
-      user.name = name;
-      user.email = email;
+      if (name != undefined) {
+        user.name = name;
+      }
+      if (email != undefined) {
+        user.email = email;
+      }
+      if (password != undefined) {
+        let salt = await bcrypt.genSalt(10);
+        let encryptedPassword = await bcrypt.hash(password, salt);
 
-      let salt = await bcrypt.genSalt(10);
-      let encryptedPassword = await bcrypt.hash(password, salt);
-
-      user.password = encryptedPassword;
+        user.password = encryptedPassword;
+      }
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
     },

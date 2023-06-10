@@ -26,6 +26,7 @@ module.exports = `#graphql
 
   type Query {
     getUser: User!
+    getDealbyID(id: ID!): Deal!
     getDeals(amount: Int): [Deal]
     getLoyaltyCards: [LoyaltyCard]
     getLoyaltyCardByUser: [LoyaltyCard]
