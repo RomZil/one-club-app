@@ -5,7 +5,6 @@ import BootstrapSwitchButton from "bootstrap-switch-button-react";
 import { BsPersonCircle, BsPinMap, BsDoorOpen } from "react-icons/bs";
 import emitter from "../../shared/emitter";
 import { useNavigate } from "react-router-dom";
-import logo from "../../images/LOGO.png";
 
 function Footer() {
   const [isMyClubs, setIsMyClubs] = useState(true);
@@ -49,7 +48,7 @@ function Footer() {
             nav("/Home", { state: { title: null } });
           }}
         >
-          <img className="img" src={logo} />
+          One Club
         </Navbar.Brand>
         {isLoggedIn && (
           <>

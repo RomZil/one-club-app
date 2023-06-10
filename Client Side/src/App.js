@@ -29,9 +29,12 @@ const App = () => {
     <>
       <BrowserRouter>
         <Footer />
+        <br />
         <ApolloProvider client={user}>
           <div className="App">
+            <Container className="grid-items">
               <AppRouter />
+            </Container>
           </div>
         </ApolloProvider>
       </BrowserRouter>
