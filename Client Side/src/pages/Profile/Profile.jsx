@@ -16,7 +16,7 @@ const Profile = () => {
 
   const { loading, error, data } = useQuery(GET_USER);
 
-  console.log(data);
+  console.log("data" , data);
   useEffect(() => {
     if (data != undefined) {
       setNameValue(data.getUser.name);
@@ -32,6 +32,10 @@ const Profile = () => {
     navigate("/Home", { state: "" });
 
     //all the infon in vars
+  }
+
+  function NavMyClub() {
+    navigate("/MyClubs", { state: {regMyClubs: data.getUser.loyaltyCardId} });
   }
 
   const handleNameChange = (event) => {
@@ -64,9 +68,9 @@ const Profile = () => {
       <button id="b_sign" onClick={UpdateToDB}>
         update profile
       </button>
-      <Link className="link2" to="/MyClubs">
+      <div className="link2" onClick={NavMyClub}>
         Go to your clubs
-      </Link>
+      </div>
     </div>
   );
 };

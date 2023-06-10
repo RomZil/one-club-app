@@ -2,14 +2,9 @@ import { gql } from '@apollo/client';
 
 const GET_LOYALTYCARDS = gql`
   query getLoyaltyCards {
-    loyaltyCards {
+    getLoyaltyCards {
       id
       name
-      deals {
-        id
-        title
-        description
-      }
     }
   }
 `;

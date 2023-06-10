@@ -1,7 +1,7 @@
 import "./MyClubs.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   GET_LOYALTYCARD,
   GET_LOYALTYCARDS,
@@ -9,16 +9,31 @@ import {
 import { GET_DEALS } from "../../components/queries/dealQueries";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
-// import { MDBCheckbox } from "mdb-react-ui-kit";
+import { MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
 
-export default function Clubs() {
+export default function MyClubs() {
+  const { state } = useLocation();
+  const { regMyClubs } = state;
   const { loading, error, data } = useQuery(GET_LOYALTYCARDS);
   const [myClubs, setMyClubs] = useState([]);
 
   function updateMyClubs() {
     //send the data to server
     console.log(myClubs);
+    console.log("regMyClubs" , regMyClubs);
+  }
+
+  function IsMyClub(currClub) {
+    let checked = false;
+    console.log(regMyClubs);
+    console.log(currClub);
+    regMyClubs.forEach(club => {
+      if (club.id === currClub) {
+        checked = true;
+      }
+    });
+    return checked;
   }
 
   // }
@@ -36,7 +51,7 @@ export default function Clubs() {
       <br />
       <Form>
         <Row className="clubs" style={{ gridGap: 15 }}>
-          {data.loyaltyCards.map((loyaltyCard) => (
+          {data.getLoyaltyCards.map((loyaltyCard) => (
             <div
               style={{
                 display: "contents",
@@ -45,16 +60,17 @@ export default function Clubs() {
               <Form.Group className="mb-3">
                 <Form.Control
                   className="loyaltyCards"
-                  disabled="true"
+                  disabled={true}
                   type="text"
                   placeholder={loyaltyCard.name}
                 />
               </Form.Group>
-              {/* <MDBCheckbox
-                onClick={() => setMyClubs([...myClubs, loyaltyCard.name])}
-                onClickname="flexCheck"
+              <MDBCheckbox
+                onChange={() => setMyClubs([...myClubs, loyaltyCard.name])}
+                checked={IsMyClub(loyaltyCard.id)}
+                // onClickname="flexCheck"
                 id="flexCheckDefault"
-              /> */}
+              />
             </div>
           ))}
         </Row>{" "}
