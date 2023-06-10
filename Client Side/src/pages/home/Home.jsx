@@ -1,4 +1,3 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import Item from "../../components/item/item.jsx";
@@ -9,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import "./Home.css";
 import BackButton from "../../components/backButton/backButton.jsx";
 import { Deals } from "../../shared/deals.jsx";
-import {  GET_CATEGORIES } from "../../components/queries/categoryQueries.js";
+import { GET_CATEGORIES } from "../../components/queries/categoryQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
 
@@ -19,7 +18,7 @@ export default function Home() {
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
 
-  const { title } = state;
+  const { title } = state || {};
 
   useEffect(() => {
     if (data != undefined) {

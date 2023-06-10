@@ -43,9 +43,9 @@ module.exports = `#graphql
   }
 
   input UserUpdateInput {
-    name: String!
-    email: String!
-    password: String!
+    name: String
+    email: String
+    password: String
   }
   input UserUpdateLoyaltyCards {
     id:ID!

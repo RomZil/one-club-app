@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GET_USER, GET_USERS } from "../../components/queries/userQueries";
-import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
+import { UPDATE_USER } from "../../components/mutations/userMutations";
+import { useMutation, useQuery } from "@apollo/client";
 
 // RefreshDate();
 
@@ -13,15 +14,20 @@ const Profile = () => {
   const [updatePassword, setPasswordValue] = useState("");
   const [updateDate, setDateValue] = useState("");
   const navigate = useNavigate();
+  const [updateUser, { loding: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser }] =
+    useMutation(UPDATE_USER);
 
   const { loading, error, data } = useQuery(GET_USER);
 
-  console.log("data" , data);
+  console.log("data", data);
   useEffect(() => {
     if (data != undefined) {
       setNameValue(data.getUser.name);
       setEmailValue(data.getUser.email);
       setPasswordValue(data.getUser.password);
+      updateUser({
+        variables: { name: "asd", email: "asd", password: "000" },
+      });
     }
   }, [data]);
 
@@ -35,7 +41,7 @@ const Profile = () => {
   }
 
   function NavMyClub() {
-    navigate("/MyClubs", { state: {regMyClubs: data.getUser.loyaltyCardId} });
+    navigate("/MyClubs", { state: { regMyClubs: data.getUser.loyaltyCardId } });
   }
 
   const handleNameChange = (event) => {
