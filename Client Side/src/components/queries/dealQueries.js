@@ -17,15 +17,11 @@ const GET_DEALS = gql`
 
 const GET_DEAL = gql`
   query getDeal($id: ID!) {
-    deal(id: $id) {
+    getDeal(id: $id) {
       id
       title
       description
-      category {
-        id
-        name
-        aliases
-      }
+      category 
       imageURL
     }
   }

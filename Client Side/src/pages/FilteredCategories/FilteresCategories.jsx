@@ -19,21 +19,23 @@ const FilteresCategories = () => {
   } = useQuery(GET_DEALS);
 
   useEffect(() => {
-    // console.log(dataDeals);
+    console.log("dataDeals" , dataDeals);
+    console.log(id);
     if (dataDeals != undefined) {
       if (title != undefined) {
-        const x = dataDeals.deals.filter((deals) => {
+        const x = dataDeals.getDeals.filter((deals) => {
           return deals.title.toUpperCase().includes(title.toUpperCase());
         });
         setDeals(x);
       }
       if (id != undefined) {
-        const x = dataDeals.deals
-          .filter((deal) => deal.category == id)
+        console.log("dataDeals" , dataDeals);
+        const x = dataDeals.getDeals
+          // .filter((deal) => deal.category == id)
           .map((deal) => () => {
             console.log(deal);
           });
-        setDeals(dataDeals.deals);
+        setDeals(dataDeals.getDeals);
       }
     }
   }, [state, dataDeals]);

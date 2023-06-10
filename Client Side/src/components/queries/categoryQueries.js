@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 const GET_CATEGORIES = gql`
   query GetCategories {
     getCategories {
+      id
       name
     }
   }
