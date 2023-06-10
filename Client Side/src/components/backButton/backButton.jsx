@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 
 const BackButton = () => {
   const navigate = useNavigate();
-
   const goBack = () => {
     navigate(-1);
   };

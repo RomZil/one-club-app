@@ -1,5 +1,7 @@
 import { gql } from "@apollo/client";
 
+//is it ?
+
 const GET_DEALS = gql`
   query GetDeals {
     getDeals {
@@ -8,6 +10,7 @@ const GET_DEALS = gql`
       category {
         name
       }
+      imageURL
     }
   }
 `;
@@ -23,6 +26,7 @@ const GET_DEAL = gql`
         name
         aliases
       }
+      imageURL
     }
   }
 `;

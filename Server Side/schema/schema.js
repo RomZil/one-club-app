@@ -27,12 +27,8 @@ const DealType = new GraphQLObjectType({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
-    category: {
-      type: CategoryType,
-      resolve(parent, args) {
-        return Category.findById(parent.category);
-      },
-    },
+    catergory: { type: GraphQLID },
+    imageURL: { type: GraphQLString },
   }),
 });
 
@@ -61,6 +57,7 @@ const CategoryType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
+    // loyaltyCardId: { type: GraphQLID },
     aliases: { type: new GraphQLList(GraphQLString) },
   }),
 });

@@ -1,4 +1,3 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import Item from "../../components/item/item.jsx";
 import { Col, Row } from "react-bootstrap";
@@ -9,7 +8,7 @@ import Spinner from "../../components/spinner/spinner.jsx";
 import { GET_CATEGORIES } from "../../components/queries/categoryQueries.js";
 import Category from "../../shared/category.jsx";
 
-export default function Home() {
+export default function Category() {
   const {
     loading: loadingCategory,
     error: errorCategory,
