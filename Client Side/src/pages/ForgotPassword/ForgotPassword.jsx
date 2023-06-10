@@ -29,7 +29,7 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className="page2">
+    <div>
       <div id="container">
         <p id="titel2">Forgot Password</p>
         <div id="container_all_input">

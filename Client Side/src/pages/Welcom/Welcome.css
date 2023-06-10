@@ -1,0 +1,28 @@
+#welcomeContainer {
+    margin: 4rem 0 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#B_welcome {
+    border-radius: 30px;
+    top: 70%;
+    width: 50%;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    position: absolute;
+    left: 25%;
+}
+.img {
+    height: 50%;
+    top: 15%;
+    left: 21%;
+    position: absolute;
+}
+.notRegLink{
+    top: 80%;
+    position: absolute;
+    left: 30%;
+}

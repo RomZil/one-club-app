@@ -1,6 +1,7 @@
 import Home from "./pages/home/Home.jsx";
 import FilteresCategories from "./pages/FilteredCategories/FilteresCategories.jsx";
 import { Route, Routes } from "react-router-dom";
+import Welcome from "./pages/Welcom/welcome.jsx";
 import Register from "./pages/Register/Register.jsx";
 import LogIn from "./pages/LogIn/LogIn.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
@@ -13,7 +14,7 @@ import EditUserForm from "./shared/editUser.jsx";
 
 export const AppRouter = () => (
   <Routes>
-    <Route path="/" element={<LogIn />} />
+    <Route path="/" element={<Welcome />} />
     <Route path="/Home" element={<Home />} />
     <Route path="/FilteresCategories" element={<FilteresCategories />} />
     <Route path="/Register" element={<Register />} />
@@ -25,5 +26,6 @@ export const AppRouter = () => (
     <Route path="/UserByEmail" element={<User />} />
     <Route path="/Category" element={<Category />} />
     <Route path="/Edit" element={<EditUserForm />} />
+
   </Routes>
 );
