@@ -25,7 +25,7 @@ export default function Home() {
     data: dataByUser,
   } = useQuery(GET_CATEGORIES_BY_USER);
 
-  // const { state } = useLocation();
+  const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
 
   useEffect(() => {
@@ -34,11 +34,11 @@ export default function Home() {
       if (!isMyClubs) {
         if (dataByUser != undefined) {
           setCategories_filtered(dataByUser.getCategoriesByUser);
-          console.log("user" , dataByUser.getCategoriesByUser);
+          console.log("user", dataByUser.getCategoriesByUser);
         }
       } else if (dataAll != undefined) {
         setCategories_filtered(dataAll.getCategories);
-        console.log("all " , dataAll.getCategories);
+        console.log("all ", dataAll.getCategories);
       }
     };
 
@@ -48,7 +48,7 @@ export default function Home() {
       // Unsubscribing from the event when component unmounts
       emitter.off("isMyClubs", listener);
     };
-  }, [state , dataAll ,dataByUser]);
+  }, [state, dataAll, dataByUser]);
 
   if (errorAll || errorByUser) return <p> Somthing wrong</p>;
   if (loadingAll || loadingByUser) return <Spinner />;

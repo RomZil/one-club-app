@@ -54,7 +54,7 @@ const FilteresCategories = () => {
       if (isMyClubs) {
         //info get when taggle on myclubs && get data from category
         if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-          setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
+          setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
         }
         if (dataDealsByUser !== undefined && title != undefined) {
           const filteredDeals = dataDeals.getDeals.filter((deal) => {
@@ -81,7 +81,7 @@ const FilteresCategories = () => {
       // Unsubscribing from the event when component unmounts
       emitter.off("isMyClubs", listener);
     };
-  }, [state, dataDeals, dataDealsByCategory]);
+  }, [state, dataDeals, dataDealsByCategory, dataDealsByCategoryAndUser]);
 
   // useEffect(() => {
   //   if (id != undefined) {
