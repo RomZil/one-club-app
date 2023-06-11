@@ -68,6 +68,26 @@ module.exports = {
 
       return categoriesToReturn;
     },
+    async getDealsByCategoryAndUser(parent, { categoryID }, contextValue, info) {
+      let deals = [];
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
+
+      for (let i = 0; i < loyaltyCards.length; i++) {
+        let currLoyaltyCard = loyaltyCards[i];
+        let currDeals = await Deal.find({ loyaltyCardId: currLoyaltyCard });
+        deals.push(...currDeals);
+      }
+
+      let dealsByCategory = [];
+      for (let i = 0; i < deals.length; i++) {
+        if (deals[i].category === id) {
+          dealsByCategory.push(deals[i]);
+        }
+      }
+
+      return dealsByCategory;
+    },
   },
   Mutation: {
     async createDeal(_, { dealInput: { title, description, imageURL, category } }) {

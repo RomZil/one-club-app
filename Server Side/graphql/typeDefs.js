@@ -35,6 +35,7 @@ module.exports = `#graphql
     getDealsByCategory(categoryID: ID!): [Deal]
     getCategories:[Category]
     getCategoriesByUser:[Category]
+    getDealsByCategoryAndUser(categoryID:ID!): [Deal]
   }
 
   input DealInput {
