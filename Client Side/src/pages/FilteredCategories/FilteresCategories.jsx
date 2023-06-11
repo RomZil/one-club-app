@@ -51,26 +51,37 @@ const FilteresCategories = () => {
   useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      if (isMyClubs) {
+      if (!isMyClubs) {
+        console.log("!isMyClubs", !isMyClubs);
         //info get when taggle on myclubs && get data from category
         if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-          setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
+          setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
+          console.log(
+            "dataDealsByCategoryAndUser.GetDealsByCategoryAndUser",
+            dataDealsByCategoryAndUser.GetDealsByCategoryAndUser
+          );
         }
         if (dataDealsByUser !== undefined && title != undefined) {
           const filteredDeals = dataDeals.getDeals.filter((deal) => {
             return deal.title.toUpperCase().includes(title.toUpperCase());
           });
           setDeals(filteredDeals);
+          console.log("filteredDeals", filteredDeals);
         }
       } else {
         if (dataDealsByCategory !== undefined && id != undefined) {
           setDeals(dataDealsByCategory.getDealsByCategory);
+          console.log(
+            "dataDealsByCategory.getDealsByCategory",
+            dataDealsByCategory.getDealsByCategory
+          );
         }
         if (dataDeals !== undefined && title != undefined) {
           const filteredDeals = dataDeals.getDeals.filter((deal) => {
             return deal.title.toUpperCase().includes(title.toUpperCase());
           });
           setDeals(filteredDeals);
+          console.log("filteredDeals", filteredDeals);
         }
       }
     };
