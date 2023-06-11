@@ -21,13 +21,13 @@ export default function Home() {
     data: dataByUser,
   } = useQuery(GET_CATEGORIES_BY_USER);
 
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
 
   useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      console.log('isMyClubs', isMyClubs);
+      console.log("isMyClubs", isMyClubs);
       if (isMyClubs) {
         if (dataByUser != undefined) {
           setCategories_filtered(dataByUser.getCategoriesByUser);
@@ -37,11 +37,11 @@ export default function Home() {
       }
     };
 
-    emitter.on('isMyClubs', listener);
+    emitter.on("isMyClubs", listener);
 
     return () => {
       // Unsubscribing from the event when component unmounts
-      emitter.off('isMyClubs', listener);
+      emitter.off("isMyClubs", listener);
     };
   }, []);
 
@@ -59,7 +59,7 @@ export default function Home() {
       >
         {categories_filtered.map((category) => (
           <Item
-            key={category.id} // Assign stable key using category.id
+            key={category.id}
             id={category.id}
             img={category.img}
             title={category.name}

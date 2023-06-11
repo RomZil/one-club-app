@@ -55,10 +55,6 @@ function Footer() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="top-right-stick">
-                <Nav.Link href="#map-page">
-                  <BsPinMap className="icons" />
-                  <span className="icon-text"> Around Me </span>
-                </Nav.Link>
                 <Nav.Link href="Profile">
                   <BsPersonCircle className="icons" />
                   <span className="icon-text"> Profile </span>
