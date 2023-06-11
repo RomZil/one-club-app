@@ -13,6 +13,8 @@ const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
+  const safeId = id ?? "64823286022dea94ebc3ff78";
+  const safeTitle = title ?? "";
 
   const {
     loading: loadingDeals,
@@ -25,19 +27,19 @@ const FilteresCategories = () => {
     error: errorDealsByCategory,
     data: dataDealsByCategory,
   } = useQuery(GET_DEAL_BY_CATEGORY, {
-    variables: { categoryID: id },
+    variables: { categoryID: safeId },
   });
 
   useEffect(() => {
     // info from search, get all data to filter
-    if (dataDeals !== undefined && title !== "") {
+    if (dataDeals !== undefined && title !== undefined) {
       const filteredDeals = dataDeals.getDeals.filter((deal) => {
         return deal.title.toUpperCase().includes(title.toUpperCase());
       });
       setDeals(filteredDeals);
     }
     // info from category, by ID
-    if (dataDealsByCategory !== undefined && id !== "") {
+    if (dataDealsByCategory !== undefined && id !== undefined) {
       setDeals(dataDealsByCategory.getDealsByCategory);
     }
   }, [state, dataDeals, dataDealsByCategory]);

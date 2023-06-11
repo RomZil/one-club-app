@@ -33,10 +33,8 @@ export default function Home() {
     }
   }, [data, state, dataByUser]);
 
-  if (error) return <p> Somthing wrong</p>;
-  if (loading) return <Spinner />;
-  if (errorByUser) return <p> Somthing wrong</p>;
-  if (loadingByUser) return <Spinner />;
+  if (error || errorByUser) return <p> Somthing wrong</p>;
+  if (loading || loadingByUser) return <Spinner />;
 
   return (
     <div>
