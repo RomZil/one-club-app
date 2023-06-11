@@ -22,16 +22,17 @@ export default function Home() {
 
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
+  const {isMyClubs} = state || {};
 
   useEffect(() => {
-    if (localStorage.getItem("isMyClubs") == "true") {
+    if (isMyClubs) {
       if (dataByUser != undefined) {
         setCategories_filtered(dataByUser.getCategoriesByUser);
       }
     } else if (data != undefined) {
       setCategories_filtered(data.getCategories);
     }
-  }, [data, state, dataByUser]);
+  }, [isMyClubs , state]);
 
   if (error || errorByUser) return <p> Somthing wrong</p>;
   if (loading || loadingByUser) return <Spinner />;

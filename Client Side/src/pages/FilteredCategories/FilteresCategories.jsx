@@ -12,7 +12,7 @@ import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
 const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
-  const { id, title } = state || {};
+  const { id, title , isMyClubs } = state || {};
   //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
   const safeTitle = title ?? "";

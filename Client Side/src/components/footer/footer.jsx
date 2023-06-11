@@ -18,7 +18,7 @@ function Footer() {
   useEffect(() => {
     localStorage.setItem("isMyClubs", isMyClubs);
     console.log(isMyClubs);
-    // nav("/Home", { state: { title: null } });
+    nav("/Home", { state: { isMyClubs: isMyClubs } });
   }, [isMyClubs]);
 
   function handleMyClubsChange() {
