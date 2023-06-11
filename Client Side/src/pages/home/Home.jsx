@@ -20,19 +20,19 @@ export default function Home() {
     data: dataByUser,
   } = useQuery(GET_CATEGORIES_BY_USER);
 
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
-  const {isMyClubs} = state || {};
+  const [isMyClubs, setIsMyClubs] = useState("true");
 
   useEffect(() => {
-    if (isMyClubs) {
+    if (isMyClubs == "true") {
       if (dataByUser != undefined) {
         setCategories_filtered(dataByUser.getCategoriesByUser);
       }
     } else if (data != undefined) {
       setCategories_filtered(data.getCategories);
     }
-  }, [isMyClubs , state]);
+  }, [isMyClubs]);
 
   if (error || errorByUser) return <p> Somthing wrong</p>;
   if (loading || loadingByUser) return <Spinner />;
@@ -48,7 +48,7 @@ export default function Home() {
       >
         {categories_filtered.map((category) => (
           <Item
-            key={category.id} // Assign stable key using category.id
+            key={category.id}
             id={category.id}
             img={category.img}
             title={category.name}
