@@ -14,7 +14,11 @@ import Spinner from "../../components/spinner/spinner.jsx";
 import emitter from "../../shared/emitter";
 
 export default function Home() {
-  const { loading, error, data } = useQuery(GET_CATEGORIES);
+  const {
+    loading: loadingAll,
+    error: errorAll,
+    data: dataAll,
+  } = useQuery(GET_CATEGORIES);
   const {
     loading: loadingByUser,
     error: errorByUser,
@@ -27,26 +31,27 @@ export default function Home() {
   useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      console.log('isMyClubs', isMyClubs);
-      if (isMyClubs) {
+      if (!isMyClubs) {
         if (dataByUser != undefined) {
           setCategories_filtered(dataByUser.getCategoriesByUser);
+          console.log("user" , dataByUser.getCategoriesByUser);
         }
-      } else if (data != undefined) {
-        setCategories_filtered(data.getCategories);
+      } else if (dataAll != undefined) {
+        setCategories_filtered(dataAll.getCategories);
+        console.log("all " , dataAll.getCategories);
       }
     };
 
-    emitter.on('isMyClubs', listener);
+    emitter.on("isMyClubs", listener);
 
     return () => {
       // Unsubscribing from the event when component unmounts
-      emitter.off('isMyClubs', listener);
+      emitter.off("isMyClubs", listener);
     };
-  }, []);
+  }, [state , dataAll ,dataByUser]);
 
-  if (error || errorByUser) return <p> Somthing wrong</p>;
-  if (loading || loadingByUser) return <Spinner />;
+  if (errorAll || errorByUser) return <p> Somthing wrong</p>;
+  if (loadingAll || loadingByUser) return <Spinner />;
 
   return (
     <div>
