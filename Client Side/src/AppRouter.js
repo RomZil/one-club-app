@@ -12,11 +12,11 @@ import User from "./shared/userById.jsx";
 import Category from "./shared/category.jsx";
 import EditUserForm from "./shared/editUser.jsx";
 
-export const AppRouter = () => (
+export const AppRouter = ({isMyClubs}) => (
   <Routes>
     <Route path="/" element={<Welcome />} />
-    <Route path="/Home" element={<Home />} />
-    <Route path="/FilteresCategories" element={<FilteresCategories />} />
+    <Route path="/Home" element={<Home isMyClubs={isMyClubs} />} />
+    <Route path="/FilteresCategories" element={<FilteresCategories isMyClubs={isMyClubs} />} />
     <Route path="/Register" element={<Register />} />
     <Route path="/LogIn" element={<LogIn />} />
     <Route path="/Profile" element={<Profile />} />
