@@ -10,7 +10,7 @@ function Item({ title, img, perentId, id }) {
   const navigate = useNavigate();
   const onClickItem = () => {
     perentId == null
-      ? navigate("/FilteresCategories", { state: { id , isMyClubs } })
+      ? navigate("/FilteresCategories", { state: { id } })
       : navigate("/ShowItem", { state: { id } });
   };
   return (
