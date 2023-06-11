@@ -12,7 +12,7 @@ import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
 const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
-  const { id, title } = state || "";
+  const { id, title } = state || {};
 
   const {
     loading: loadingDeals,
