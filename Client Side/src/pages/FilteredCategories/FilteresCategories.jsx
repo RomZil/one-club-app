@@ -13,6 +13,7 @@ const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
+  //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
   const safeTitle = title ?? "";
 
