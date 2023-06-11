@@ -13,7 +13,10 @@ const UPDATE_USER = gql`
 `;
 
 const UPDATE_USER_LOYALTY_CARD = gql`
-  mutation updateUserLoyaltyCards($cards: [UserUpdateLoyaltyCards]) {
+  input UserUpdateLoyaltyCards {
+    id: ID
+  }
+  mutation updateUserLoyaltyCards($cards: [LoyaltyCardInput]) {
     updateUserLoyaltyCards(cards: $cards) {
       name
     }
