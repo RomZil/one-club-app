@@ -7,6 +7,7 @@ const GET_DEALS = gql`
     getDeals {
       title
       description
+      id
       category {
         name
       }
@@ -15,16 +16,14 @@ const GET_DEALS = gql`
   }
 `;
 
-const GET_DEAL = gql`
-  query getDeal($id: ID!) {
-    getDeal(id: $id) {
-      id
+const GET_DEAL_BY_ID = gql`
+  query GetDealbyID($id: ID!) {
+    getDealbyID(id: $id) {
       title
       description
-      category 
       imageURL
     }
   }
 `;
 
-export { GET_DEALS, GET_DEAL };
+export { GET_DEALS, GET_DEAL_BY_ID };

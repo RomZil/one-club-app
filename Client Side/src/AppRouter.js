@@ -25,7 +25,5 @@ export const AppRouter = () => (
     <Route path="/ShowItem" element={<ShowItem />} />
     <Route path="/UserByEmail" element={<User />} />
     <Route path="/Category" element={<Category />} />
-    <Route path="/Edit" element={<EditUserForm />} />
-
   </Routes>
 );

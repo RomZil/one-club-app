@@ -9,23 +9,23 @@ const GET_CATEGORIES = gql`
   }
 `;
 
-const GET_CATEGORY = gql`
-  query getCategory($id: ID!) {
-    category(id: $id) {
+const GET_DEAL_BY_CATEGORY = gql`
+  query GetDealsByCategory($categoryID: ID!) {
+    getDealsByCategory(categoryID: $categoryID) {
+      title
+      description
+      imageURL
       id
-      name
-      aliases
     }
   }
 `;
 
-
 const GET_CATEGORIES_BY_USER = gql`
-query GetCategoriesByUser {
-  getCategoriesByUser {
+  query GetCategoriesByUser {
+    getCategoriesByUser {
       id
       name
+    }
   }
-}
 `;
-export { GET_CATEGORIES, GET_CATEGORY , GET_CATEGORIES_BY_USER };
+export { GET_CATEGORIES, GET_CATEGORIES_BY_USER, GET_DEAL_BY_CATEGORY };

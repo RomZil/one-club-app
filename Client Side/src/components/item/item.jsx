@@ -13,7 +13,6 @@ function Item({ title, img, perentId, id }) {
       ? navigate("/FilteresCategories", { state: { id } })
       : navigate("/ShowItem", { state: { id } });
   };
-
   return (
     <Card onClick={onClickItem} className="item">
       <ImageComponent component={Card.Img} img={img}></ImageComponent>

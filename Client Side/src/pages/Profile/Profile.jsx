@@ -37,9 +37,12 @@ const Profile = () => {
   function UpdateToDB() {
     updateUser({
       variables: {
-        name: String(updateName),
-        email: String(updateEmail),
-        password: "00",
+        if(updateName) {
+          name: String(updateName);
+        },
+        if(updateEmail) {
+          email: String(updateEmail);
+        },
       },
     });
     navigate("/Home", { state: { title: null } });

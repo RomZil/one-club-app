@@ -11,24 +11,21 @@ function Footer() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const nav = useNavigate();
 
-  
   useEffect(() => {
-    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
-    // if (storedIsLoggedIn) {
-      //   setIsLoggedIn(storedIsLoggedIn === false);
-      // }
-      setIsLoggedIn(storedIsLoggedIn);
-    }, []);
+    setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
+  }, []);
 
-    useEffect(() => {
-      localStorage.setItem("isMyClubs", isMyClubs);
-    },[isMyClubs] )
-    
-    function handleMyClubsChange(){
-      setIsMyClubs(!isMyClubs);
-    };
+  useEffect(() => {
+    localStorage.setItem("isMyClubs", isMyClubs);
+    console.log(isMyClubs);
+    nav("/Home", { state: { title: null } });
+  }, [isMyClubs]);
 
-    return (
+  function handleMyClubsChange() {
+    setIsMyClubs(!isMyClubs);
+  }
+
+  return (
     <Navbar className="navbar" collapseOnSelect expand="lg" variant="dark">
       <Container>
         <Navbar.Brand

@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import { GET_DEALS } from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
+import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
+
 const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
-  const { id, title } = state;
+  const { id, title } = state || "";
 
   const {
     loading: loadingDeals,
@@ -18,30 +20,30 @@ const FilteresCategories = () => {
     data: dataDeals,
   } = useQuery(GET_DEALS);
 
-  useEffect(() => {
-    console.log("dataDeals" , dataDeals);
-    console.log(id);
-    if (dataDeals != undefined) {
-      if (title != undefined) {
-        const x = dataDeals.getDeals.filter((deals) => {
-          return deals.title.toUpperCase().includes(title.toUpperCase());
-        });
-        setDeals(x);
-      }
-      if (id != undefined) {
-        console.log("dataDeals" , dataDeals);
-        const x = dataDeals.getDeals
-          // .filter((deal) => deal.category == id)
-          .map((deal) => () => {
-            console.log(deal);
-          });
-        setDeals(dataDeals.getDeals);
-      }
-    }
-  }, [state, dataDeals]);
+  const {
+    loading: loadingDealsByCategory,
+    error: errorDealsByCategory,
+    data: dataDealsByCategory,
+  } = useQuery(GET_DEAL_BY_CATEGORY, {
+    variables: { categoryID: id },
+  });
 
-  if (loadingDeals) return <Spinner />;
-  if (errorDeals) return <p>Something Went Wrong</p>;
+  useEffect(() => {
+    // info from search, get all data to filter
+    if (dataDeals !== undefined && title !== "") {
+      const filteredDeals = dataDeals.getDeals.filter((deal) => {
+        return deal.title.toUpperCase().includes(title.toUpperCase());
+      });
+      setDeals(filteredDeals);
+    }
+    // info from category, by ID
+    if (dataDealsByCategory !== undefined && id !== "") {
+      setDeals(dataDealsByCategory.getDealsByCategory);
+    }
+  }, [state, dataDeals, dataDealsByCategory]);
+
+  if (loadingDeals || loadingDealsByCategory) return <Spinner />;
+  if (errorDeals || errorDealsByCategory) return <p>Something Went Wrong</p>;
 
   return (
     <div>
@@ -53,17 +55,15 @@ const FilteresCategories = () => {
         className="businesses"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
       >
-        {deals
-          // .filter((deal) => deal.category == id)
-          .map((deal) => (
-            <Item
-              key={deal.id}
-              id={deal.id}
-              img={deal.imageURL}
-              title={deal.title}
-              perentId={1}
-            />
-          ))}
+        {deals.map((deal) => (
+          <Item
+            key={deal.id}
+            id={deal.id}
+            img={deal.imageURL}
+            title={deal.title}
+            perentId={1}
+          />
+        ))}
       </Row>
     </div>
   );

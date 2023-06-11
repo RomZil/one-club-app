@@ -56,12 +56,22 @@ const LogIn = () => {
         <div id="container_all_input">
           <div id="container_input">
             <div id="text_input">Email</div>
-            <input className="input" type="email" value={inputEmail} onChange={handleEmailChange} />
+            <input
+              className="input"
+              type="email"
+              value={inputEmail}
+              onChange={handleEmailChange}
+            />
           </div>
           <br />
           <div id="container_input">
             <div id="text_input">Password</div>
-            <input className="input" type="password" value={inputPassword} onChange={handlePasswordChange} />
+            <input
+              className="input"
+              type="password"
+              value={inputPassword}
+              onChange={handlePasswordChange}
+            />
           </div>
           <Link className="link2" to="/ForgotPassword">
             Forgot password?
