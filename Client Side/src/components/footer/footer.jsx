@@ -15,13 +15,16 @@ function Footer() {
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("isMyClubs", isMyClubs);
-    console.log(isMyClubs);
-  }, [isMyClubs]);
+  // useEffect(() => {
+  //   localStorage.setItem("isMyClubs", isMyClubs);
+  //   console.log(isMyClubs);
+  //   // nav("/Home", { state: { isMyClubs: isMyClubs } });
+  // }, [isMyClubs]);
 
   function handleMyClubsChange() {
     setIsMyClubs(!isMyClubs);
+    // Emitting the event
+    emitter.emit("isMyClubs", isMyClubs);
   }
 
   return (

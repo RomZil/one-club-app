@@ -11,6 +11,7 @@ import {
 } from "../../components/queries/categoryQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
+import emitter from "../../shared/emitter";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
@@ -22,17 +23,27 @@ export default function Home() {
 
   // const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
-  const [isMyClubs, setIsMyClubs] = useState("true");
 
   useEffect(() => {
-    if (isMyClubs == "true") {
-      if (dataByUser != undefined) {
-        setCategories_filtered(dataByUser.getCategoriesByUser);
+    // Listening to the event
+    const listener = (isMyClubs) => {
+      console.log("isMyClubs", isMyClubs);
+      if (isMyClubs) {
+        if (dataByUser != undefined) {
+          setCategories_filtered(dataByUser.getCategoriesByUser);
+        }
+      } else if (data != undefined) {
+        setCategories_filtered(data.getCategories);
       }
-    } else if (data != undefined) {
-      setCategories_filtered(data.getCategories);
-    }
-  }, [isMyClubs]);
+    };
+
+    emitter.on("isMyClubs", listener);
+
+    return () => {
+      // Unsubscribing from the event when component unmounts
+      emitter.off("isMyClubs", listener);
+    };
+  }, []);
 
   if (error || errorByUser) return <p> Somthing wrong</p>;
   if (loading || loadingByUser) return <Spinner />;

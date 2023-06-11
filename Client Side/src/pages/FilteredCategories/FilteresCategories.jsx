@@ -10,12 +10,13 @@ import {
 } from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
+import emitter from "../../shared/emitter";
 import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
 
 const FilteresCategories = () => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
-  const { id, title, isMyClubs } = state || {};
+  const { id, title } = state || {};
   //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
 
@@ -46,6 +47,26 @@ const FilteresCategories = () => {
   } = useQuery(GET_DEAL_BY_CATEGORY_AND_USER, {
     variables: { categoryID: safeId },
   });
+  useEffect(() => {
+    // Listening to the event
+    const listener = (isMyClubs) => {
+      console.log("isMyClubs from deals", isMyClubs);
+      if (isMyClubs) {
+        if (dataByUser != undefined) {
+          setCategories_filtered(dataByUser.getCategoriesByUser);
+        }
+      } else if (data != undefined) {
+        setCategories_filtered(data.getCategories);
+      }
+    };
+
+    emitter.on("isMyClubs", listener);
+
+    return () => {
+      // Unsubscribing from the event when component unmounts
+      emitter.off("isMyClubs", listener);
+    };
+  }, []);
 
   useEffect(() => {
     if (id != undefined) {
