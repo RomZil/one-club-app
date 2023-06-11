@@ -12,4 +12,12 @@ const UPDATE_USER = gql`
   }
 `;
 
-export { UPDATE_USER };
+const UPDATE_USER_LOYALTY_CARD = gql`
+  mutation updateUserLoyaltyCards($cards: [UserUpdateLoyaltyCards]) {
+    updateUserLoyaltyCards(cards: $cards) {
+      name
+    }
+  }
+`;
+
+export { UPDATE_USER, UPDATE_USER_LOYALTY_CARD };
