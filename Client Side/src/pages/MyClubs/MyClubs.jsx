@@ -24,11 +24,17 @@ export default function MyClubs() {
 
   const [myClubs, setMyClubs] = useState([]);
 
-  function updateMyClubs() {
+  function updateMyClubs(e) {
+    // e.preventDefault();
     const x = {
       cards: { id: "", id: "" },
     };
-    console.log(myClubs);
+    const tmp = myClubs.map((item) => {
+      return { id: item };
+    });
+    const cards = { cards: tmp };
+    updateUserLoyaltyCards(cards);
+    // console.log(cards);
   }
 
   if (loading) return <Spinner />;
@@ -73,6 +79,7 @@ export default function MyClubs() {
           <button id="b_sign" className="registerBtn" onClick={updateMyClubs}>
             UPDATE
           </button>
+          <div onClick={updateMyClubs}> update</div>
         </Form>
       </div>
     </>
