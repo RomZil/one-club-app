@@ -14,8 +14,8 @@ module.exports = {
     async getDeals(parent, args, contextValue) {
       return await Deal.find().populate("loyaltyCardId").populate("category");
     },
-    async getDealbyID(parent, { ID }, contextValue) {
-      return await Deal.findById(ID).populate("loyaltyCardId").populate("category");
+    async getDealbyID(parent, { id }, contextValue) {
+      return await Deal.findById(id).populate("loyaltyCardId").populate("category");
     },
     async getLoyaltyCards(parent, { args }, contextValue, info) {
       return await LoyaltyCard.find();
@@ -105,7 +105,7 @@ module.exports = {
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
     },
-    async updateUserLoyaltyCards(parent, { loyaltyCards }, contextValue, info) {
+    async updateUserLoyaltyCards(parent, args, contextValue, info) {
       let user = await User.findById(contextValue._id);
       user.loyaltyCardId = [];
       for (let i = 0; i < loyaltyCards.length; i++) {

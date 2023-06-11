@@ -31,7 +31,7 @@ module.exports = `#graphql
     getLoyaltyCards: [LoyaltyCard]
     getLoyaltyCardByUser: [LoyaltyCard]
     getDealsByUser: [Deal]
-    getDealsByCategory(category: ID!): [Deal]
+    getDealsByCategory(categoryID: ID!): [Deal]
     getCategories:[Category]
     getCategoriesByUser:[Category]
   }
@@ -49,7 +49,7 @@ module.exports = `#graphql
     password: String
   }
   input UserUpdateLoyaltyCards {
-    id:ID!
+    id:String!
   }
   type Mutation {
     createDeal(dealInput: DealInput): Deal!
