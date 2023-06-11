@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 const ShowItem = () => {
   const { state } = useLocation();
-  const { id } = state || "";
+  const { id } = state;
 
   const { loading, error, data } = useQuery(GET_DEAL_BY_ID, {
     variables: { id },
@@ -35,7 +35,7 @@ const ShowItem = () => {
           .filter((businesse) => businesse.id == id)
           .map((businesse) => ( */}
         <div>
-          <p>{deal.description}</p>
+          <p>{deal.description != null ? deal.description : ""}</p>
           <p>{deal.title}</p>
           <div>
             {errorImg ? (

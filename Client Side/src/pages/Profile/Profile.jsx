@@ -25,7 +25,6 @@ const Profile = () => {
       setEmailValue(userData.getUser.email);
       setPasswordValue(userData.getUser.password);
     }
-    updateUser({ variables: { name: updateName, email: updateEmail } });
   }, [userData]);
 
   if (userError) return <p>{userError.message}</p>;
@@ -37,12 +36,8 @@ const Profile = () => {
   function UpdateToDB() {
     updateUser({
       variables: {
-        if(updateName) {
-          name: String(updateName);
-        },
-        if(updateEmail) {
-          email: String(updateEmail);
-        },
+        name: String(updateName),
+        email: String(updateEmail),
       },
     });
     navigate("/Home", { state: { title: null } });
