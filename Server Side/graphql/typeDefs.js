@@ -2,6 +2,7 @@ const { gql } = require("@apollo/server");
 
 module.exports = `#graphql
   type Deal {
+    id:ID!
     title: String!
     description: String
     imageURL: String
@@ -49,12 +50,13 @@ module.exports = `#graphql
     password: String
   }
   input UserUpdateLoyaltyCards {
-    id:String!
+    id: ID
   }
+
   type Mutation {
     createDeal(dealInput: DealInput): Deal!
     deleteDeal(ID: ID!): Boolean
     updateUserFields(userUpdateInput: UserUpdateInput): User
-    updateUserLoyaltyCards(loyaltyCards: [UserUpdateLoyaltyCards]): User
+    updateUserLoyaltyCards(cards: [UserUpdateLoyaltyCards]): User
   }
 `;

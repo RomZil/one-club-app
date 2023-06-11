@@ -105,11 +105,12 @@ module.exports = {
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
     },
-    async updateUserLoyaltyCards(parent, args, contextValue, info) {
+
+    async updateUserLoyaltyCards(parent, { cards }, contextValue, info) {
       let user = await User.findById(contextValue._id);
       user.loyaltyCardId = [];
-      for (let i = 0; i < loyaltyCards.length; i++) {
-        let currId = new mongoose.Types.ObjectId(loyaltyCards[i].id);
+      for (let i = 0; i < cards.length; i++) {
+        let currId = new mongoose.Types.ObjectId(cards[i].id);
 
         user.loyaltyCardId.push(currId);
       }
