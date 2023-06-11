@@ -30,7 +30,9 @@ module.exports = {
 
       for (let i = 0; i < loyaltyCards.length; i++) {
         let currLoyaltyCard = loyaltyCards[i];
-        let currDeals = await Deal.find({ loyaltyCardId: currLoyaltyCard });
+        let currDeals = await Deal.find({ loyaltyCardId: currLoyaltyCard })
+          .populate("loyaltyCardId")
+          .populate("category");
         deals.push(...currDeals);
       }
 
@@ -67,6 +69,28 @@ module.exports = {
       }
 
       return categoriesToReturn;
+    },
+    async getDealsByCategoryAndUser(parent, { categoryID }, contextValue, info) {
+      let deals = [];
+      let user = await User.findById(contextValue._id);
+      let loyaltyCards = user.loyaltyCardId;
+
+      for (let i = 0; i < loyaltyCards.length; i++) {
+        let currLoyaltyCard = loyaltyCards[i];
+        let currDeals = await Deal.find({ loyaltyCardId: currLoyaltyCard })
+          .populate("loyaltyCardId")
+          .populate("category");
+        deals.push(...currDeals);
+      }
+
+      let dealsByCategory = [];
+      for (let i = 0; i < deals.length; i++) {
+        if (deals[i].category._id == categoryID) {
+          dealsByCategory.push(deals[i]);
+        }
+      }
+
+      return dealsByCategory;
     },
   },
   Mutation: {
