@@ -11,48 +11,26 @@ import { useMutation, useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import { MDBCheckbox } from "mdb-react-ui-kit";
 import { useState } from "react";
-// import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutations";
+import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutations";
 
 export default function MyClubs() {
   const { state } = useLocation();
-  const { regMyClubs } = state;
   const { loading, error, data } = useQuery(GET_LOYALTYCARDS);
-  // const [
-  //   updateUserLoyaltyCards,
-  //   { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
-  // ] = useMutation(UPDATE_USER_LOYALTY_CARD);
+
+  const [
+    updateUserLoyaltyCards,
+    { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
+  ] = useMutation(UPDATE_USER_LOYALTY_CARD);
 
   const [myClubs, setMyClubs] = useState([]);
 
   function updateMyClubs() {
-    //send the data to server
+    const x = {
+      cards: { id: "", id: "" },
+    };
     console.log(myClubs);
-    console.log("regMyClubs", regMyClubs);
   }
 
-  function IsMyClub(currClub) {
-    let checked = false;
-    console.log(regMyClubs);
-    console.log(currClub);
-    regMyClubs.forEach((club) => {
-      if (club.id === currClub) {
-        checked = true;
-      }
-    });
-    return checked;
-  }
-
-  function onChecked(id, name) {
-    const tmp = { id, name };
-    console.log(tmp);
-    // updateUserLoyaltyCards({
-    //   variables: {
-    //     loyaltyCardId: tmp,
-    //   },
-    // });
-  }
-
-  // }
   if (loading) return <Spinner />;
   if (error) return <p>Somthing Went Wrong</p>;
 
@@ -82,8 +60,9 @@ export default function MyClubs() {
                   />
                 </Form.Group>
                 <MDBCheckbox
-                  onChange={onChecked(loyaltyCard.id, loyaltyCard.name)}
-                  checked={IsMyClub(loyaltyCard.id)}
+                  onChange={() => {
+                    setMyClubs([...myClubs, loyaltyCard.id]);
+                  }}
                   onClickname="flexCheck"
                   id="flexCheckDefault"
                 />

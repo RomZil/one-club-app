@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import {
   GET_DEALS,
   GET_DEAL_BY_CATEGORY_AND_USER,
+  GET_DEAL_BY_USER,
 } from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
@@ -49,7 +50,30 @@ const FilteresCategories = () => {
   });
   useEffect(() => {
     // Listening to the event
-    const listener = (isMyClubs) => {};
+    const listener = (isMyClubs) => {
+      if (isMyClubs) {
+        //info get when taggle on myclubs && get data from category
+        if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
+          setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
+        }
+        if (dataDealsByUser !== undefined && title != undefined) {
+          const filteredDeals = dataDeals.getDeals.filter((deal) => {
+            return deal.title.toUpperCase().includes(title.toUpperCase());
+          });
+          setDeals(filteredDeals);
+        }
+      } else {
+        if (dataDealsByCategory !== undefined && id != undefined) {
+          setDeals(dataDealsByCategory.getDealsByCategory);
+        }
+        if (dataDeals !== undefined && title != undefined) {
+          const filteredDeals = dataDeals.getDeals.filter((deal) => {
+            return deal.title.toUpperCase().includes(title.toUpperCase());
+          });
+          setDeals(filteredDeals);
+        }
+      }
+    };
 
     emitter.on("isMyClubs", listener);
 
@@ -57,37 +81,38 @@ const FilteresCategories = () => {
       // Unsubscribing from the event when component unmounts
       emitter.off("isMyClubs", listener);
     };
-  }, []);
-
-  useEffect(() => {
-    if (id != undefined) {
-      //info get when tagel on myclubs
-      if (dataDealsByCategoryAndUser !== undefined) {
-        setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
-      }
-      // info from category, by ID
-      if (dataDealsByCategory !== undefined) {
-        setDeals(dataDealsByCategory.getDealsByCategory);
-      }
-    }
-    if (title != undefined) {
-      // info from search, get all data to filter
-      if (dataDeals !== undefined) {
-        const filteredDeals = dataDeals.getDeals.filter((deal) => {
-          return deal.title.toUpperCase().includes(title.toUpperCase());
-        });
-        setDeals(filteredDeals);
-      }
-      if (dataDealsByUser !== undefined) {
-        const filteredDeals = dataDeals.getDeals.filter((deal) => {
-          return deal.title.toUpperCase().includes(title.toUpperCase());
-        });
-        setDeals(filteredDeals);
-      }
-    }
   }, [state, dataDeals, dataDealsByCategory]);
 
-  if (loadingDeals || loadingDealsByCategory) return <Spinner />;
+  // useEffect(() => {
+  //   if (id != undefined) {
+  //     //info get when tagel on myclubs
+  //     if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
+  //       setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
+  //     }
+  //     // info from category, by ID
+  //     if (dataDealsByCategory !== undefined) {
+  //       setDeals(dataDealsByCategory.getDealsByCategory);
+  //     }
+  //   }
+  //   if (title != undefined) {
+  //     // info from search, get all data to filter
+  //     if (dataDeals !== undefined) {
+  //       const filteredDeals = dataDeals.getDeals.filter((deal) => {
+  //         return deal.title.toUpperCase().includes(title.toUpperCase());
+  //       });
+  //       setDeals(filteredDeals);
+  //     }
+  //     if (dataDealsByUser !== undefined && title != undefined) {
+  //       const filteredDeals = dataDeals.getDeals.filter((deal) => {
+  //         return deal.title.toUpperCase().includes(title.toUpperCase());
+  //       });
+  //       setDeals(filteredDeals);
+  //     }
+  //   }
+  // }, [state, dataDeals, dataDealsByCategory]);
+
+  if (loadingDeals) return <Spinner />;
+  if (loadingDealsByCategory) return <Spinner />;
   if (errorDeals || errorDealsByCategory) return <p>Something Went Wrong</p>;
 
   return (

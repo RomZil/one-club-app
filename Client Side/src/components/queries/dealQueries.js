@@ -17,8 +17,8 @@ const GET_DEALS = gql`
 `;
 
 const GET_DEAL_BY_CATEGORY_AND_USER = gql`
-  query GetDealsByCategoryAndUser {
-    getDealsByCategoryAndUser(categoryID: null) {
+  query GetDealsByCategoryAndUser($categoryID: ID!) {
+    getDealsByCategoryAndUser(categoryID: $categoryID) {
       id
       title
       description
