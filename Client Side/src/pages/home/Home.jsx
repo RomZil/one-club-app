@@ -48,7 +48,7 @@ export default function Home() {
       // Unsubscribing from the event when component unmounts
       emitter.off("isMyClubs", listener);
     };
-  }, [state , dataAll ,dataByUser]);
+  }, [dataAll ,dataByUser]);
 
   if (errorAll || errorByUser) return <p> Somthing wrong</p>;
   if (loadingAll || loadingByUser) return <Spinner />;
