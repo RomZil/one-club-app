@@ -55,10 +55,10 @@ const FilteresCategories = () => {
         console.log("!isMyClubs", !isMyClubs);
         //info get when taggle on myclubs && get data from category
         if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-          setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
+          setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
           console.log(
-            "dataDealsByCategoryAndUser.GetDealsByCategoryAndUser",
-            dataDealsByCategoryAndUser.GetDealsByCategoryAndUser
+            "dataDealsByCategoryAndUser.getDealsByCategoryAndUser",
+            dataDealsByCategoryAndUser.getDealsByCategoryAndUser
           );
         }
         if (dataDealsByUser !== undefined && title != undefined) {
