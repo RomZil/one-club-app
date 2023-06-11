@@ -24,7 +24,7 @@ function Footer() {
   function handleMyClubsChange() {
     setIsMyClubs(!isMyClubs);
     // Emitting the event
-    emitter.emit("isMyClubs", isMyClubs);
+    emitter.emit("isMyClubs", !isMyClubs);
   }
 
   return (

@@ -51,8 +51,8 @@ const FilteresCategories = () => {
   useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      if (!isMyClubs) {
-        console.log("!isMyClubs", !isMyClubs);
+      if (isMyClubs) {
+        console.log("isMyClubs" , isMyClubs)
         //info get when taggle on myclubs && get data from category
         if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
           setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
@@ -69,6 +69,8 @@ const FilteresCategories = () => {
           console.log("filteredDeals", filteredDeals);
         }
       } else {
+        console.log("isMyClubs" , isMyClubs)
+
         if (dataDealsByCategory !== undefined && id != undefined) {
           setDeals(dataDealsByCategory.getDealsByCategory);
           console.log(

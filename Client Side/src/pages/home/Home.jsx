@@ -31,7 +31,7 @@ export default function Home() {
   useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      if (!isMyClubs) {
+      if (isMyClubs) {
         if (dataByUser != undefined) {
           setCategories_filtered(dataByUser.getCategoriesByUser);
           console.log("user", dataByUser.getCategoriesByUser);
