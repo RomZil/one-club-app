@@ -35,14 +35,7 @@ const FilteresCategories = () => {
    useEffect(() => {
     // Listening to the event
     const listener = (isMyClubs) => {
-      console.log('isMyClubs from deals', isMyClubs);
-      if (isMyClubs) {
-        if (dataByUser != undefined) {
-          setCategories_filtered(dataByUser.getCategoriesByUser);
-        }
-      } else if (data != undefined) {
-        setCategories_filtered(data.getCategories);
-      }
+     
     };
 
     emitter.on('isMyClubs', listener);
