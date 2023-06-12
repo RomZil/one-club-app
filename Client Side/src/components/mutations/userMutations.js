@@ -2,9 +2,7 @@ import { gql } from "@apollo/client";
 
 const UPDATE_USER = gql`
   mutation UpdateUserFields($name: String, $email: String, $password: String) {
-    updateUserFields(
-      userUpdateInput: { name: $name, email: $email, password: $password }
-    ) {
+    updateUserFields(userUpdateInput: { name: $name, email: $email, password: $password }) {
       name
       email
       password
@@ -13,10 +11,7 @@ const UPDATE_USER = gql`
 `;
 
 const UPDATE_USER_LOYALTY_CARD = gql`
-  input UserUpdateLoyaltyCards {
-    id: ID
-  }
-  mutation updateUserLoyaltyCards($cards: [LoyaltyCardInput]) {
+  mutation updateUserLoyaltyCards($cards: [UserUpdateLoyaltyCards]) {
     updateUserLoyaltyCards(cards: $cards) {
       name
     }
