@@ -28,7 +28,6 @@ export default function MyClubs() {
       return { id: item };
     });
     cardsToSend = { cards: tmp };
-    debugger;
     updateUserLoyaltyCards({ variables: cardsToSend });
     // console.log(cards);
   }
