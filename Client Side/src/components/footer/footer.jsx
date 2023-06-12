@@ -6,8 +6,8 @@ import { BsPersonCircle, BsPinMap, BsDoorOpen } from "react-icons/bs";
 import emitter from "../../shared/emitter";
 import { useNavigate } from "react-router-dom";
 
-function Footer() {
-  const [isMyClubs, setIsMyClubs] = useState(true);
+function Footer({setIsMyClubs , isMyClubs}) {
+  // const [isMyClubs, setIsMyClubs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const nav = useNavigate();
 
@@ -15,16 +15,10 @@ function Footer() {
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("isMyClubs", isMyClubs);
-  //   console.log(isMyClubs);
-  //   // nav("/Home", { state: { isMyClubs: isMyClubs } });
-  // }, [isMyClubs]);
-
   function handleMyClubsChange() {
-    setIsMyClubs(!isMyClubs);
+    setIsMyClubs((prevState) => !prevState);
     // Emitting the event
-    emitter.emit("isMyClubs", !isMyClubs);
+    // emitter.emit("isMyClubs", !isMyClubs);
   }
 
   return (

@@ -36,7 +36,7 @@ const user = new ApolloClient({
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMyClubs, setIsMyClubs] = useState(true);
 
   console.log("App " + searchTerm);
 
@@ -45,12 +45,12 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Footer />
+        <Footer setIsMyClubs={setIsMyClubs} isMyClubs={isMyClubs} />
         <br />
         <ApolloProvider client={user}>
           <div className="App">
             <Container className="grid-items">
-              <AppRouter />
+              <AppRouter isMyClubs={isMyClubs}  />
             </Container>
           </div>
         </ApolloProvider>
