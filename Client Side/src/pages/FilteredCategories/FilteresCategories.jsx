@@ -4,28 +4,28 @@ import Item from "../../components/item/item";
 import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
-import {
-  GET_DEALS,
-  GET_DEAL_BY_CATEGORY_AND_USER,
-  GET_DEAL_BY_USER,
-} from "../../components/queries/dealQueries.js";
+import { GET_DEALS, GET_DEAL_BY_CATEGORY_AND_USER, GET_DEAL_BY_USER } from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import emitter from "../../shared/emitter";
 import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
+import { useNavigate } from "react-router-dom";
 
-const FilteresCategories = ({isMyClubs}) => {
+const FilteresCategories = ({ isMyClubs }) => {
+  const navigate = useNavigate();
+
+  const onReset = () => {
+    let title = "";
+    navigate("/FilteresCategories", { state: { title } });
+  };
+
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
   //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
 
-  const {
-    loading: loadingDeals,
-    error: errorDeals,
-    data: dataDeals,
-  } = useQuery(GET_DEALS);
+  const { loading: loadingDeals, error: errorDeals, data: dataDeals } = useQuery(GET_DEALS);
 
   const {
     loading: loadingDealsByCategory,
@@ -35,11 +35,7 @@ const FilteresCategories = ({isMyClubs}) => {
     variables: { categoryID: safeId },
   });
 
-  const {
-    loading: loadingDealsByUser,
-    error: errorDealsByUser,
-    data: dataDealsByUser,
-  } = useQuery(GET_DEAL_BY_USER);
+  const { loading: loadingDealsByUser, error: errorDealsByUser, data: dataDealsByUser } = useQuery(GET_DEAL_BY_USER);
 
   const {
     loading: loadingDealsByCategoryAndUser,
@@ -51,41 +47,38 @@ const FilteresCategories = ({isMyClubs}) => {
   useEffect(() => {
     // Listening to the event
     // const listener = (isMyClubs) => {
-      if (isMyClubs) {
-        console.log("isMyClubs" , isMyClubs)
-        //info get when taggle on myclubs && get data from category
-        if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-          setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
-          console.log(
-            "dataDealsByCategoryAndUser.getDealsByCategoryAndUser",
-            dataDealsByCategoryAndUser.getDealsByCategoryAndUser
-          );
-        }
-        if (dataDealsByUser !== undefined && title != undefined) {
-          const filteredDeals = dataDeals.getDeals.filter((deal) => {
-            return deal.title.toUpperCase().includes(title.toUpperCase());
-          });
-          setDeals(filteredDeals);
-          console.log("filteredDeals", filteredDeals);
-        }
-      } else {
-        console.log("isMyClubs" , isMyClubs)
-
-        if (dataDealsByCategory !== undefined && id != undefined) {
-          setDeals(dataDealsByCategory.getDealsByCategory);
-          console.log(
-            "dataDealsByCategory.getDealsByCategory",
-            dataDealsByCategory.getDealsByCategory
-          );
-        }
-        if (dataDeals !== undefined && title != undefined) {
-          const filteredDeals = dataDeals.getDeals.filter((deal) => {
-            return deal.title.toUpperCase().includes(title.toUpperCase());
-          });
-          setDeals(filteredDeals);
-          console.log("filteredDeals", filteredDeals);
-        }
+    if (isMyClubs) {
+      console.log("isMyClubs", isMyClubs);
+      //info get when taggle on myclubs && get data from category
+      if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
+        setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
+        console.log(
+          "dataDealsByCategoryAndUser.getDealsByCategoryAndUser",
+          dataDealsByCategoryAndUser.getDealsByCategoryAndUser
+        );
       }
+      if (dataDealsByUser !== undefined && title != undefined) {
+        const filteredDeals = dataDeals.getDeals.filter((deal) => {
+          return deal.title.toUpperCase().includes(title.toUpperCase());
+        });
+        setDeals(filteredDeals);
+        console.log("filteredDeals", filteredDeals);
+      }
+    } else {
+      console.log("isMyClubs", isMyClubs);
+
+      if (dataDealsByCategory !== undefined && id != undefined) {
+        setDeals(dataDealsByCategory.getDealsByCategory);
+        console.log("dataDealsByCategory.getDealsByCategory", dataDealsByCategory.getDealsByCategory);
+      }
+      if (dataDeals !== undefined && title != undefined) {
+        const filteredDeals = dataDeals.getDeals.filter((deal) => {
+          return deal.title.toUpperCase().includes(title.toUpperCase());
+        });
+        setDeals(filteredDeals);
+        console.log("filteredDeals", filteredDeals);
+      }
+    }
     // };
 
     // emitter.on("isMyClubs", listener);
@@ -94,8 +87,7 @@ const FilteresCategories = ({isMyClubs}) => {
       // Unsubscribing from the event when component unmounts
       // emitter.off("isMyClubs", listener);
     };
-  }, [state, dataDeals, dataDealsByCategory, dataDealsByCategoryAndUser , isMyClubs]);
-
+  }, [state, dataDeals, dataDealsByCategory, dataDealsByCategoryAndUser, isMyClubs]);
 
   if (loadingDeals) return <Spinner />;
   if (loadingDealsByCategory) return <Spinner />;
@@ -105,20 +97,12 @@ const FilteresCategories = ({isMyClubs}) => {
     <div>
       <Search title={title} />
       <BackButton />
+      <button onClick={onReset}>CLICK ME TO RESET</button>
       <h1 className="headline">DEALS</h1>
       <br />
-      <Row
-        className="businesses"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
-      >
+      <Row className="businesses" style={{ display: "flex", justifyContent: "center", gridGap: 15 }}>
         {deals.map((deal) => (
-          <Item
-            key={deal.id}
-            id={deal.id}
-            img={deal.imageURL}
-            title={deal.title}
-            perentId={1}
-          />
+          <Item key={deal.id} id={deal.id} img={deal.imageURL} title={deal.title} perentId={1} />
         ))}
       </Row>
     </div>
