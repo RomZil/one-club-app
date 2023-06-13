@@ -68,6 +68,7 @@ export default function MyClubs() {
       const [, flag] = result;
       return flag;
     }
+    return false;
   }
 
   function onChange(idToUpdate) {
@@ -95,6 +96,7 @@ export default function MyClubs() {
           <Row className="clubs" style={{ gridGap: 15 }}>
             {data.getLoyaltyCards.map((loyaltyCard) => (
               <div
+              key={loyaltyCard.id}
                 style={{
                   display: "contents",
                 }}
@@ -110,7 +112,6 @@ export default function MyClubs() {
                 <MDBCheckbox
                   onChange={() => onChange(loyaltyCard.id)}
                   checked={isChecked(loyaltyCard.id)}
-                  onClickname="flexCheck"
                   id="flexCheckDefault"
                 />
               </div>
