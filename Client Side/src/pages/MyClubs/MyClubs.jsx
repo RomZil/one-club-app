@@ -2,10 +2,7 @@ import "./MyClubs.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
 import { Link, useLocation } from "react-router-dom";
-import {
-  GET_LOYALTYCARD,
-  GET_LOYALTYCARDS,
-} from "../../components/queries/loyaltyCardQueries";
+import { GET_LOYALTYCARD, GET_LOYALTYCARDS } from "../../components/queries/loyaltyCardQueries";
 import { GET_DEALS } from "../../components/queries/dealQueries";
 import { useMutation, useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
@@ -14,13 +11,11 @@ import { useState } from "react";
 import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutations";
 
 export default function MyClubs() {
+  var cardsToSend = {};
   const { state } = useLocation();
   const { loading, error, data } = useQuery(GET_LOYALTYCARDS);
 
-  const [
-    updateUserLoyaltyCards,
-    { loading: loadingUpdateUser, data: dataUpsteUset, error: errorUpdateUser },
-  ] = useMutation(UPDATE_USER_LOYALTY_CARD);
+  const [updateUserLoyaltyCards] = useMutation(UPDATE_USER_LOYALTY_CARD);
 
   const [myClubs, setMyClubs] = useState([]);
 
@@ -32,8 +27,8 @@ export default function MyClubs() {
     const tmp = myClubs.map((item) => {
       return { id: item };
     });
-    const cards = { cards: tmp };
-    updateUserLoyaltyCards(cards);
+    cardsToSend = { cards: tmp };
+    updateUserLoyaltyCards({ variables: cardsToSend });
     // console.log(cards);
   }
 
@@ -58,12 +53,7 @@ export default function MyClubs() {
                 }}
               >
                 <Form.Group className="mb-3">
-                  <Form.Control
-                    className="loyaltyCards"
-                    disabled={true}
-                    type="text"
-                    placeholder={loyaltyCard.name}
-                  />
+                  <Form.Control className="loyaltyCards" disabled={true} type="text" placeholder={loyaltyCard.name} />
                 </Form.Group>
                 <MDBCheckbox
                   onChange={() => {

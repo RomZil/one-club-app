@@ -13,8 +13,16 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import emitter from "../../shared/emitter";
 import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
+import { useNavigate } from "react-router-dom";
 
 const FilteresCategories = ({ isMyClubs }) => {
+  const navigate = useNavigate();
+
+  const onReset = () => {
+    let title = "";
+    navigate("/FilteresCategories", { state: { title } });
+  };
+
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
@@ -110,6 +118,7 @@ const FilteresCategories = ({ isMyClubs }) => {
     <div>
       <Search title={title} />
       <BackButton />
+      <button onClick={onReset}>CLICK ME TO RESET</button>
       <h1 className="headline">DEALS</h1>
       <br />
       <Row
