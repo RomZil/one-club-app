@@ -94,6 +94,8 @@ const Profile = () => {
             onChange={handleEmailChange}
           />
         </div>
+        <br />
+
         <div id="container_input">
           <div id="text_input">New Password</div>
           <input

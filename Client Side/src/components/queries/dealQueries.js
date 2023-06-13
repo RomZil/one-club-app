@@ -11,6 +11,7 @@ const GET_DEALS = gql`
       category {
         name
       }
+
       imageURL
     }
   }
@@ -33,6 +34,14 @@ const GET_DEAL_BY_ID = gql`
       title
       description
       imageURL
+      category {
+        id
+        name
+      }
+      loyaltyCardId {
+        id
+        name
+      }
     }
   }
 `;
