@@ -23,7 +23,7 @@ const Profile = () => {
     if (userData != undefined) {
       setNameValue(userData.getUser.name);
       setEmailValue(userData.getUser.email);
-      setPasswordValue(userData.getUser.password);
+      setPasswordValue(null);
     }
   }, [userData]);
 
@@ -34,12 +34,22 @@ const Profile = () => {
   if (loadingUpdateUser) return <Spinner />;
 
   function UpdateToDB() {
-    updateUser({
-      variables: {
-        name: String(updateName),
-        email: String(updateEmail),
-      },
-    });
+    if (!updatePassword) {
+      updateUser({
+        variables: {
+          name: String(updateName),
+          email: String(updateEmail),
+        },
+      });
+    } else {
+      updateUser({
+        variables: {
+          name: String(updateName),
+          email: String(updateEmail),
+          password: String(updatePassword),
+        },
+      });
+    }
     navigate("/Home", { state: { title: null } });
   }
 
@@ -82,6 +92,15 @@ const Profile = () => {
             type="email"
             value={updateEmail}
             onChange={handleEmailChange}
+          />
+        </div>
+        <div id="container_input">
+          <div id="text_input">New Password</div>
+          <input
+            className="input_w"
+            type="password"
+            value={updatePassword}
+            onChange={handlePasswordChange}
           />
         </div>
         <br />

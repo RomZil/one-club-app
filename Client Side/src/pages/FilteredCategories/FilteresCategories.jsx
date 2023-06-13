@@ -4,6 +4,8 @@ import Item from "../../components/item/item";
 import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+
 import {
   GET_DEALS,
   GET_DEAL_BY_CATEGORY_AND_USER,
@@ -94,14 +96,6 @@ const FilteresCategories = ({ isMyClubs }) => {
         console.log("filteredDeals", filteredDeals);
       }
     }
-    // };
-
-    // emitter.on("isMyClubs", listener);
-
-    return () => {
-      // Unsubscribing from the event when component unmounts
-      // emitter.off("isMyClubs", listener);
-    };
   }, [
     state,
     dataDeals,
@@ -117,8 +111,7 @@ const FilteresCategories = ({ isMyClubs }) => {
   return (
     <div>
       <Search title={title} />
-      <BackButton />
-      <button onClick={onReset}>CLICK ME TO RESET</button>
+      <BsFillArrowLeftCircleFill onClick={onReset} CLICK ME TO RESET />
       <h1 className="headline">DEALS</h1>
       <br />
       <Row
