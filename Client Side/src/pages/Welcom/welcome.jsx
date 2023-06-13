@@ -2,9 +2,15 @@ import "./Welcome.css";
 import { useNavigate, Link } from "react-router-dom";
 import { AppRouter } from "../../AppRouter";
 import startImag from "../../images/Object.png";
+import { useEffect, useState } from "react";
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
+  }, []);
 
   return (
     <div id="welcomeContainer">
@@ -16,15 +22,15 @@ const Welcome = () => {
           JSON.parse(localStorage.getItem("isLoggedIn"))
             ? navigate("/Home", { state: { title: null } })
             : navigate("/LogIn");
-          //todo!!!!! change to login
-          // navigate("/Home", { state: { title: null } });
         }}
       >
         start now
       </button>
-      <Link className="notRegLink link2" to={"/Register"}>
-        not registered? sign up now
-      </Link>
+      {!isLoggedIn && (
+        <Link className="notRegLink link2" to={"/Register"}>
+          not registered? sign up now
+        </Link>
+      )}
     </div>
   );
 };
