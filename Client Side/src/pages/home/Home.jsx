@@ -13,7 +13,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
 import emitter from "../../shared/emitter";
 
-export default function Home() {
+export default function Home({isMyClubs}) {
   const {
     loading: loadingAll,
     error: errorAll,
@@ -27,11 +27,17 @@ export default function Home() {
 
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
+  // const [isMyClubs, setIsMyClubs] = useState(true);
+
+  useEffect(() => {
+
+  }, [])
 
   useEffect(() => {
     // Listening to the event
-    const listener = (isMyClubs) => {
-      if (!isMyClubs) {
+    // const listener = (isMyClubs) => {
+      // setIsMyClubs(isMyClubs);
+      if (isMyClubs) {
         if (dataByUser != undefined) {
           setCategories_filtered(dataByUser.getCategoriesByUser);
           console.log("user", dataByUser.getCategoriesByUser);
@@ -40,15 +46,15 @@ export default function Home() {
         setCategories_filtered(dataAll.getCategories);
         console.log("all ", dataAll.getCategories);
       }
-    };
+    // };
 
-    emitter.on("isMyClubs", listener);
+    // emitter.on("isMyClubs", listener);
 
     return () => {
       // Unsubscribing from the event when component unmounts
-      emitter.off("isMyClubs", listener);
+      // emitter.off("isMyClubs", listener);
     };
-  }, [dataAll, dataByUser]);
+  }, [state ,dataAll, dataByUser, isMyClubs ]);
 
   if (errorAll || errorByUser) return <p> Somthing wrong</p>;
   if (loadingAll || loadingByUser) return <Spinner />;

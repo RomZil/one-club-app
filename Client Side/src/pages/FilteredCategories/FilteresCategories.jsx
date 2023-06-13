@@ -14,7 +14,7 @@ import Spinner from "../../components/spinner/spinner";
 import emitter from "../../shared/emitter";
 import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
 
-const FilteresCategories = () => {
+const FilteresCategories = ({ isMyClubs }) => {
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
@@ -50,77 +50,57 @@ const FilteresCategories = () => {
   });
   useEffect(() => {
     // Listening to the event
-    const listener = (isMyClubs) => {
-      if (!isMyClubs) {
-        console.log("!isMyClubs", !isMyClubs);
-        //info get when taggle on myclubs && get data from category
-        if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-          setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
-          console.log(
-            "dataDealsByCategoryAndUser.GetDealsByCategoryAndUser",
-            dataDealsByCategoryAndUser.getDealsByCategoryAndUser
-          );
-        }
-        if (dataDealsByUser !== undefined && title != undefined) {
-          const filteredDeals = dataDeals.getDeals.filter((deal) => {
-            return deal.title.toUpperCase().includes(title.toUpperCase());
-          });
-          setDeals(filteredDeals);
-          console.log("filteredDeals", filteredDeals);
-        }
-      } else {
-        if (dataDealsByCategory !== undefined && id != undefined) {
-          setDeals(dataDealsByCategory.getDealsByCategory);
-          console.log(
-            "dataDealsByCategory.getDealsByCategory",
-            dataDealsByCategory.getDealsByCategory
-          );
-        }
-        if (dataDeals !== undefined && title != undefined) {
-          const filteredDeals = dataDeals.getDeals.filter((deal) => {
-            return deal.title.toUpperCase().includes(title.toUpperCase());
-          });
-          setDeals(filteredDeals);
-          console.log("filteredDeals", filteredDeals);
-        }
+    // const listener = (isMyClubs) => {
+    if (isMyClubs) {
+      console.log("isMyClubs", isMyClubs);
+      //info get when taggle on myclubs && get data from category
+      if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
+        setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
+        console.log(
+          "dataDealsByCategoryAndUser.getDealsByCategoryAndUser",
+          dataDealsByCategoryAndUser.getDealsByCategoryAndUser
+        );
       }
-    };
+      if (dataDealsByUser !== undefined && title != undefined) {
+        const filteredDeals = dataDeals.getDeals.filter((deal) => {
+          return deal.title.toUpperCase().includes(title.toUpperCase());
+        });
+        setDeals(filteredDeals);
+        console.log("filteredDeals", filteredDeals);
+      }
+    } else {
+      console.log("isMyClubs", isMyClubs);
 
-    emitter.on("isMyClubs", listener);
+      if (dataDealsByCategory !== undefined && id != undefined) {
+        setDeals(dataDealsByCategory.getDealsByCategory);
+        console.log(
+          "dataDealsByCategory.getDealsByCategory",
+          dataDealsByCategory.getDealsByCategory
+        );
+      }
+      if (dataDeals !== undefined && title != undefined) {
+        const filteredDeals = dataDeals.getDeals.filter((deal) => {
+          return deal.title.toUpperCase().includes(title.toUpperCase());
+        });
+        setDeals(filteredDeals);
+        console.log("filteredDeals", filteredDeals);
+      }
+    }
+    // };
+
+    // emitter.on("isMyClubs", listener);
 
     return () => {
       // Unsubscribing from the event when component unmounts
-      emitter.off("isMyClubs", listener);
+      // emitter.off("isMyClubs", listener);
     };
-  }, [state, dataDeals, dataDealsByCategory, dataDealsByCategoryAndUser]);
-
-  // useEffect(() => {
-  //   if (id != undefined) {
-  //     //info get when tagel on myclubs
-  //     if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
-  //       setDeals(dataDealsByCategoryAndUser.GetDealsByCategoryAndUser);
-  //     }
-  //     // info from category, by ID
-  //     if (dataDealsByCategory !== undefined) {
-  //       setDeals(dataDealsByCategory.getDealsByCategory);
-  //     }
-  //   }
-  //   if (title != undefined) {
-  //     // info from search, get all data to filter
-  //     if (dataDeals !== undefined) {
-  //       const filteredDeals = dataDeals.getDeals.filter((deal) => {
-  //         return deal.title.toUpperCase().includes(title.toUpperCase());
-  //       });
-  //       setDeals(filteredDeals);
-  //     }
-  //     if (dataDealsByUser !== undefined && title != undefined) {
-  //       const filteredDeals = dataDeals.getDeals.filter((deal) => {
-  //         return deal.title.toUpperCase().includes(title.toUpperCase());
-  //       });
-  //       setDeals(filteredDeals);
-  //     }
-  //   }
-  // }, [state, dataDeals, dataDealsByCategory]);
+  }, [
+    state,
+    dataDeals,
+    dataDealsByCategory,
+    dataDealsByCategoryAndUser,
+    isMyClubs,
+  ]);
 
   if (loadingDeals) return <Spinner />;
   if (loadingDealsByCategory) return <Spinner />;
