@@ -110,7 +110,7 @@ export default function MyClubs() {
                 <MDBCheckbox
                   onChange={() => onChange(loyaltyCard.id)}
                   checked={isChecked(loyaltyCard.id)}
-                  onClickname="flexCheck"
+                  // onClickname="flexCheck"
                   id="flexCheckDefault"
                 />
               </div>

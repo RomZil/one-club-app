@@ -31,13 +31,8 @@ const ShowItem = () => {
       <BackButton />
       <br />
       <Row>
-        {/* {businesses
-          .filter((businesse) => businesse.id == id)
-          .map((businesse) => ( */}
         <div>
-          <p>
-            {deal.loyaltyCardId.name != null ? deal.loyaltyCardId.name : ""}
-          </p>
+          <p>{deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}</p>
           <p>{deal.description != null ? deal.description : ""}</p>
           <p>{deal.title}</p>
           <div>
