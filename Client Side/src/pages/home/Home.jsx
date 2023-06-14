@@ -5,6 +5,7 @@ import { Row } from "react-bootstrap";
 import Search from "../../components/search/search.jsx";
 import { useLocation } from "react-router-dom";
 import "./Home.css";
+import "../../images/CategoryImages/ביגוד והנעלה.png";
 import {
   GET_CATEGORIES,
   GET_CATEGORIES_BY_USER,
@@ -13,7 +14,7 @@ import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
 import emitter from "../../shared/emitter";
 
-export default function Home({isMyClubs}) {
+export default function Home({ isMyClubs }) {
   const {
     loading: loadingAll,
     error: errorAll,
@@ -29,23 +30,21 @@ export default function Home({isMyClubs}) {
   const [categories_filtered, setCategories_filtered] = useState([]);
   // const [isMyClubs, setIsMyClubs] = useState(true);
 
-  useEffect(() => {
-
-  }, [])
+  useEffect(() => {}, []);
 
   useEffect(() => {
     // Listening to the event
     // const listener = (isMyClubs) => {
-      // setIsMyClubs(isMyClubs);
-      if (isMyClubs) {
-        if (dataByUser != undefined) {
-          setCategories_filtered(dataByUser.getCategoriesByUser);
-          console.log("user", dataByUser.getCategoriesByUser);
-        }
-      } else if (dataAll != undefined) {
-        setCategories_filtered(dataAll.getCategories);
-        console.log("all ", dataAll.getCategories);
+    // setIsMyClubs(isMyClubs);
+    if (isMyClubs) {
+      if (dataByUser != undefined) {
+        setCategories_filtered(dataByUser.getCategoriesByUser);
+        console.log("user", dataByUser.getCategoriesByUser);
       }
+    } else if (dataAll != undefined) {
+      setCategories_filtered(dataAll.getCategories);
+      console.log("all ", dataAll.getCategories);
+    }
     // };
 
     // emitter.on("isMyClubs", listener);
@@ -54,7 +53,7 @@ export default function Home({isMyClubs}) {
       // Unsubscribing from the event when component unmounts
       // emitter.off("isMyClubs", listener);
     };
-  }, [state ,dataAll, dataByUser, isMyClubs ]);
+  }, [state, dataAll, dataByUser, isMyClubs]);
 
   if (errorAll || errorByUser) return <p> Somthing wrong</p>;
   if (loadingAll || loadingByUser) return <Spinner />;
@@ -72,7 +71,7 @@ export default function Home({isMyClubs}) {
           <Item
             key={category.id}
             id={category.id}
-            img={category.img}
+            img={`../../images/CategoryImages/${category.name}.png`}
             title={category.name}
             parentId={null}
           />

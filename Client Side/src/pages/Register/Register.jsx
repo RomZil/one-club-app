@@ -19,26 +19,29 @@ const Register = () => {
     setNameValue("");
   }, []);
   function RegisterToDB() {
-    try {
-      axios
-        .post("http://localhost:3000/auth/register", {
-          name: inputName,
-          email: inputEmail,
-          password: inputPassword,
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            localStorage.setItem("isLoggedIn", true);
-            localStorage.setItem("token", response.data.accessToken);
-            navigate("/Home", { state: { title: null } });
-            window.location.reload();
-          }
-        })
-        .catch((error) => {
-          alert(error.response.data.message);
-        });
-    } catch (error) {
-      alert("Somthing roung, try again");
+    if (!inputEmail.includes("@")) alert("The email mast be correct email");
+    else {
+      try {
+        axios
+          .post("http://localhost:3000/auth/register", {
+            name: inputName,
+            email: inputEmail,
+            password: inputPassword,
+          })
+          .then((response) => {
+            if (response.status == 200) {
+              localStorage.setItem("isLoggedIn", true);
+              localStorage.setItem("token", response.data.accessToken);
+              navigate("/Home", { state: { title: null } });
+              window.location.reload();
+            }
+          })
+          .catch((error) => {
+            alert(error.response.data.message);
+          });
+      } catch (error) {
+        alert("Somthing roung, try again");
+      }
     }
   }
 

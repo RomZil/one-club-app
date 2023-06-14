@@ -4,7 +4,13 @@ import Item from "../../components/item/item";
 import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
-import { GET_DEALS, GET_DEAL_BY_CATEGORY_AND_USER, GET_DEAL_BY_USER } from "../../components/queries/dealQueries.js";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+
+import {
+  GET_DEALS,
+  GET_DEAL_BY_CATEGORY_AND_USER,
+  GET_DEAL_BY_USER,
+} from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
 import emitter from "../../shared/emitter";
@@ -25,7 +31,11 @@ const FilteresCategories = ({ isMyClubs }) => {
   //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
 
-  const { loading: loadingDeals, error: errorDeals, data: dataDeals } = useQuery(GET_DEALS);
+  const {
+    loading: loadingDeals,
+    error: errorDeals,
+    data: dataDeals,
+  } = useQuery(GET_DEALS);
 
   const {
     loading: loadingDealsByCategory,
@@ -35,7 +45,11 @@ const FilteresCategories = ({ isMyClubs }) => {
     variables: { categoryID: safeId },
   });
 
-  const { loading: loadingDealsByUser, error: errorDealsByUser, data: dataDealsByUser } = useQuery(GET_DEAL_BY_USER);
+  const {
+    loading: loadingDealsByUser,
+    error: errorDealsByUser,
+    data: dataDealsByUser,
+  } = useQuery(GET_DEAL_BY_USER);
 
   const {
     loading: loadingDealsByCategoryAndUser,
@@ -69,7 +83,10 @@ const FilteresCategories = ({ isMyClubs }) => {
 
       if (dataDealsByCategory !== undefined && id != undefined) {
         setDeals(dataDealsByCategory.getDealsByCategory);
-        console.log("dataDealsByCategory.getDealsByCategory", dataDealsByCategory.getDealsByCategory);
+        console.log(
+          "dataDealsByCategory.getDealsByCategory",
+          dataDealsByCategory.getDealsByCategory
+        );
       }
       if (dataDeals !== undefined && title != undefined) {
         const filteredDeals = dataDeals.getDeals.filter((deal) => {
@@ -79,15 +96,13 @@ const FilteresCategories = ({ isMyClubs }) => {
         console.log("filteredDeals", filteredDeals);
       }
     }
-    // };
-
-    // emitter.on("isMyClubs", listener);
-
-    return () => {
-      // Unsubscribing from the event when component unmounts
-      // emitter.off("isMyClubs", listener);
-    };
-  }, [state, dataDeals, dataDealsByCategory, dataDealsByCategoryAndUser, isMyClubs]);
+  }, [
+    state,
+    dataDeals,
+    dataDealsByCategory,
+    dataDealsByCategoryAndUser,
+    isMyClubs,
+  ]);
 
   if (loadingDeals) return <Spinner />;
   if (loadingDealsByCategory) return <Spinner />;
@@ -96,13 +111,21 @@ const FilteresCategories = ({ isMyClubs }) => {
   return (
     <div>
       <Search title={title} />
-      <BackButton />
-      <button onClick={onReset}>CLICK ME TO RESET</button>
-      <h1 className="headline">DEALS</h1>
+      <BsFillArrowLeftCircleFill onClick={onReset} CLICK ME TO RESET />
+      {/* <h1 className="headline">{dataDeals.cat}</h1> */}
       <br />
-      <Row className="businesses" style={{ display: "flex", justifyContent: "center", gridGap: 15 }}>
+      <Row
+        className="businesses"
+        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+      >
         {deals.map((deal) => (
-          <Item key={deal.id} id={deal.id} img={deal.imageURL} title={deal.title} perentId={1} />
+          <Item
+            key={deal.id}
+            id={deal.id}
+            img={deal.imageURL}
+            title={deal.title}
+            perentId={1}
+          />
         ))}
       </Row>
     </div>
