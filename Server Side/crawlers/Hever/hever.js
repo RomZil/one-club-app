@@ -6,12 +6,15 @@ const Category = require("../../models/category_model");
 
 const { spawn } = require("child_process");
 
-module.exports = schedule.scheduleJob("0 * * * *", async function () {
+module.exports = schedule.scheduleJob("*/10 * * * *", async function () {
+  console.log("Delete Hever Yellow");
   await deleteHeverYellow();
+  console.log("Delete Hever Blue");
   await deleteHeverBlue();
 
-  console.log("Start Running Hever");
+  console.log("Adding Hever Yellow");
   await AddHeverYellow();
+  console.log("Adding Hever Blue");
   await AddHeverBlue();
   console.log("Finish Running Hever");
 });
@@ -29,9 +32,21 @@ async function deleteHeverYellow() {
   await Deal.deleteMany({ loyaltyCardId: loyaltyCard });
 }
 
+async function deleteHeverBlue() {
+  let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר טעמים" });
+  if (loyaltyCard == null) {
+    loyaltyCard = new LoyaltyCard({
+      name: "חבר טעמים",
+    });
+    await loyaltyCard.save();
+  }
+
+  await Deal.deleteMany({ loyaltyCard: loyaltyCard });
+}
+
 async function AddHeverYellow() {
   const url = "https://www.hvr.co.il/bs2/datasets/giftcard.json";
-  const imageURLStart = "https://www.hvr.co.il/pics/site_home/";
+  const imageURLStart = "https://www.hvr.co.il/pics/giftcard/";
   let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
@@ -61,18 +76,6 @@ async function AddHeverYellow() {
     });
 }
 
-async function deleteHeverBlue() {
-  let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר טעמים" });
-  if (loyaltyCard == null) {
-    loyaltyCard = new LoyaltyCard({
-      name: "חבר טעמים",
-    });
-    await loyaltyCard.save();
-  }
-
-  await Deal.deleteMany({ loyaltyCard: loyaltyCard });
-}
-
 async function AddHeverBlue() {
   const url = "https://www.hvr.co.il/bs2/datasets/teamimcard_branches.json";
   const imageURLStart = "https://www.hvr.co.il/img_hvr/Gift_card_teamim/";
@@ -87,12 +90,12 @@ async function AddHeverBlue() {
   axios
     .get(url)
     .then(async (response) => {
-      for (let i = 0; i < response.data.length; i++) {
+      for (let i = 0; i < response.data.branch.length; i++) {
         const deal = new Deal({
-          title: response.data[i].name + " " + response.data[i].city,
+          title: response.data.branch[i].name + " " + response.data.branch[i].city,
           description: "30% הנחה",
-          catergory: new Category({ name: response.data[i].type }),
-          imageURL: imageURLStart + response.data[i].logo,
+          category: new Category({ name: response.data.branch[i].type.split(",")[0] }),
+          imageURL: imageURLStart + response.data.branch[i].img,
           loyaltyCardId: loyaltyCard,
         });
 
