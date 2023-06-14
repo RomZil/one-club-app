@@ -23,7 +23,7 @@ const Profile = () => {
     if (userData != undefined) {
       setNameValue(userData.getUser.name);
       setEmailValue(userData.getUser.email);
-      setPasswordValue(null);
+      setPasswordValue("");
     }
   }, [userData]);
 
