@@ -6,7 +6,7 @@ import { BsPersonCircle, BsPinMap, BsDoorOpen } from "react-icons/bs";
 import emitter from "../../shared/emitter";
 import { useNavigate } from "react-router-dom";
 
-function Footer({setIsMyClubs , isMyClubs}) {
+function Footer({ setIsMyClubs, isMyClubs }) {
   // const [isMyClubs, setIsMyClubs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const nav = useNavigate();
@@ -39,7 +39,7 @@ function Footer({setIsMyClubs , isMyClubs}) {
                 class="rounded-pill"
                 checked={isMyClubs}
                 width={75}
-                onstyle="secondary"
+                onstyle="light"
                 offstyle="dark"
                 onlabel="Mine"
                 offlabel="All"
@@ -48,7 +48,7 @@ function Footer({setIsMyClubs , isMyClubs}) {
             </Nav>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="top-right-stick">
+              <Nav className="top-right-stick navbarCollapseDiv">
                 <Nav.Link href="Profile">
                   <BsPersonCircle className="icons" />
                   <span className="icon-text"> Profile </span>

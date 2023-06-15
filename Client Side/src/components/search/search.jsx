@@ -18,7 +18,6 @@ export default function Search({ title }) {
   };
 
   return (
-    <div className="App">
       <MDBCol md="6">
         <MDBInput
           className="searchBar"
@@ -29,6 +28,5 @@ export default function Search({ title }) {
           onChange={onSearch}
         />
       </MDBCol>
-    </div>
   );
 }

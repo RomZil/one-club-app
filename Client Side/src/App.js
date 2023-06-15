@@ -1,7 +1,12 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
 import Search from "./components/search/search";
 import Item from "./components/item/item";
 // import { categories } from "../src/data/mockData.js";
@@ -46,11 +51,10 @@ const App = () => {
     <>
       <BrowserRouter>
         <Footer setIsMyClubs={setIsMyClubs} isMyClubs={isMyClubs} />
-        <br />
         <ApolloProvider client={user}>
           <div className="App">
             <Container className="grid-items">
-              <AppRouter isMyClubs={isMyClubs}  />
+              <AppRouter isMyClubs={isMyClubs} />
             </Container>
           </div>
         </ApolloProvider>

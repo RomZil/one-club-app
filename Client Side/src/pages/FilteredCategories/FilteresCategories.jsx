@@ -110,9 +110,13 @@ const FilteresCategories = ({ isMyClubs }) => {
 
   return (
     <div>
+      <div className="searchWrapper">
+
       <Search title={title} />
-      <BsFillArrowLeftCircleFill onClick={onReset} CLICK ME TO RESET />
+      <BsFillArrowLeftCircleFill className="resetFilters" onClick={onReset} CLICK ME TO RESET />
       {/* <h1 className="headline">{dataDeals.cat}</h1> */}
+      </div>
+
       <br />
       <Row
         className="businesses"

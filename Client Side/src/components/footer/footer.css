@@ -2,7 +2,9 @@
     /* position: fixed; Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    background-color: #0D1B2A ;
+    /* background-color: #0D1B2A ; */
+    background: rgb(129,12,168);
+background: linear-gradient(90deg, rgba(129,12,168,1) 35%, rgba(45,3,59,1) 100%);
 }
 
 .icons {
@@ -14,4 +16,13 @@
 .icon-text {
     font-size: large
     
+}
+
+.navbarCollapseDiv a{
+    color: white;
+}
+
+.switch-handle {
+
+    background-color: #ccc !important;
 }
