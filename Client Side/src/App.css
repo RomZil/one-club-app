@@ -5,7 +5,7 @@
   --blue: #415a77;
   --lightBlue: #778da9;
   --white: #383838;
-  --mainColor: linear-gradient(90deg, rgba(129, 12, 168, 1) 35%, #f16767 100%);
+  --mainColor: linear-gradient(90deg, #b24e8bff 35%, #ff9f6fff 100%);
 }
 .App {
   text-align: center;
