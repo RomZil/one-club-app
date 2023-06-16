@@ -16,9 +16,7 @@ function Item({ title, img, perentId, id }) {
   return (
     <Card onClick={onClickItem} className="item">
       <ImageComponent component={Card.Img} img={img}></ImageComponent>
-      <Card.Body className="card-body">
-        <Card.Title className="card-desc">{title}</Card.Title>
-      </Card.Body>
+      <Card.Title className="card-desc">{title}</Card.Title>
     </Card>
 
     // <div className="row product">

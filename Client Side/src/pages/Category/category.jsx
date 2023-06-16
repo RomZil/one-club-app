@@ -33,11 +33,15 @@ export default function Category() {
       <br />
       <Row
         className="categories"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gridGap: 15,
+        }}
       >
         {dataCategories.categories.map((item) => (
           <Item
-            key={item.id} // Assign stable key using category.id
+            key={item.id}
             id={item.id}
             img={item.img}
             title={item.name}

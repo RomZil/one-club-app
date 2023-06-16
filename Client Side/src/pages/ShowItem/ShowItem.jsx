@@ -27,27 +27,32 @@ const ShowItem = () => {
   if (loading) return <Spinner />;
 
   return (
-    <div id="container">
+    <div className="page" style={{ gap: "20px" }}>
       <BackButton />
-      <br />
-      <Row>
-        <div>
+      <div id="container" className="itemDiv">
+        <Row>
           <div>
-            {errorImg ? (
-              <img src={defult} />
-            ) : (
-              <img
-                src={deal.imageURL || defult}
-                onError={() => setError(true)}
-              />
-            )}
+            <h3>{deal.title}</h3>
+
+            <div>
+              {errorImg ? (
+                <img src={defult} />
+              ) : (
+                <img
+                  src={deal.imageURL || defult}
+                  onError={() => setError(true)}
+                />
+              )}
+            </div>
+            <div className="itemDetails">
+              <span>
+                {deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}
+              </span>
+              -<span>{deal.description != null ? deal.description : ""}</span>
+            </div>
           </div>
-          <p>{deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}</p>
-          <p>{deal.description != null ? deal.description : ""}</p>
-          <p>{deal.title}</p>
-        </div>
-        {/* ))} */}
-      </Row>
+        </Row>
+      </div>
     </div>
   );
 };

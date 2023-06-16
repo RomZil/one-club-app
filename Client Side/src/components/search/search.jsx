@@ -18,17 +18,15 @@ export default function Search({ title }) {
   };
 
   return (
-    <div className="App">
-      <MDBCol md="6">
-        <MDBInput
-          className="searchBar"
-          hint="Search"
-          type="text"
-          containerClass="mt-0"
-          value={title}
-          onChange={onSearch}
-        />
-      </MDBCol>
-    </div>
+    <MDBCol className="inputWrapper" md="6">
+      <MDBInput
+        className="searchBar"
+        hint="Search"
+        type="text"
+        containerClass="mt-0"
+        value={title}
+        onChange={onSearch}
+      />
+    </MDBCol>
   );
 }

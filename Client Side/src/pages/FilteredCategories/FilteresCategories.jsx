@@ -5,7 +5,7 @@ import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-
+import "./FilteresCategories";
 import {
   GET_DEALS,
   GET_DEAL_BY_CATEGORY_AND_USER,
@@ -110,9 +110,19 @@ const FilteresCategories = ({ isMyClubs }) => {
 
   return (
     <div>
-      <Search title={title} />
-      <BsFillArrowLeftCircleFill onClick={onReset} CLICK ME TO RESET />
-      {/* <h1 className="headline">{dataDeals.cat}</h1> */}
+      <div className="searchWrapper">
+        <Search title={title} />
+        <BsFillArrowLeftCircleFill
+          className="backButton"
+          onClick={onReset}
+          CLICK
+          ME
+          TO
+          RESET
+        />
+        {/* <h1 className="headline">{dataDeals.cat}</h1> */}
+      </div>
+
       <br />
       <Row
         className="businesses"
