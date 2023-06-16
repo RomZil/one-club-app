@@ -41,7 +41,7 @@ async function deleteHeverBlue() {
     await loyaltyCard.save();
   }
 
-  await Deal.deleteMany({ loyaltyCard: loyaltyCard });
+  await Deal.deleteMany({ loyaltyCardId: loyaltyCard });
 }
 
 async function AddHeverYellow() {
