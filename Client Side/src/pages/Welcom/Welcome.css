@@ -2,9 +2,10 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     overflow-x: hidden;
 }
+
 .categoriesInRow {
     margin-top: 2rem;
 }
@@ -54,6 +55,5 @@
 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: medium;
-    display: flex;
-    justify-content: flex-start;
+    position: relative;
 }

@@ -9,6 +9,7 @@ import { Row } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../../components/queries/categoryQueries";
 import Spinner from "../../components/spinner/spinner";
+import { GET_DEALS } from "../../components/queries/dealQueries";
 
 export default function Welcome() {
   const {
@@ -16,9 +17,18 @@ export default function Welcome() {
     error: errorAll,
     data: dataAll,
   } = useQuery(GET_CATEGORIES);
+
+  const {
+    loading: loadingDeals,
+    error: errorDeals,
+    data: dataDeals,
+  } = useQuery(GET_DEALS);
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [randomObject, setRandomObject] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
+  const [deals, setDeals] = useState([]);
 
   useEffect(() => {
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
@@ -31,8 +41,26 @@ export default function Welcome() {
     }
   }, [dataAll]);
 
+  useEffect(() => {
+    if (dataDeals != undefined) {
+      setDeals(dataDeals.getDeals);
+      console.log("all getDeals ", dataDeals.getDeals);
+    }
+  }, [dataDeals]);
+
+  useEffect(() => {
+    // Randomly select an object every 10 seconds
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * deals.length);
+      const randomObj = deals[randomIndex];
+      setRandomObject(randomObj);
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   // if (errorAll) return <p> Somthing wrong</p>;
-  if (loadingAll) return <Spinner />;
+  // if (loadingAll ) return <Spinner />;
 
   return (
     <div id="welcomeContainer">
@@ -43,7 +71,7 @@ export default function Welcome() {
         </Link>
       )} */}
       <div className="titles">Hot Right Now</div>
-      <RandomItemCard />
+      <RandomItemCard item={randomObject} />
       <div className="categoriesInRow">
         <div className="titles">What are you lookig for?</div>
         <Row
