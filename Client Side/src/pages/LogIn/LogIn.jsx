@@ -51,7 +51,7 @@ const LogIn = () => {
   return (
     <div className="page">
       <div id="container">
-        <p  id="titel2">Login</p>
+        <p id="titel2">Login</p>
         <div id="container_all_input">
           <div id="container_input">
             <div id="text_input">Email</div>
@@ -62,7 +62,6 @@ const LogIn = () => {
               onChange={handleEmailChange}
             />
           </div>
-          <br />
           <div id="container_input">
             <div id="text_input">Password</div>
             <input
@@ -72,11 +71,7 @@ const LogIn = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <Link className="link2" to="/ForgotPassword">
-            Forgot password?
-          </Link>
         </div>
-        <br />
         <button id="b_sign" className="registerBtn" onClick={checkIfRegister}>
           Log In
         </button>

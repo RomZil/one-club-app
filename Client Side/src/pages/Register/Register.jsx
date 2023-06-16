@@ -72,7 +72,6 @@ const Register = () => {
               onChange={handleNameChange}
             />
           </div>
-          <br />
           <div id="container_input">
             <div id="text_input">Email</div>
             <input
@@ -82,7 +81,6 @@ const Register = () => {
               onChange={handleEmailChange}
             />
           </div>
-          <br />
           <div id="container_input">
             <div id="text_input">Password</div>
             <input
@@ -92,13 +90,10 @@ const Register = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <br />
         </div>
-        <br />
         <button id="b_sign" className="registerBtn" onClick={RegisterToDB}>
           Register
         </button>
-        <br />
       </div>
       <Link className="link2" to="/LogIn">
         Already Registered? Log in here{" "}

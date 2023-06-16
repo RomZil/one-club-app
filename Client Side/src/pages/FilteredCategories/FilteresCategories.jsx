@@ -113,6 +113,7 @@ const FilteresCategories = ({ isMyClubs }) => {
       <div className="searchWrapper">
         <Search title={title} />
         <BsFillArrowLeftCircleFill
+          style={{ margin: "20px" }}
           className="backButton"
           onClick={onReset}
           CLICK
@@ -122,8 +123,6 @@ const FilteresCategories = ({ isMyClubs }) => {
         />
         {/* <h1 className="headline">{dataDeals.cat}</h1> */}
       </div>
-
-      <br />
       <Row
         className="businesses"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}

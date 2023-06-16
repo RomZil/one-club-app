@@ -85,7 +85,7 @@ const Profile = () => {
               onChange={handleNameChange}
             />
           </div>
-          <br />
+          
           <div id="container_input">
             <div id="text_input">Email</div>
             <input
@@ -95,7 +95,6 @@ const Profile = () => {
               onChange={handleEmailChange}
             />
           </div>
-          <br />
 
           <div id="container_input">
             <div id="text_input">New Password</div>
@@ -106,7 +105,6 @@ const Profile = () => {
               onChange={handlePasswordChange}
             />
           </div>
-          <br />
         </div>
         <button id="b_sign" onClick={UpdateToDB}>
           update profile

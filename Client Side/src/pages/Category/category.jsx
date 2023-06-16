@@ -30,7 +30,6 @@ export default function Category() {
   return (
     <div>
       <Search title={""} />
-      <br />
       <Row
         className="categories"
         style={{

@@ -59,10 +59,9 @@ export default function Home({ isMyClubs }) {
   if (loadingAll || loadingByUser) return <Spinner />;
 
   return (
-    <div>
+    <div className="home">
       <Search title={""} />
       <h1 className="headline">Categories</h1>
-      <br />
       <Row
         className="categories"
         style={{
