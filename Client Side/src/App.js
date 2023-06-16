@@ -48,18 +48,18 @@ const App = () => {
   // localStorage.setItem("isLoggedIn", false);
 
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <Footer setIsMyClubs={setIsMyClubs} isMyClubs={isMyClubs} />
         <ApolloProvider client={user}>
-          <div className="App">
-            <Container className="grid-items">
-              <AppRouter isMyClubs={isMyClubs} />
-            </Container>
-          </div>
+          {/* <div> */}
+          {/* <Container className="grid-items"> */}
+          <AppRouter isMyClubs={isMyClubs} />
+          {/* </Container> */}
+          {/* </div> */}
         </ApolloProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 

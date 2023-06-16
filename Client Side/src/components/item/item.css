@@ -1,50 +1,45 @@
-
-
 :root {
-    --gray: #a9a9a9;
-    --deepNavy: #0D1B2A ;
-    --softNavy: #1B263B ;
-    --blue: #415A77 ;
-    --lightBlue: #778DA9 ;
-    --white: #383838 ;
-  }
-
-.item {
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-    height: fit-content;
-    width: 40%;
-    padding: inherit;
-    /* background-color: var(--gray); */
-    /* background-color: #2D033B; */
+  --gray: #a9a9a9;
+  --deepNavy: #0d1b2a;
+  --softNavy: #1b263b;
+  --blue: #415a77;
+  --lightBlue: #778da9;
+  --white: #383838;
 }
 
-.item p{
-    color: white;
+.item {
+  box-shadow: 0 0px 10px rgb(0 0 0 / 0.3);
+  height: fit-content;
+  width: 40%;
+  padding: inherit;
+  /* background-color: var(--gray); */
+  /* background-color: #2D033B; */
+}
+
+.item p {
+  color: white;
 }
 
 .card-img {
-    display: flex;
-    font-size: 1rem;
-    font-weight: bold;
-    height: 90px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    src: url("../../images/default.png");
-    object-fit: contain;
-
-    
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 90px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  src: url("../../images/default.png");
+  object-fit: contain;
 }
 
 .card-desc {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1rem;
-    /* color: white; */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem;
+  /* color: white; */
 }
 
 .card-body {
- height: 50px;
- display: flex;
- justify-content: center;
- align-items: center;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-

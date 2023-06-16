@@ -49,9 +49,9 @@ const LogIn = () => {
   }
 
   return (
-    <div>
+    <div className="page">
       <div id="container">
-        <p id="titel2">Login</p>
+        <p  id="titel2">Login</p>
         <div id="container_all_input">
           <div id="container_input">
             <div id="text_input">Email</div>

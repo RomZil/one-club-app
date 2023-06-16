@@ -1,28 +1,37 @@
 .navbar {
-    /* position: fixed; Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    /* background-color: #0D1B2A ; */
-    background: rgb(129,12,168);
-background: linear-gradient(90deg, rgba(129,12,168,1) 35%, rgba(45,3,59,1) 100%);
+  top: 0;
+  width: 100%;
+  min-height: max-content;
+  background: var(--mainColor);
+  box-sizing: border-box;
+  padding: 10px 0;
 }
 
 .icons {
-
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .icon-text {
-    font-size: large
-    
+  font-size: large;
 }
 
-.navbarCollapseDiv a{
-    color: white;
+.navbarCollapseDiv a {
+  color: white;
 }
 
 .switch-handle {
+  background-color: #ccc !important;
+}
 
-    background-color: #ccc !important;
+.nav-link {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.btnCollapse button {
+  color: white;
 }

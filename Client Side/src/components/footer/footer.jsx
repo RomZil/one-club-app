@@ -46,12 +46,12 @@ function Footer({ setIsMyClubs, isMyClubs }) {
                 onChange={handleMyClubsChange}
               />
             </Nav>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
+            <Navbar.Toggle  aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse className="btnCollapse" id="responsive-navbar-nav">
               <Nav className="top-right-stick navbarCollapseDiv">
                 <Nav.Link href="Profile">
                   <BsPersonCircle className="icons" />
-                  <span className="icon-text"> Profile </span>
+                  <span className="icon-text">Profile</span>
                 </Nav.Link>
                 <Nav.Link
                   onClick={() => {

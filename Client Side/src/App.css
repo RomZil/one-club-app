@@ -1,10 +1,11 @@
 :root {
   --gray: ##a9a9a9;
-  --deepNavy: #0D1B2A ;
-  --softNavy: #1B263B ;
-  --blue: #415A77 ;
-  --lightBlue: #778DA9 ;
-  --white: #383838 ;
+  --deepNavy: #0d1b2a;
+  --softNavy: #1b263b;
+  --blue: #415a77;
+  --lightBlue: #778da9;
+  --white: #383838;
+  --mainColor: linear-gradient(90deg, rgba(129, 12, 168, 1) 35%, #f16767 100%);
 }
 .App {
   text-align: center;

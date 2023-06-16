@@ -1,20 +1,15 @@
-
-
-
-.loyaltyCards{
-
-    background-color: transparent !important;
-    border-color:#0D1B2A ;
-    direction: rtl;
-
-    
+.loyaltyCards {
+  background-color: transparent !important;
+  border-color: #0d1b2a;
+  direction: rtl;
 }
 
-.clubs{
-    display: flex;
-    /* align-items: 'center'; */
-    justify-content: center;
-    align-items: baseline;
+.clubs {
+  display: flex;
+  /* align-items: 'center'; */
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 20px;
 }
-
-

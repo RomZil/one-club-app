@@ -1,8 +1,12 @@
 .searchBar {
   background-color: transparent;
-  border-color: #0D1B2A ;
-  margin-top: 20px;
- }
+  border-color: #0d1b2a;
+  margin-top: 40px;
+  margin: 20px auto;
+  width: 90%;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
 
 .icons-search {
   height: 30px;

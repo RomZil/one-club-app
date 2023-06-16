@@ -1,7 +1,7 @@
 import "./Welcome.css";
 import { useNavigate, Link } from "react-router-dom";
 import { AppRouter } from "../../AppRouter";
-import startImag from "../../images/Object.png";
+import startImag from "../../images/Discount.gif";
 import { useEffect, useState } from "react";
 
 const Welcome = () => {
@@ -13,9 +13,8 @@ const Welcome = () => {
   }, []);
 
   return (
-    <div id="welcomeContainer">
+    <div className="welcomeContainer">
       <img className="img" src={startImag} />
-      <br />
       <button
         id="B_welcome"
         onClick={() => {
@@ -26,11 +25,6 @@ const Welcome = () => {
       >
         start now
       </button>
-      {!isLoggedIn && (
-        <Link className="notRegLink link2" to={"/Register"}>
-          not registered? sign up now
-        </Link>
-      )}
     </div>
   );
 };
