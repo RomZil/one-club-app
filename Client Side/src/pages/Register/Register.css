@@ -1,6 +1,5 @@
-
-.p{
-    font-weight: bold;
+.p {
+  font-weight: bold;
 }
 
 .custom-date-input::-webkit-calendar-picker-indicator {

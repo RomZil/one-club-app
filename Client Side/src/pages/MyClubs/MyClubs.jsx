@@ -84,16 +84,12 @@ export default function MyClubs() {
   if (error) return <p>Somthing Went Wrong</p>;
 
   return (
-    <>
+    <div className="page">
       <div id="container">
-        <div id="titel2">My Clubs</div>
-        <br />
-        <Link className="link2" to="/Profile">
-          Go to your profile
-        </Link>
-        <br />
+        <p id="titel2">My Clubs</p>
+
         <Form>
-          <Row className="clubs" style={{ gridGap: 15 }}>
+          <Row className="clubs">
             {data.getLoyaltyCards.map((loyaltyCard) => (
               <div
                 key={loyaltyCard.id}
@@ -124,6 +120,9 @@ export default function MyClubs() {
           {/* <div onClick={updateMyClubs}> update</div> */}
         </Form>
       </div>
-    </>
+      <Link className="link2" to="/Profile">
+        Go to your profile
+      </Link>
+    </div>
   );
 }

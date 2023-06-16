@@ -65,13 +65,18 @@ export default function Home({ isMyClubs }) {
       <br />
       <Row
         className="categories"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gridGap: 15,
+          paddingBottom: "20px",
+        }}
       >
         {categories_filtered.map((category) => (
           <Item
             key={category.id}
             id={category.id}
-            img={`../../images/CategoryImages/${category.name}.png`}
+            img={require(`../../images/CategoryImages/${category.name}.png`)}
             title={category.name}
             parentId={null}
           />

@@ -1,28 +1,25 @@
-#welcomeContainer {
-    margin: 4rem 0 2rem;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.welcomeContainer {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
-#B_welcome {
-    border-radius: 30px;
-    top: 70%;
-    width: 50%;
-    background-color: black;
-    padding: 10px;
-    color: white;
-    position: absolute;
-    left: 25%;
-}
+
 .img {
-    height: 50%;
-    top: 15%;
-    left: 21%;
-    position: absolute;
+  height: 70%;
+  width: 100%;
+  object-fit: contain;
 }
-.notRegLink{
-    top: 80%;
-    position: absolute;
-    left: 30%;
+
+.welcomeContainer button {
+  background-color: #f16767;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  width: 50%;
+  margin-top: 50px;
+  color: white;
+  border-radius: 10px;
 }
