@@ -29,7 +29,6 @@ const ShowItem = () => {
   return (
     <div className="page" style={{ gap: "20px" }}>
       <BackButton />
-
       <div id="container" className="itemDiv">
         <Row>
           <div>

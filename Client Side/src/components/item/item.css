@@ -12,8 +12,11 @@
   height: fit-content;
   width: 40%;
   padding: inherit;
-  /* background-color: var(--gray); */
-  /* background-color: #2D033B; */
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .item p {
@@ -34,12 +37,4 @@
 .card-desc {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 1rem;
-  /* color: white; */
-}
-
-.card-body {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

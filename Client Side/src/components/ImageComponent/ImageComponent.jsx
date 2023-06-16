@@ -10,7 +10,7 @@ const ImageComponent = ({ img }) => {
       {error ? (
         <Card.Img src={defult} />
       ) : (
-        <Card.Img src={img || defult} onError={() => setError(true)} />
+        <Card.Img src={img} onError={() => setError(true)} />
       )}
     </div>
   );
