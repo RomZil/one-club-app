@@ -32,9 +32,6 @@ const ShowItem = () => {
       <br />
       <Row>
         <div>
-          <p>{deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}</p>
-          <p>{deal.description != null ? deal.description : ""}</p>
-          <p>{deal.title}</p>
           <div>
             {errorImg ? (
               <img src={defult} />
@@ -45,6 +42,9 @@ const ShowItem = () => {
               />
             )}
           </div>
+          <p>{deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}</p>
+          <p>{deal.description != null ? deal.description : ""}</p>
+          <p>{deal.title}</p>
         </div>
         {/* ))} */}
       </Row>
