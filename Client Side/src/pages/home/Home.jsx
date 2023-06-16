@@ -48,19 +48,23 @@ export default function Home({ isMyClubs }) {
   if (loadingAll || loadingByUser) return <Spinner />;
 
   return (
-    <div>
+    <div className="home">
       <Search title={""} />
       <h1 className="headline">Categories</h1>
-      <br />
       <Row
         className="categories"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gridGap: 15,
+          paddingBottom: "20px",
+        }}
       >
         {categories_filtered.map((category) => (
           <Item
             key={category.id}
             id={category.id}
-            img={`../../images/CategoryImages/${category.name}.png`}
+            img={require(`../../images/CategoryImages/${category.name}.png`)}
             title={category.name}
             parentId={null}
           />

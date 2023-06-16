@@ -1,7 +1,7 @@
 import "./Welcome.css";
 import { useNavigate, Link } from "react-router-dom";
 import { AppRouter } from "../../AppRouter";
-import startImag from "../../images/Object.png";
+import startImag from "../../images/Discount.gif";
 import { useEffect, useState } from "react";
 import RandomItemCard from "../../components/random-item-card/random-item-card";
 import ItemWelcome from "../../components/item-welcome/item-welcome";

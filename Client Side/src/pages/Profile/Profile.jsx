@@ -72,47 +72,47 @@ const Profile = () => {
     setDateValue(event.target.value);
   };
   return (
-    <div id="container">
-      <p id="titel2">Profile</p>
-      <div id="container_all_input">
-        <div id="container_input">
-          <div id="text_input">Name</div>
-          <input
-            className="input_w"
-            type="text"
-            value={updateName}
-            onChange={handleNameChange}
-          />
-        </div>
-        <br />
-        <div id="container_input">
-          <div id="text_input">Email</div>
-          <input
-            className="input_w"
-            type="email"
-            value={updateEmail}
-            onChange={handleEmailChange}
-          />
-        </div>
-        <br />
+    <div className="page">
+      <div id="container">
+        <p id="titel2">Profile</p>
+        <div id="container_all_input">
+          <div id="container_input">
+            <div id="text_input">Name</div>
+            <input
+              className="input_w input"
+              type="text"
+              value={updateName}
+              onChange={handleNameChange}
+            />
+          </div>
+          
+          <div id="container_input">
+            <div id="text_input">Email</div>
+            <input
+              className="input_w input"
+              type="email"
+              value={updateEmail}
+              onChange={handleEmailChange}
+            />
+          </div>
 
-        <div id="container_input">
-          <div id="text_input">New Password</div>
-          <input
-            className="input_w"
-            type="password"
-            value={updatePassword}
-            onChange={handlePasswordChange}
-          />
+          <div id="container_input">
+            <div id="text_input">New Password</div>
+            <input
+              className="input_w input"
+              type="password"
+              value={updatePassword}
+              onChange={handlePasswordChange}
+            />
+          </div>
         </div>
-        <br />
+        <button id="b_sign" onClick={UpdateToDB}>
+          update profile
+        </button>
       </div>
-      <button id="b_sign" onClick={UpdateToDB}>
-        update profile
-      </button>
-      <div className="link2" onClick={NavMyClub}>
+      <Link to={"/MyClubs"} className="link2">
         Go to your clubs
-      </div>
+      </Link>
     </div>
   );
 };

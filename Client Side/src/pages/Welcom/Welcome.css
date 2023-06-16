@@ -28,11 +28,22 @@
     position: absolute;
     left: 25%;
 }
+
 .img {
-    height: 50%;
-    top: 15%;
-    left: 21%;
-    position: absolute;
+  height: 70%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.welcomeContainer button {
+  background-color: #b24e8bff;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  width: 50%;
+  margin-top: 50px;
+  color: white;
+  border-radius: 10px;
 }
 .notRegLink{
     top: 80%;

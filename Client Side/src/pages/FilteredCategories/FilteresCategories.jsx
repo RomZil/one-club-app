@@ -5,7 +5,7 @@ import Search from "../../components/search/search";
 import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-
+import "./FilteresCategories";
 import {
   GET_DEALS,
   GET_DEAL_BY_CATEGORY_AND_USER,
@@ -59,8 +59,6 @@ const FilteresCategories = ({ isMyClubs }) => {
     variables: { categoryID: safeId },
   });
   useEffect(() => {
-    // Listening to the event
-    // const listener = (isMyClubs) => {
     if (isMyClubs) {
       console.log("isMyClubs", isMyClubs);
       //info get when taggle on myclubs && get data from category
@@ -110,10 +108,15 @@ const FilteresCategories = ({ isMyClubs }) => {
 
   return (
     <div>
-      <Search title={title} />
-      <BsFillArrowLeftCircleFill onClick={onReset}/>
-      {/* <h1 className="headline">{dataDeals.cat}</h1> */}
-      <br />
+      <div className="searchWrapper">
+        <Search title={title} />
+        <BsFillArrowLeftCircleFill
+          style={{ margin: "20px" }}
+          className="backButton"
+          onClick={onReset}
+        />
+        {/* <h1 className="headline">{dataDeals.cat}</h1> */}
+      </div>
       <Row
         className="businesses"
         style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
