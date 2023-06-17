@@ -71,7 +71,7 @@ export default function Welcome() {
         </Link>
       )} */}
       <div className="titles">Hot Right Now</div>
-      <RandomItemCard item={randomObject} />
+      {/* <RandomItemCard item={randomObject} /> */}
       <div className="categoriesInRow">
         <div className="titles">What are you lookig for?</div>
         <Row
