@@ -32,15 +32,15 @@ export default function Welcome() {
 
   useEffect(() => {
     if (dataAll != undefined) {
-      setAllCategories(dataAll.getCategories);
-      console.log("all ", dataAll.getCategories);
+      setAllCategories(dataAll.getPopularCategories);
+      console.log("all ", dataAll.getPopularCategories);
     }
   }, [dataAll]);
 
   useEffect(() => {
     if (dataDeals != undefined) {
-      setDeals(dataDeals.getDeals);
-      console.log("all getDeals ", dataDeals.getDeals);
+      setDeals(dataDeals.getPopularDeals);
+      console.log("all getDeals ", dataDeals.getPopularDeals);
     }
   }, [dataDeals]);
 
@@ -49,18 +49,21 @@ export default function Welcome() {
       <img className="img" src={startImag} />
       <div className="scrollItems">
         {allCategories.map((item) => (
-          <div className="category">
-            <div className="categoryImg"></div>
-            <p>{item.categoryTitle}</p>
+          <div key={item.id} className="category">
+            <img
+              className="categoryImg"
+              src={require(`../../images/CategoryImages/${item.name}.png`)}
+            />
+            <p>{item.name}</p>
           </div>
         ))}
       </div>
       <div className="scrollItems2">
         {deals.map((item) => (
-          <div className="item2">
-            <img className="itemImg" src={food}></img>
-            <h3>{item.itemTitle}</h3>
-            <p>{item.itemDesc}</p>
+          <div key={item.id} className="item2">
+            <img className="itemImg" src={item.imageURL}></img>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
           </div>
         ))}
       </div>

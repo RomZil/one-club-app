@@ -12,7 +12,6 @@ import {
 } from "../../components/queries/categoryQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner.jsx";
-import emitter from "../../shared/emitter";
 
 export default function Home({ isMyClubs }) {
   const {

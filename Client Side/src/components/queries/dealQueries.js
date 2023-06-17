@@ -57,18 +57,16 @@ const GET_DEAL_BY_USER = gql`
 `;
 
 const GET_POP_DEALS = gql`
-  query GetPopularDeals {
-    getPopularDeals {
-      title
-      description
-      id
-      category {
-        name
-      }
-      imageURL
-    }
+query GetPopularDeals {
+  getPopularDeals {
+    description
+    id
+    imageURL
+    title
   }
+}
 `;
+
 
 
 export {
