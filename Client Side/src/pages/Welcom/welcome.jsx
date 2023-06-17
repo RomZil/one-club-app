@@ -59,7 +59,7 @@ export default function Welcome() {
         ))}
       </div>
       <div className="divTitle">
-        <h2 className="h2ForYou">מומלץ עבודך</h2>
+        <h2 className="h2ForYou">מומלץ עבורך</h2>
       </div>
       <div className="scrollItems2">
         {deals.map((item) => (
