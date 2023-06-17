@@ -112,7 +112,7 @@ const FilteresCategories = ({ isMyClubs }) => {
       <div className="searchWrapper">
         <Search title={title} />
         <BsFillArrowLeftCircleFill
-          style={{ margin: "20px" }}
+          style={{ margin: "20px", width: " 2rem", height: "2rem" }}
           className="backButton"
           onClick={onReset}
         />

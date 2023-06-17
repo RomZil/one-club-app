@@ -11,15 +11,15 @@
 }
 
 #container {
-  width: 70%;
-  height: max-content;
+  width: 80%;
+  height: 80%;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
   box-sizing: border-box;
-  margin-bottom: 40px;
+  margin-top: 10%;
 }
 
 #titel2 {

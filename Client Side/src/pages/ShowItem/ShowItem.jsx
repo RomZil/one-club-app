@@ -33,7 +33,7 @@ const ShowItem = () => {
   return (
     <div className="page" style={{ gap: "20px" }}>
       <BsFillArrowLeftCircleFill
-        style={{ margin: "20px" }}
+        style={{ margin: "20px", width: " 2rem", height: "2rem" }}
         className="backButton"
         onClick={onReset}
       />
@@ -57,6 +57,12 @@ const ShowItem = () => {
                 {deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}
               </span>
               -<span>{deal.description != null ? deal.description : ""}</span>
+            </div>
+            <div>
+              <hr />
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s,
             </div>
           </div>
         </Row>
