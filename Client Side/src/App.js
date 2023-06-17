@@ -41,7 +41,7 @@ const user = new ApolloClient({
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [isMyClubs, setIsMyClubs] = useState(false);
+  const [isMyClubs, setIsMyClubs] = useState(true);
 
   console.log("App " + searchTerm);
 

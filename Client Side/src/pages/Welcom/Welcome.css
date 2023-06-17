@@ -1,33 +1,10 @@
-#welcomeContainer {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-}
-
-.categoriesInRow {
-    margin-top: 2rem;
-}
-.categoriesScroll {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow: scroll;
-    width: 22rem;
-    left: 0.4rem;
-    gap: 1rem;
-    position: relative;
-}
-#B_welcome {
-    border-radius: 30px;
-    top: 70%;
-    width: 50%;
-    background-color: black;
-    padding: 10px;
-    color: white;
-    position: absolute;
-    left: 25%;
+.welcomeContainer {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .img {
@@ -45,15 +22,4 @@
   margin-top: 50px;
   color: white;
   border-radius: 10px;
-}
-.notRegLink{
-    top: 80%;
-    position: absolute;
-    left: 30%;
-}
-.titles{
-
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
-    position: relative;
 }

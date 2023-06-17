@@ -46,7 +46,44 @@ db.once("open", async () => {
 
   await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000/`);
+
+  // const { url } = await startStandaloneServer(server, {
+  //   context: async ({ req, res }) => {
+  //     const authHeaders = req.headers.authorization || "";
+  //     const token = authHeaders && authHeaders.split(" ")[1];
+  //     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  //       if (err) {
+  //         throw new GraphQLError("User is not authenticated", {
+  //           extensions: {
+  //             code: "UNAUTHENTICATED",
+  //             http: { status: 401 },
+  //           },
+  //         });
+  //       } else {
+  //         return { user: "Test" };
+  //       }
+  //     });
+  //   },
+  //   listen: { port: 5000 },
+  // });
+  // console.log(`🚀 Server listening at: ${url}`);
 });
+
+// app.use(
+//   "/graphql",
+//   graphqlHTTP({
+//     schema,
+//     graphiql: true,
+//     customFormatErrorFn: (error) => {
+//       console.error("GraphQL Error:", error);
+//       return {
+//         message: error.message,
+//         locations: error.locations,
+//         path: error.path,
+//       };
+//     },
+//   })
+// );
 
 // Routes
 const authRouter = require("./routes/auth_routes");
@@ -63,16 +100,6 @@ app.listen(port, () => {
 });
 
 function getUserAuth(req) {
-  const allowedStrings = ["getPopularCategories {", "getPopularDeals {", "getCategories {"];
-  let isAllowed = false;
-
-  for (let i = 0; i < allowedStrings.length && !isAllowed; i++) {
-    if (req.body.query.includes(allowedStrings[i])) {
-      isAllowed = true;
-      return;
-    }
-  }
-
   const authHeaders = req.headers.authorization || "";
   const token = authHeaders && authHeaders.split(" ")[1];
   const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
@@ -85,4 +112,19 @@ function getUserAuth(req) {
     });
   }
   return decodedToken._id;
+
+  // , (err, user) => {
+  //   if (err) {
+  //     throw new GraphQLError("User is not authenticated", {
+  //       extensions: {
+  //         code: "UNAUTHENTICATED",
+  //         http: { status: 401 },
+  //       },
+  //     });
+  //   } else {
+  //     {
+  //       return "T";
+  //     }
+  //   }
+  // });
 }

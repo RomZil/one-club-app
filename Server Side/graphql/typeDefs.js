@@ -25,16 +25,6 @@ module.exports = `#graphql
     loyaltyCardId: [LoyaltyCard]
   }
 
-  type PopularCategories {
-    name: String!
-    count: Int!
-  }
-
-  type PopularDeals {
-    name: String!
-    count: Int!
-  }
-
   type Query {
     getUser: User!
     getDealbyID(id: ID!): Deal!
@@ -46,8 +36,6 @@ module.exports = `#graphql
     getCategories:[Category]
     getCategoriesByUser:[Category]
     getDealsByCategoryAndUser(categoryID:ID!): [Deal]
-    getPopularCategories: [Category]
-    getPopularDeals: [Deal]
   }
 
   input DealInput {
@@ -71,7 +59,5 @@ module.exports = `#graphql
     deleteDeal(ID: ID!): Boolean
     updateUserFields(userUpdateInput: UserUpdateInput): User
     updateUserLoyaltyCards(cards: [UserUpdateLoyaltyCards]): User
-    increasePopularCategory(categoryID:ID!) : Boolean
-    increasePopularDeal(dealID:ID!) : Boolean
   }
 `;

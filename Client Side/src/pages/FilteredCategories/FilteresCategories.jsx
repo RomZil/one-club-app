@@ -59,6 +59,8 @@ const FilteresCategories = ({ isMyClubs }) => {
     variables: { categoryID: safeId },
   });
   useEffect(() => {
+    // Listening to the event
+    // const listener = (isMyClubs) => {
     if (isMyClubs) {
       console.log("isMyClubs", isMyClubs);
       //info get when taggle on myclubs && get data from category
@@ -114,6 +116,10 @@ const FilteresCategories = ({ isMyClubs }) => {
           style={{ margin: "20px" }}
           className="backButton"
           onClick={onReset}
+          CLICK
+          ME
+          TO
+          RESET
         />
         {/* <h1 className="headline">{dataDeals.cat}</h1> */}
       </div>

@@ -17,6 +17,8 @@ function Footer({ setIsMyClubs, isMyClubs }) {
 
   function handleMyClubsChange() {
     setIsMyClubs((prevState) => !prevState);
+    // Emitting the event
+    // emitter.emit("isMyClubs", !isMyClubs);
   }
 
   return (
