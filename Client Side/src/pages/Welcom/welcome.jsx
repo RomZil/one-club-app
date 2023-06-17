@@ -4,89 +4,51 @@ import { AppRouter } from "../../AppRouter";
 import startImag from "../../images/Discount.png";
 import { useEffect, useState } from "react";
 import food from "../../images/cimena.jpg";
+import { useQuery } from "@apollo/client";
+import { GET_POP_CATEGORIES } from "../../components/queries/categoryQueries";
+import { GET_POP_DEALS } from "../../components/queries/dealQueries";
 
-const categories = [
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-  {
-    categoryTitle: "category",
-    img: food,
-  },
-];
+export default function Welcome() {
+  const {
+    loading: loadingAll,
+    error: errorAll,
+    data: dataAll,
+  } = useQuery(GET_POP_CATEGORIES);
 
-const items = [
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-  {
-    itemTitle: "item",
-    itemDesc: "description",
-    img: food,
-  },
-];
+  const {
+    loading: loadingDeals,
+    error: errorDeals,
+    data: dataDeals,
+  } = useQuery(GET_POP_DEALS);
 
-const Welcome = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [allCategories, setAllCategories] = useState([]);
+  const [deals, setDeals] = useState([]);
 
   useEffect(() => {
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
   }, []);
 
+  useEffect(() => {
+    if (dataAll != undefined) {
+      setAllCategories(dataAll.getCategories);
+      console.log("all ", dataAll.getCategories);
+    }
+  }, [dataAll]);
+
+  useEffect(() => {
+    if (dataDeals != undefined) {
+      setDeals(dataDeals.getDeals);
+      console.log("all getDeals ", dataDeals.getDeals);
+    }
+  }, [dataDeals]);
+
   return (
     <div className="welcomeContainer">
       <img className="img" src={startImag} />
       <div className="scrollItems">
-        {categories.map((item) => (
+        {allCategories.map((item) => (
           <div className="category">
             <div className="categoryImg"></div>
             <p>{item.categoryTitle}</p>
@@ -94,7 +56,7 @@ const Welcome = () => {
         ))}
       </div>
       <div className="scrollItems2">
-        {items.map((item) => (
+        {deals.map((item) => (
           <div className="item2">
             <img className="itemImg" src={food}></img>
             <h3>{item.itemTitle}</h3>
@@ -114,6 +76,4 @@ const Welcome = () => {
       </button>
     </div>
   );
-};
-
-export default Welcome;
+}
