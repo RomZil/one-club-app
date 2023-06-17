@@ -63,10 +63,6 @@ query GetPopularDeals {
     id
     imageURL
     title
-    category {
-      id
-      name
-    }
   }
 }
 `;

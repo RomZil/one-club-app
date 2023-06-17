@@ -13,7 +13,6 @@ import {
 } from "../../components/queries/dealQueries.js";
 import { useQuery } from "@apollo/client";
 import Spinner from "../../components/spinner/spinner";
-import emitter from "../../shared/emitter";
 import { GET_DEAL_BY_CATEGORY } from "../../components/queries/categoryQueries";
 import { useNavigate } from "react-router-dom";
 
@@ -59,11 +58,9 @@ const FilteresCategories = ({ isMyClubs }) => {
     variables: { categoryID: safeId },
   });
   useEffect(() => {
-    // Listening to the event
-    // const listener = (isMyClubs) => {
     if (isMyClubs) {
       console.log("isMyClubs", isMyClubs);
-      //info get when taggle on myclubs && get data from category
+
       if (dataDealsByCategoryAndUser !== undefined && id != undefined) {
         setDeals(dataDealsByCategoryAndUser.getDealsByCategoryAndUser);
         console.log(

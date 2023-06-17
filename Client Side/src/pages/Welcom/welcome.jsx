@@ -1,5 +1,5 @@
 import "./Welcome.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import { AppRouter } from "../../AppRouter";
 import startImag from "../../images/Discount.png";
 import { useEffect, useState } from "react";
@@ -23,6 +23,7 @@ export default function Welcome() {
 
   const [allCategories, setAllCategories] = useState([]);
   const [deals, setDeals] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (dataAll != undefined) {
@@ -43,7 +44,14 @@ export default function Welcome() {
       <img className="img" src={startImag} />
       <div className="scrollItems">
         {allCategories.map((item) => (
-          <div key={item.id} className="category">
+          <div
+            key={item.id}
+            className="category"
+            onClick={() => {
+              navigate("/FilteresCategories", { state: { id: item.id } });
+              // TODO ADD INCREACE CATEGORY
+            }}
+          >
             <img
               className="categoryImg"
               src={require(`../../images/CategoryImages/${item.name}.png`)}
@@ -57,7 +65,14 @@ export default function Welcome() {
       </div>
       <div className="scrollItems2">
         {deals.map((item) => (
-          <div key={item.id} className="item2">
+          <div
+            key={item.id}
+            className="item2"
+            onClick={() => {
+              navigate("/ShowItem", { state: { id: item.id } });
+              // TODO ADD INCREACE DEAL
+            }}
+          >
             <img className="itemImg" src={item.imageURL}></img>
             <h3>{item.title}</h3>
             <p>{item.description}</p>

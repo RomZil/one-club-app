@@ -18,16 +18,6 @@ function Item({ title, img, perentId, id }) {
       <ImageComponent component={Card.Img} img={img}></ImageComponent>
       <Card.Title className="card-desc">{title}</Card.Title>
     </Card>
-
-    // <div className="row product">
-    //   <div className="col-md-2">
-    //     <img src={img[0].url} alt={name} />
-    //   </div>
-    //   <div className="col-md-8 product-detail">
-    //     <h4>{name}</h4>
-    //     {/* <div dangerouslySetInnerHTML={{ __html: description }}></div> */}
-    //   </div>
-    // </div>
   );
 }
 

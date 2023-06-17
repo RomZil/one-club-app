@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
-import './backButton.css';
+import "./backButton.css";
 
 const BackButton = () => {
   const navigate = useNavigate();
@@ -10,10 +10,6 @@ const BackButton = () => {
     navigate(-1);
   };
 
-  return (
-    // <Button variant="outline-dark" onClick={goBack}>
-    <BsFillArrowLeftCircleFill className="backButton" onClick={goBack} />
-    // </Button>
-  );
+  return <BsFillArrowLeftCircleFill className="backButton" onClick={goBack} />;
 };
 export default BackButton;
