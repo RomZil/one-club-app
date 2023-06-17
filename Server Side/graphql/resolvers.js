@@ -2,6 +2,9 @@ const Deal = require("../models/deal_model");
 const User = require("../models/user_model");
 const LoyaltyCard = require("../models/loyaltyCard_model");
 const Category = require("../models/category_model");
+const PopularCategories = require("../models/popular_categories");
+const PopularDeals = require("../models/popular_deals");
+
 const bcrypt = require("bcrypt");
 var mongoose = require("mongoose");
 
@@ -92,6 +95,28 @@ module.exports = {
 
       return dealsByCategory;
     },
+    async getPopularCategories(parent, { args }, contextValue, info) {
+      let popularCategories = await PopularCategories.find({}).sort({ count: -1 }).limit(10);
+
+      let popularCategoriesWithID = [];
+      for (let i = 0; i < popularCategories.length; i++) {
+        let category = await Category.findOne({ name: popularCategories[i].name });
+        popularCategoriesWithID.push(category);
+      }
+
+      return popularCategoriesWithID;
+    },
+    async getPopularDeals(parent, { args }, contextValue, info) {
+      let popularDeals = await PopularDeals.find({}).sort({ count: -1 }).limit(10);
+
+      let popularDealsWithID = [];
+      for (let i = 0; i < popularDeals.length; i++) {
+        let deal = await Deal.findOne({ title: popularDeals[i].name });
+        popularDealsWithID.push(deal);
+      }
+
+      return popularDealsWithID;
+    },
   },
   Mutation: {
     async createDeal(_, { dealInput: { title, description, imageURL, category } }) {
@@ -140,6 +165,38 @@ module.exports = {
       }
 
       return User.findByIdAndUpdate(user.id, user, { new: true });
+    },
+
+    async increasePopularCategory(parent, { categoryID }, contextValue, info) {
+      let category = await Category.findById(categoryID);
+
+      let popularCategory = await PopularCategories.findOne({ name: category.name });
+
+      if (popularCategory == null || popularCategory == undefined) {
+        popularCategory = new PopularCategories({ name: category.name, count: 1 });
+        await popularCategory.save();
+      } else {
+        popularCategory.count = popularCategory.count + 1;
+        await popularCategory.save();
+      }
+
+      return true;
+    },
+
+    async increasePopularDeal(parent, { dealID }, contextValue, info) {
+      let deal = await Deal.findById(dealID);
+
+      let popularDeal = await PopularDeals.findOne({ name: deal.title });
+
+      if (popularDeal == null || popularDeal == undefined) {
+        popularDeal = new PopularDeals({ name: deal.title, count: 1 });
+        await popularDeal.save();
+      } else {
+        popularDeal.count = popularDeal.count + 1;
+        await popularDeal.save();
+      }
+
+      return true;
     },
   },
 };

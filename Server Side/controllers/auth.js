@@ -37,8 +37,6 @@ const login = async (req, res, next) => {
       user.tokens.push(refreshToken);
     }
 
-    let loyaltyCard = await LoyaltyCard.find();
-    user.loyaltyCardId = loyaltyCard;
     await user.save();
 
     res.status(200).send({
@@ -82,7 +80,25 @@ const register = async (req, res, next) => {
     });
 
     const newUser = await user.save();
-    res.status(200).send(newUser);
+
+    // Access Token:
+    const accessToken = await jwt.sign({ _id: newUser._id }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: process.env.JWT_TOKEN_EXPIRATION,
+    });
+
+    // Refresh Token
+    const refreshToken = await jwt.sign({ _id: newUser._id }, process.env.REFRESH_TOKEN_SECRET);
+
+    if (user.tokens == null) {
+      user.tokens = [refreshToken];
+    } else {
+      user.tokens.push(refreshToken);
+    }
+
+    res.status(200).send({
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
   } catch (err) {
     return sendError(res, "Registeration failed");
   }
