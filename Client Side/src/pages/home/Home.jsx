@@ -27,14 +27,10 @@ export default function Home({ isMyClubs }) {
 
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
-  // const [isMyClubs, setIsMyClubs] = useState(true);
 
   useEffect(() => {}, []);
 
   useEffect(() => {
-    // Listening to the event
-    // const listener = (isMyClubs) => {
-    // setIsMyClubs(isMyClubs);
     if (isMyClubs) {
       if (dataByUser != undefined) {
         setCategories_filtered(dataByUser.getCategoriesByUser);
@@ -44,14 +40,6 @@ export default function Home({ isMyClubs }) {
       setCategories_filtered(dataAll.getCategories);
       console.log("all ", dataAll.getCategories);
     }
-    // };
-
-    // emitter.on("isMyClubs", listener);
-
-    return () => {
-      // Unsubscribing from the event when component unmounts
-      // emitter.off("isMyClubs", listener);
-    };
   }, [state, dataAll, dataByUser, isMyClubs]);
 
   if (errorAll || errorByUser) return <p> Somthing wrong</p>;
