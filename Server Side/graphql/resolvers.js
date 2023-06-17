@@ -111,7 +111,7 @@ module.exports = {
 
       let popularDealsWithID = [];
       for (let i = 0; i < popularDeals.length; i++) {
-        let deal = await Deal.findOne({ title: popularDeals[i].name });
+        let deal = await Deal.findOne({ title: popularDeals[i].name }).populate("category");
         popularDealsWithID.push(deal);
       }
 
