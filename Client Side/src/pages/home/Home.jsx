@@ -49,25 +49,34 @@ export default function Home({ isMyClubs }) {
     <div className="home">
       <Search title={""} />
       <h1 className="headline">Categories</h1>
-      <Row
-        className="categories"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gridGap: 15,
-          paddingBottom: "20px",
-        }}
-      >
-        {categories_filtered.map((category) => (
-          <Item
-            key={category.id}
-            id={category.id}
-            img={require(`../../images/CategoryImages/${category.name}.png`)}
-            title={category.name}
-            parentId={null}
-          />
-        ))}
-      </Row>
+      <div>
+        {categories_filtered.length > 0 ? (
+          <Row
+            className="categories"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gridGap: 15,
+              paddingBottom: "20px",
+            }}
+          >
+            {categories_filtered.map((category) => (
+              <Item
+                key={category.id}
+                id={category.id}
+                img={require(`../../images/CategoryImages/${category.name}.png`)}
+                title={category.name}
+                parentId={null}
+              />
+            ))}
+          </Row>
+        ) : (
+          <>
+            <p> Oops! there is noting to show here... </p>
+            <p>Please check your loyalty cards subscription </p>
+          </>
+        )}
+      </div>
     </div>
   );
 }

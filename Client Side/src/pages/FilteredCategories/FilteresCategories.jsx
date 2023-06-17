@@ -117,20 +117,29 @@ const FilteresCategories = ({ isMyClubs }) => {
           onClick={onReset}
         />
       </div>
-      <Row
-        className="businesses"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
-      >
-        {deals.map((deal) => (
-          <Item
-            key={deal.id}
-            id={deal.id}
-            img={deal.imageURL}
-            title={deal.title}
-            perentId={1}
-          />
-        ))}
-      </Row>
+      <div>
+        {deals.length > 0 ? (
+          <Row
+            className="businesses"
+            style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+          >
+            {deals.map((deal) => (
+              <Item
+                key={deal.id}
+                id={deal.id}
+                img={deal.imageURL}
+                title={deal.title}
+                perentId={1}
+              />
+            ))}
+          </Row>
+        ) : (
+          <>
+            <p> Oops! there is noting to show here... </p>
+            <p>Please check your loyalty cards subscription </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };
