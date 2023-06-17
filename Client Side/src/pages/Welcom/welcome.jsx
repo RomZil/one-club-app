@@ -21,14 +21,8 @@ export default function Welcome() {
     data: dataDeals,
   } = useQuery(GET_POP_DEALS);
 
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allCategories, setAllCategories] = useState([]);
   const [deals, setDeals] = useState([]);
-
-  useEffect(() => {
-    setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
-  }, []);
 
   useEffect(() => {
     if (dataAll != undefined) {
@@ -59,7 +53,7 @@ export default function Welcome() {
         ))}
       </div>
       <div className="divTitle">
-        <h2 className="h2ForYou">מומלץ עבורך</h2>
+        <h2 className="h2ForYou">Hot Right Now</h2>
       </div>
       <div className="scrollItems2">
         {deals.map((item) => (
@@ -70,16 +64,6 @@ export default function Welcome() {
           </div>
         ))}
       </div>
-      <button
-        id="B_welcome"
-        onClick={() => {
-          JSON.parse(localStorage.getItem("isLoggedIn"))
-            ? navigate("/Home", { state: { title: null } })
-            : navigate("/LogIn");
-        }}
-      >
-        start now
-      </button>
     </div>
   );
 }
