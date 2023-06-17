@@ -83,9 +83,9 @@
 }
 
 .h2ForYou {
-  width: 150px;
-  position: absolute;
-  right: 10px;
+  position: relative;
+  left: 5%;
+  display: flex;
 }
 
 .divTitle {

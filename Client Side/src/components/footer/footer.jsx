@@ -7,9 +7,12 @@ import emitter from "../../shared/emitter";
 import { useNavigate } from "react-router-dom";
 
 function Footer({ setIsMyClubs, isMyClubs }) {
-  // const [isMyClubs, setIsMyClubs] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const nav = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
+  }, []);
 
   useEffect(() => {
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
@@ -17,8 +20,6 @@ function Footer({ setIsMyClubs, isMyClubs }) {
 
   function handleMyClubsChange() {
     setIsMyClubs((prevState) => !prevState);
-    // Emitting the event
-    // emitter.emit("isMyClubs", !isMyClubs);
   }
 
   return (
@@ -26,12 +27,12 @@ function Footer({ setIsMyClubs, isMyClubs }) {
       <Container>
         <Navbar.Brand
           onClick={() => {
-            nav("/Home", { state: { title: null } });
+            navigate("/Home", { state: { title: null } });
           }}
         >
           One Club
         </Navbar.Brand>
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <>
             <Nav className="me-auto">
               <BootstrapSwitchButton
@@ -46,7 +47,7 @@ function Footer({ setIsMyClubs, isMyClubs }) {
                 onChange={handleMyClubsChange}
               />
             </Nav>
-            <Navbar.Toggle  aria-controls="responsive-navbar-nav" />
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse className="btnCollapse" id="responsive-navbar-nav">
               <Nav className="top-right-stick navbarCollapseDiv">
                 <Nav.Link href="Profile">
@@ -61,6 +62,24 @@ function Footer({ setIsMyClubs, isMyClubs }) {
                 >
                   <BsDoorOpen className="icons" />
                   <span className="icon-text">Log Out</span>
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        ) : (
+          <>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse className="btnCollapse" id="responsive-navbar-nav">
+              <Nav className="top-right-stick navbarCollapseDiv">
+                <Nav.Link
+                  onClick={() => {
+                    JSON.parse(localStorage.getItem("isLoggedIn"))
+                      ? navigate("/Home", { state: { title: null } })
+                      : navigate("/LogIn");
+                  }}
+                >
+                  <BsDoorOpen className="icons" />
+                  <span className="icon-text">Log In</span>
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
