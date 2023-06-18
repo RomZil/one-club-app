@@ -63,7 +63,14 @@ app.listen(port, () => {
 });
 
 function getUserAuth(req) {
-  const allowedStrings = ["getPopularCategories {", "getPopularDeals {", "getCategories {", "getDeals {"];
+  const allowedStrings = [
+    "getPopularCategories {",
+    "getPopularDeals {",
+    "getCategories {",
+    "getDeals {",
+    "GetDealbyID",
+    "GetDealsByCategory",
+  ];
   let isAllowed = false;
 
   for (let i = 0; i < allowedStrings.length && !isAllowed; i++) {

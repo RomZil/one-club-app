@@ -5,12 +5,13 @@
 .itemDiv {
   box-shadow: 0 0px 10px rgb(0 0 0 / 0.3);
   border-radius: 20px;
+  margin-bottom: 10%;
+  margin-top: 0% !important;
 }
 
 .itemDetails {
   background-color: var(--mainColor);
   display: flex;
-  /* flex-direction: column; */
   gap: 10px;
   justify-content: center;
   align-items: center;
