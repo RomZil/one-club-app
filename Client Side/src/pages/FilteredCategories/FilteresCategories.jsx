@@ -2,7 +2,6 @@ import { Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import Item from "../../components/item/item";
 import Search from "../../components/search/search";
-import BackButton from "../../components/backButton/backButton";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "./FilteresCategories";
@@ -18,16 +17,9 @@ import { useNavigate } from "react-router-dom";
 
 const FilteresCategories = ({ isMyClubs }) => {
   const navigate = useNavigate();
-
-  const onReset = () => {
-    let title = "";
-    navigate("/FilteresCategories", { state: { title } });
-  };
-
   const [deals, setDeals] = useState([]);
   const { state } = useLocation();
   const { id, title } = state || {};
-  //defult ID
   const safeId = id ?? "64823286022dea94ebc3ff78";
 
   const {
@@ -57,6 +49,7 @@ const FilteresCategories = ({ isMyClubs }) => {
   } = useQuery(GET_DEAL_BY_CATEGORY_AND_USER, {
     variables: { categoryID: safeId },
   });
+
   useEffect(() => {
     if (isMyClubs) {
       console.log("isMyClubs", isMyClubs);
@@ -101,6 +94,15 @@ const FilteresCategories = ({ isMyClubs }) => {
     isMyClubs,
   ]);
 
+  const onReset = () => {
+    if (state.title == undefined) {
+      navigate(-1);
+    } else {
+      let title = "";
+      navigate("/FilteresCategories", { state: { title } });
+    }
+  };
+
   if (loadingDeals) return <Spinner />;
   if (loadingDealsByCategory) return <Spinner />;
   if (errorDeals || errorDealsByCategory) return <p>Something Went Wrong</p>;
@@ -110,30 +112,34 @@ const FilteresCategories = ({ isMyClubs }) => {
       <div className="searchWrapper">
         <Search title={title} />
         <BsFillArrowLeftCircleFill
-          style={{ margin: "20px" }}
+          style={{ margin: "20px", width: " 2rem", height: "2rem" }}
           className="backButton"
           onClick={onReset}
-          CLICK
-          ME
-          TO
-          RESET
         />
-        {/* <h1 className="headline">{dataDeals.cat}</h1> */}
       </div>
-      <Row
-        className="businesses"
-        style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
-      >
-        {deals.map((deal) => (
-          <Item
-            key={deal.id}
-            id={deal.id}
-            img={deal.imageURL}
-            title={deal.title}
-            perentId={1}
-          />
-        ))}
-      </Row>
+      <div>
+        {deals.length > 0 ? (
+          <Row
+            className="businesses"
+            style={{ display: "flex", justifyContent: "center", gridGap: 15 }}
+          >
+            {deals.map((deal) => (
+              <Item
+                key={deal.id}
+                id={deal.id}
+                img={deal.imageURL}
+                title={deal.title}
+                perentId={1}
+              />
+            ))}
+          </Row>
+        ) : (
+          <>
+            <p> Oops! there is noting to show here... </p>
+            <p>Please check your loyalty cards subscription </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };

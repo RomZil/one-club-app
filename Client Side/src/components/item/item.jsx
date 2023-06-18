@@ -9,9 +9,13 @@ import ImageComponent from "../ImageComponent/ImageComponent";
 function Item({ title, img, perentId, id }) {
   const navigate = useNavigate();
   const onClickItem = () => {
-    perentId == null
-      ? navigate("/FilteresCategories", { state: { id } })
-      : navigate("/ShowItem", { state: { id } });
+    if (perentId == null) {
+      navigate("/FilteresCategories", { state: { id } });
+      // TODO ADD INCREACE CATEGORY
+    } else {
+      navigate("/ShowItem", { state: { id } });
+      // TODO ADD INCREACE DEAL
+    }
   };
   return (
     <Card onClick={onClickItem} className="item">
