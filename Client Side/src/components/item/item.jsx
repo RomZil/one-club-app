@@ -5,13 +5,19 @@ import defult from "../../images/default.png";
 
 import "./item.css";
 import ImageComponent from "../ImageComponent/ImageComponent";
+import { useMutation } from "@apollo/client";
 
 function Item({ title, img, perentId, id }) {
+  const [increasePopularCategory] = useMutation(increasePopularCategory);
+
   const navigate = useNavigate();
   const onClickItem = () => {
-    perentId == null
-      ? navigate("/FilteresCategories", { state: { id } })
-      : navigate("/ShowItem", { state: { id } });
+    if (perentId == null) {
+      increasePopularCategory({ variables: { categoryID: id } });
+      navigate("/FilteresCategories", { state: { id } });
+    } else {
+      navigate("/ShowItem", { state: { id } });
+    }
   };
   return (
     <Card onClick={onClickItem} className="item">
