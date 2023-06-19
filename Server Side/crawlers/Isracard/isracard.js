@@ -8,7 +8,7 @@ const Category = require("../../models/category_model");
 const loyaltyCardNameHebrew = "ישראכרט";
 const loyaltyCardNameEnglish = "Isracard";
 
-module.exports = schedule.scheduleJob("*/3 * * * *", async function () {
+module.exports = schedule.scheduleJob("0 0 * * *", async function () {
   await deleteIsracard();
   console.log("Start Running " + loyaltyCardNameEnglish);
   await addIsracard();
@@ -25,14 +25,14 @@ async function addIsracard() {
   }
 
   const links = ["attractions", "cinema", "parents", "art", "travels"];
-
+  let array_benefits = [];
   for (let i = 0; i < links.length; i++) {
     try {
       const response = await axios.get("https://benefits.isracard.co.il/parentcategories/" + links[i]);
       const html = response.data;
 
       const $ = cheerio.load(html);
-      let array_benefits = [];
+
       let imageURLPrefix = "https://benefits.isracard.co.il";
       try {
         const benefits = $(".category-featured-benefit");
@@ -66,6 +66,7 @@ async function addIsracard() {
       console.log(error);
     }
   }
+  console.log(loyaltyCardNameEnglish + " - Added -" + array_benefits.length);
 }
 
 async function deleteIsracard() {
@@ -77,6 +78,7 @@ async function deleteIsracard() {
     });
     loyaltyCard = await loyaltyCard.save();
   }
+  let x = await Deal.find({ loyaltyCardId: loyaltyCard });
 
   await Deal.deleteMany({ loyaltyCardId: loyaltyCard });
 }

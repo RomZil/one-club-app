@@ -5,7 +5,10 @@ const Deal = require("../../models/deal_model");
 const LoyaltyCard = require("../../models/loyaltyCard_model");
 const Category = require("../../models/category_model");
 
-module.exports = schedule.scheduleJob("*0 0 * * *", async function () {
+const loyaltyCardNameHebrew = "בנק הפועלים";
+const loyaltyCardNameEnglish = "Hapoalim";
+
+module.exports = schedule.scheduleJob("0 0 * * *", async function () {
   await deleteHapoalim();
   console.log("Start Running Hapoalim");
   await addHapoalim();
@@ -23,13 +26,14 @@ async function addHapoalim() {
 
   const links = ["Shopping", "Vacation-in", "movies", "Shows", "Fun", "Food-and-restaurants"];
 
+  let array_benefits = [];
+
   for (let i = 0; i < links.length; i++) {
     try {
       const response = await axios.get("https://www.bankhapoalim.co.il/he/Poalim-Wonder/" + links[i]);
       const html = response.data;
 
       const $ = cheerio.load(html);
-      let array_benefits = [];
       let imageURLPrefix = "https://www.bankhapoalim.co.il";
       try {
         const benefits = $(".team-member");
@@ -64,6 +68,8 @@ async function addHapoalim() {
       console.log(error);
     }
   }
+
+  console.log(loyaltyCardNameEnglish + " - Added -" + array_benefits.length);
 }
 
 async function deleteHapoalim() {
