@@ -56,14 +56,17 @@ const ShowItem = () => {
               <span>
                 {deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}
               </span>
-              -<span>{deal.description != null ? deal.description : ""}</span>
+              {/* -<span>{deal.description != null ? deal.description : ""}</span> */}
             </div>
             <div>
+              <hr /> {deal.description}
+            </div>
+            {/* <div>
               <hr />
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s,
-            </div>
+            </div> */}
           </div>
         </Row>
       </div>

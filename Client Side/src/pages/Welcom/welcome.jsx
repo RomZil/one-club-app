@@ -84,7 +84,7 @@ export default function Welcome() {
             }}
           >
             <img className="itemImg" src={item ? item.imageURL : ""}></img>
-            <h3>{item.title ? item.title : ""}</h3>
+            <h3>{item ? item.title : ""}</h3>
             <p>{item.description}</p>
           </div>
         ))}

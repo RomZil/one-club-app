@@ -95,8 +95,9 @@ const FilteresCategories = ({ isMyClubs }) => {
   ]);
 
   const onReset = () => {
-    if (state.title == undefined) {
-      navigate(-1);
+    if (title == undefined || title == "") {
+      navigate("/Home", { state: { title } });
+      // navigate(-1);
     } else {
       let title = "";
       navigate("/FilteresCategories", { state: { title } });
