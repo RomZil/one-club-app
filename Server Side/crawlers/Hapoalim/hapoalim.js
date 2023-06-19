@@ -7,9 +7,9 @@ const Category = require("../../models/category_model");
 
 module.exports = schedule.scheduleJob("0 0 * * *", async function () {
   await deleteHapoalim();
-  console.log("Start Running Hever");
+  console.log("Start Running Hapoalim");
   await addHapoalim();
-  console.log("Finish Running Hever");
+  console.log("Finish Running Hapoalim");
 });
 
 async function addHapoalim() {
