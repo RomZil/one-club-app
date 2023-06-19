@@ -28,6 +28,15 @@ export default function Home({ isMyClubs }) {
   const { state } = useLocation();
   const [categories_filtered, setCategories_filtered] = useState([]);
 
+  function setUrl(name) {
+    try {
+      const res = require(`../../images/CategoryImages/${name}.png`);
+      return res;
+    } catch (e) {
+      const res = require("../../images/CategoryImages/שונה.png");
+      return res;
+    }
+  }
   useEffect(() => {}, []);
 
   useEffect(() => {
@@ -67,8 +76,7 @@ export default function Home({ isMyClubs }) {
               <Item
                 key={category.id}
                 id={category.id}
-                img={require("../../images/CategoryImages/שונה.png")}
-                // img={require("../../images/CategoryImages/${category.name}.png")}
+                img={setUrl(category.name)}
                 title={category.name}
                 parentId={null}
               />
