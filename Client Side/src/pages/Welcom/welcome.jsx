@@ -62,7 +62,7 @@ export default function Welcome() {
           >
             <img
               className="categoryImg"
-              src={require(`../../images/CategoryImages/${item.name}.png`)}
+              // src={require(`../../images/CategoryImages/${item.name}.png`)}
             />
             <p>{item.name}</p>
           </div>
@@ -83,8 +83,8 @@ export default function Welcome() {
               increasePopularDeal({ variables: { id } });
             }}
           >
-            <img className="itemImg" src={item.imageURL}></img>
-            <h3>{item.title}</h3>
+            <img className="itemImg" src={item ? item.imageURL : ""}></img>
+            <h3>{item.title ? item.title : ""}</h3>
             <p>{item.description}</p>
           </div>
         ))}

@@ -27,7 +27,7 @@ function Footer({ setIsMyClubs, isMyClubs }) {
       <Container>
         <Navbar.Brand
           onClick={() => {
-            navigate("/Home", { state: { title: null } });
+            if (isLoggedIn) navigate("/Home", { state: { title: null } });
           }}
         >
           One Club
