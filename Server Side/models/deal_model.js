@@ -25,7 +25,7 @@ const dealSchema = new mongoose.Schema({
 dealSchema.pre("save", async function (next) {
   let deal = this;
   let category = deal.category.name;
-  let categoryObj = await Category.findOne({ name: category });
+  let categoryObj = await Category.findOne({ $or: [{ name: category }, { aliases: category }] });
 
   if (categoryObj == null) {
     let aliases = [];

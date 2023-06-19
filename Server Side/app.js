@@ -69,7 +69,7 @@ function getUserAuth(req) {
     "getCategories {",
     "getDeals {",
     "GetDealbyID",
-    "GetDealsByCategory",
+    "GetDealsByCategory(",
     "increasePopularDeal",
     "increasePopularCategory",
   ];

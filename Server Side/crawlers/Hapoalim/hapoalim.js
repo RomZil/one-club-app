@@ -1,45 +1,69 @@
 const schedule = require("node-schedule");
 const axios = require("axios");
+const cheerio = require("cheerio");
 const Deal = require("../../models/deal_model");
 const LoyaltyCard = require("../../models/loyaltyCard_model");
-const { spawn } = require("child_process");
+const Category = require("../../models/category_model");
 
-module.exports = schedule.scheduleJob("* * * * *", async function () {
-  // await deleteHapoalim();
-  // console.log("Start Running Hever");
-  // await addHapoalim();
-  // console.log("Finish Running Hever");
+module.exports = schedule.scheduleJob("0 0 * * *", async function () {
+  await deleteHapoalim();
+  console.log("Start Running Hever");
+  await addHapoalim();
+  console.log("Finish Running Hever");
 });
 
 async function addHapoalim() {
-  let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
+  let loyaltyCard = await LoyaltyCard.findOne({ name: "בנק הפועלים" });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
-      name: "חבר צהוב",
+      name: "בנק הפועלים",
     });
-    await loyaltyCard.save();
+    loyaltyCard = await loyaltyCard.save();
   }
-  console.log("starts");
-  const python = spawn("python", ["./../Scrapers/Banks/Hapoalim/main.py"]);
-  python.stdout.on("data", async function (data) {
-    console.log("Pipe data from python script ...");
-    let str = data.toString();
-    // console.log(JSON.parse(str));
-    let dataFromJson = JSON.parse(str);
 
-    for (let i = 0; i < dataFromJson.length; i++) {
-      const deal = new Deal({
-        title: dataFromJson[i].title,
-        description: dataFromJson[i].desc,
-        category: new Category({ name: "קולנוע" }),
-        imageURL: "",
-        loyaltyCard: loyaltyCard,
-      });
+  const links = ["Shopping", "Vacation-in", "movies", "Shows", "Fun", "Food-and-restaurants"];
 
-      console.log(deal.title);
-      await deal.save();
+  for (let i = 0; i < links.length; i++) {
+    try {
+      const response = await axios.get("https://www.bankhapoalim.co.il/he/Poalim-Wonder/" + links[i]);
+      const html = response.data;
+
+      const $ = cheerio.load(html);
+      let array_benefits = [];
+      let imageURLPrefix = "https://www.bankhapoalim.co.il";
+      try {
+        const benefits = $(".team-member");
+
+        for (const benefit of benefits) {
+          let benefit_title = $(benefit).find(".team-member-title").text();
+          let benefit_description = $(benefit).find(".team-member-subtitle").text();
+          let benefit_image =
+            imageURLPrefix +
+            $(benefit)
+              .find(".team-member-img")
+              .css("background-image")
+              .replace(/.*\s?url\([\'\"]?/, "")
+              .replace(/[\'\"]?\).*/, "");
+
+          const deal = new Deal({
+            title: benefit_title,
+            description: benefit_description,
+            category: new Category({ name: links[i] }),
+            imageURL: benefit_image,
+            loyaltyCardId: loyaltyCard,
+          });
+
+          await deal.save();
+
+          array_benefits.push(array_benefits);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  });
+  }
 }
 
 async function deleteHapoalim() {
@@ -49,8 +73,8 @@ async function deleteHapoalim() {
     loyaltyCard = new LoyaltyCard({
       name: "בנק הפועלים",
     });
-    await loyaltyCard.save();
+    loyaltyCard = await loyaltyCard.save();
   }
 
-  await Deal.deleteMany({ loyaltyCard: loyaltyCard });
+  await Deal.deleteMany({ loyaltyCardId: loyaltyCard });
 }
