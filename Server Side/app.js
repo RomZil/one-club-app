@@ -70,6 +70,8 @@ function getUserAuth(req) {
     "getDeals {",
     "GetDealbyID",
     "GetDealsByCategory",
+    "increasePopularDeal",
+    "increasePopularCategory",
   ];
   let isAllowed = false;
 
