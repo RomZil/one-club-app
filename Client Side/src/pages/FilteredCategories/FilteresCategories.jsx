@@ -96,8 +96,9 @@ const FilteresCategories = ({ isMyClubs }) => {
 
   const onReset = () => {
     if (title == undefined || title == "") {
-      navigate("/Home", { state: { title } });
-      // navigate(-1);
+      JSON.parse(localStorage.getItem("isLoggedIn"))
+        ? navigate("/Home", { state: { title } })
+        : navigate("/");
     } else {
       let title = "";
       navigate("/FilteresCategories", { state: { title } });

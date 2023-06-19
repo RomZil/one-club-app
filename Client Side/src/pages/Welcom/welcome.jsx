@@ -1,9 +1,7 @@
 import "./Welcome.css";
-import { useNavigate, Link, Navigate } from "react-router-dom";
-import { AppRouter } from "../../AppRouter";
-import startImag from "../../images/Discount.png";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import food from "../../images/cimena.jpg";
+import startImag from "../../images/Discount.png";
 import { useMutation, useQuery } from "@apollo/client";
 import { GET_POP_CATEGORIES } from "../../components/queries/categoryQueries";
 import { GET_POP_DEALS } from "../../components/queries/dealQueries";
@@ -11,6 +9,9 @@ import {
   INCREASE_POPULAR_CATEGORY,
   INCREASE_POPULAR_DEAL,
 } from "../../components/mutations/userMutations";
+
+const defaultCategoryImage =
+  require("../../images/CategoryImages/שונה.png").default;
 
 export default function Welcome() {
   const [increasePopularCategory] = useMutation(INCREASE_POPULAR_CATEGORY);
@@ -32,15 +33,25 @@ export default function Welcome() {
   const [deals, setDeals] = useState([]);
   const navigate = useNavigate();
 
+  function setUrl(name) {
+    try {
+      const res = require(`../../images/CategoryImages/${name}.png`);
+      return res;
+    } catch (e) {
+      const res = require("../../images/CategoryImages/שונה.png");
+      return res;
+    }
+  }
+
   useEffect(() => {
-    if (dataAll != undefined) {
+    if (dataAll !== undefined) {
       setAllCategories(dataAll.getPopularCategories);
       console.log("all ", dataAll.getPopularCategories);
     }
   }, [dataAll]);
 
   useEffect(() => {
-    if (dataDeals != undefined) {
+    if (dataDeals !== undefined) {
       setDeals(dataDeals.getPopularDeals);
       console.log("all getDeals ", dataDeals.getPopularDeals);
     }
@@ -62,9 +73,13 @@ export default function Welcome() {
           >
             <img
               className="categoryImg"
-              // src={require(`../../images/CategoryImages/${item.name}.png`)}
+              src={setUrl(item.name)}
+              // {require(`../../images/CategoryImages/${item?.name}.png`)}
+              // onError={(e) => {
+              //   e.target.src = defaultCategoryImage;
+              // }}
             />
-            <p>{item.name}</p>
+            <p>{item?.name}</p>
           </div>
         ))}
       </div>
@@ -74,7 +89,7 @@ export default function Welcome() {
       <div className="scrollItems2">
         {deals.map((item) => (
           <div
-            key={item.id}
+            key={item?.id}
             className="item2"
             onClick={() => {
               var id = item.id;
@@ -83,9 +98,15 @@ export default function Welcome() {
               increasePopularDeal({ variables: { id } });
             }}
           >
-            <img className="itemImg" src={item ? item.imageURL : ""}></img>
-            <h3>{item ? item.title : ""}</h3>
-            <p>{item.description}</p>
+            <img
+              className="itemImg"
+              src={item?.imageURL}
+              onError={(e) => {
+                e.target.src = defaultCategoryImage; // Put your default image here
+              }}
+            />
+            <h3>{item?.title}</h3>
+            <p>{item?.description}</p>
           </div>
         ))}
       </div>
