@@ -58,7 +58,7 @@
 
 .scrollItems2 {
   width: 100vw;
-  height: 60%;
+  height: 25rem;
   display: flex;
   overflow-x: auto;
   align-items: center;
@@ -78,6 +78,7 @@
 
 .itemImg {
   width: 100%;
+  height: 70%;
   object-fit: contain;
   margin-bottom: 10px;
 }
@@ -95,5 +96,5 @@
 }
 
 h3 {
-font-size: small;
+  font-size: small;
 }
