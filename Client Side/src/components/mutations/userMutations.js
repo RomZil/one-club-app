@@ -21,12 +21,12 @@ const UPDATE_USER_LOYALTY_CARD = gql`
 `;
 
 const INCREASE_POPULAR_CATEGORY = gql`
-  mutation IncreasePopularCategory($categoryID: ID!) {
+  mutation IncreasePopularCategory($id: ID!) {
     increasePopularCategory(categoryID: $id)
   }
 `;
 const INCREASE_POPULAR_DEAL = gql`
-  mutation IncreasePopularDeal($dealID: ID!) {
+  mutation IncreasePopularDeal($id: ID!) {
     increasePopularDeal(dealID: $id)
   }
 `;

@@ -1,7 +1,7 @@
 import "./MyClubs.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   GET_LOYALTYCARD,
   GET_LOYALTYCARDS,
@@ -15,6 +15,7 @@ import { UPDATE_USER_LOYALTY_CARD } from "../../components/mutations/userMutatio
 import { GET_USER } from "../../components/queries/userQueries";
 
 export default function MyClubs() {
+  const nav = useNavigate();
   var cardsToSend = {};
   const { state } = useLocation();
   const { loading, error, data } = useQuery(GET_LOYALTYCARDS);
@@ -60,6 +61,7 @@ export default function MyClubs() {
 
     cardsToSend = { cards: tmp };
     updateUserLoyaltyCards({ variables: cardsToSend });
+    nav("/Home", { state: { title: null } });
   }
 
   function isChecked(idToFind) {

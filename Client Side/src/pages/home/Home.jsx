@@ -64,7 +64,8 @@ export default function Home({ isMyClubs }) {
               <Item
                 key={category.id}
                 id={category.id}
-                img={require(`../../images/CategoryImages/${category.name}.png`)}
+                img={require("../../images/CategoryImages/שונה.png")}
+                // img={require("../../images/CategoryImages/${category.name}.png")}
                 title={category.name}
                 parentId={null}
               />
