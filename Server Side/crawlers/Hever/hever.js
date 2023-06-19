@@ -6,7 +6,7 @@ const Category = require("../../models/category_model");
 
 const { spawn } = require("child_process");
 
-module.exports = schedule.scheduleJob("*/10 * * * *", async function () {
+module.exports = schedule.scheduleJob("0 0 * * *", async function () {
   console.log("Delete Hever Yellow");
   await deleteHeverYellow();
   console.log("Delete Hever Blue");
