@@ -62,11 +62,11 @@ const FilteresCategories = ({ isMyClubs }) => {
         );
       }
       if (dataDealsByUser !== undefined && title != undefined) {
-        const filteredDeals = dataDeals.getDeals.filter((deal) => {
+        const filteredDeals = dataDealsByUser.getDealsByUser.filter((deal) => {
           return deal.title.toUpperCase().includes(title.toUpperCase());
         });
         setDeals(filteredDeals);
-        console.log("filteredDeals", filteredDeals);
+        console.log("dataDealsByUser", filteredDeals);
       }
     } else {
       console.log("isMyClubs", isMyClubs);
@@ -83,7 +83,7 @@ const FilteresCategories = ({ isMyClubs }) => {
           return deal.title.toUpperCase().includes(title.toUpperCase());
         });
         setDeals(filteredDeals);
-        console.log("filteredDeals", filteredDeals);
+        console.log("dataDeals", filteredDeals);
       }
     }
   }, [

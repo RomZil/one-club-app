@@ -4,11 +4,18 @@ import { AppRouter } from "../../AppRouter";
 import startImag from "../../images/Discount.png";
 import { useEffect, useState } from "react";
 import food from "../../images/cimena.jpg";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_POP_CATEGORIES } from "../../components/queries/categoryQueries";
 import { GET_POP_DEALS } from "../../components/queries/dealQueries";
+import {
+  INCREASE_POPULAR_CATEGORY,
+  INCREASE_POPULAR_DEAL,
+} from "../../components/mutations/userMutations";
 
 export default function Welcome() {
+  const [increasePopularCategory] = useMutation(INCREASE_POPULAR_CATEGORY);
+  const [increasePopularDeal] = useMutation(INCREASE_POPULAR_DEAL);
+
   const {
     loading: loadingAll,
     error: errorAll,
@@ -48,8 +55,9 @@ export default function Welcome() {
             key={item.id}
             className="category"
             onClick={() => {
+              var id = item.id;
               navigate("/FilteresCategories", { state: { id: item.id } });
-              // TODO ADD INCREACE CATEGORY
+              increasePopularCategory({ variables: { id } });
             }}
           >
             <img
@@ -69,8 +77,10 @@ export default function Welcome() {
             key={item.id}
             className="item2"
             onClick={() => {
-              navigate("/ShowItem", { state: { id: item.id } });
-              // TODO ADD INCREACE DEAL
+              var id = item.id;
+              console.log(id);
+              navigate("/ShowItem", { state: { id } });
+              increasePopularDeal({ variables: { id } });
             }}
           >
             <img className="itemImg" src={item.imageURL}></img>
