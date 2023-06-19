@@ -47,6 +47,7 @@ const ShowItem = () => {
                 <img src={defult} />
               ) : (
                 <img
+                  style={{ width: "80%" }}
                   src={deal.imageURL || defult}
                   onError={() => setError(true)}
                 />
