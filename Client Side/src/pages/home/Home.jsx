@@ -34,11 +34,14 @@ export default function Home({ isMyClubs }) {
     if (isMyClubs) {
       if (dataByUser != undefined) {
         setCategories_filtered(dataByUser.getCategoriesByUser);
-        console.log("user", dataByUser.getCategoriesByUser);
+        console.log(
+          "dataByUser.getCategoriesByUser",
+          dataByUser.getCategoriesByUser
+        );
       }
     } else if (dataAll != undefined) {
       setCategories_filtered(dataAll.getCategories);
-      console.log("all ", dataAll.getCategories);
+      console.log("dataAll.getCategories ", dataAll.getCategories);
     }
   }, [state, dataAll, dataByUser, isMyClubs]);
 
