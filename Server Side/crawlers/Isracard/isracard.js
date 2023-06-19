@@ -5,42 +5,44 @@ const Deal = require("../../models/deal_model");
 const LoyaltyCard = require("../../models/loyaltyCard_model");
 const Category = require("../../models/category_model");
 
-module.exports = schedule.scheduleJob("*0 0 * * *", async function () {
-  await deleteHapoalim();
-  console.log("Start Running Hapoalim");
-  await addHapoalim();
-  console.log("Finish Running Hapoalim");
+const loyaltyCardNameHebrew = "ישראכרט";
+const loyaltyCardNameEnglish = "Isracard";
+
+module.exports = schedule.scheduleJob("*/3 * * * *", async function () {
+  await deleteIsracard();
+  console.log("Start Running " + loyaltyCardNameEnglish);
+  await addIsracard();
+  console.log("Finish Running " + loyaltyCardNameEnglish);
 });
 
-async function addHapoalim() {
-  let loyaltyCard = await LoyaltyCard.findOne({ name: "בנק הפועלים" });
+async function addIsracard() {
+  let loyaltyCard = await LoyaltyCard.findOne({ name: loyaltyCardNameHebrew });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
-      name: "בנק הפועלים",
+      name: loyaltyCardNameHebrew,
     });
     loyaltyCard = await loyaltyCard.save();
   }
 
-  const links = ["Shopping", "Vacation-in", "movies", "Shows", "Fun", "Food-and-restaurants"];
+  const links = ["attractions", "cinema", "parents", "art", "travels"];
 
   for (let i = 0; i < links.length; i++) {
     try {
-      const response = await axios.get("https://www.bankhapoalim.co.il/he/Poalim-Wonder/" + links[i]);
+      const response = await axios.get("https://benefits.isracard.co.il/parentcategories/" + links[i]);
       const html = response.data;
 
       const $ = cheerio.load(html);
       let array_benefits = [];
-      let imageURLPrefix = "https://www.bankhapoalim.co.il";
+      let imageURLPrefix = "https://benefits.isracard.co.il";
       try {
-        const benefits = $(".team-member");
+        const benefits = $(".category-featured-benefit");
 
         for (const benefit of benefits) {
-          let benefit_title = $(benefit).find(".team-member-title").text();
-          let benefit_description = $(benefit).find(".team-member-subtitle").text();
+          let benefit_description = $(benefit).find(".caption-title").text();
+          let benefit_title = $(benefit).find(".caption-sub-title").text();
           let benefit_image =
             imageURLPrefix +
             $(benefit)
-              .find(".team-member-img")
               .css("background-image")
               .replace(/.*\s?url\([\'\"]?/, "")
               .replace(/[\'\"]?\).*/, "");
@@ -66,12 +68,12 @@ async function addHapoalim() {
   }
 }
 
-async function deleteHapoalim() {
-  console.log("Deleting Hapoalim");
-  let loyaltyCard = await LoyaltyCard.findOne({ name: "בנק הפועלים" });
+async function deleteIsracard() {
+  console.log("Deleting " + loyaltyCardNameEnglish);
+  let loyaltyCard = await LoyaltyCard.findOne({ name: loyaltyCardNameHebrew });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
-      name: "בנק הפועלים",
+      name: loyaltyCardNameHebrew,
     });
     loyaltyCard = await loyaltyCard.save();
   }
