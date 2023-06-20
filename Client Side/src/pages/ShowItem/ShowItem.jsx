@@ -7,6 +7,9 @@ import Spinner from "../../components/spinner/spinner";
 import defult from "../../images/default.png";
 import { useEffect, useState } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import MapIcon from "@mui/icons-material/Map";
+import { getAddress } from "../../components/Map/GeocodeFunctions";
+import Map from "../../components/Map/Map";
 
 const ShowItem = () => {
   const { state } = useLocation();
@@ -18,6 +21,8 @@ const ShowItem = () => {
   });
   const [deal, setDeal] = useState("");
   const [errorImg, setError] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [mapData, setMapData] = useState({});
 
   useEffect(() => {
     if (data != undefined) setDeal(data.getDealbyID);
@@ -27,17 +32,49 @@ const ShowItem = () => {
     navigate(-1);
   };
 
+  const openMap = () => {
+    const lat = deal.latitude;
+    const lng = deal.longitude;
+
+    if (lat && lng) {
+      setMapData({
+        lat,
+        lng,
+      });
+    } else {
+      if (deal.address === "") return;
+      const { lat, lng } = getAddress(deal.address);
+      setMapData({
+        lat,
+        lng,
+      });
+    }
+    setShowMap(true);
+  };
+
   if (error) return <p> Somthing wrong</p>;
   if (loading) return <Spinner />;
 
   return (
-    <div className="page" style={{ gap: "20px" }}>
+    <div
+      className="page"
+      style={{ gap: "20px" }}
+      onClick={() => {
+        if (showMap) setShowMap(false);
+      }}
+    >
       <BsFillArrowLeftCircleFill
         style={{ margin: "20px", width: " 2rem", height: "2rem" }}
         className="backButton"
         onClick={onReset}
       />
       <div id="container" className="itemDiv">
+        <div onClick={openMap}>
+          <MapIcon fontSize="large" className="mapIcon" />
+        </div>
+
+        {showMap && <Map lat={mapData.lat} lng={mapData.lng} />}
+
         <Row>
           <div>
             <h3>{deal.title}</h3>
@@ -57,17 +94,13 @@ const ShowItem = () => {
               <span>
                 {deal.loyaltyCardId != null ? deal.loyaltyCardId.name : ""}
               </span>
-              {/* -<span>{deal.description != null ? deal.description : ""}</span> */}
             </div>
             <div>
-              <hr /> {deal.description}
+              <hr /> {deal.description} <br />
+              {deal.linkToSite && (
+                <a href={deal.linkToSite}>{deal.linkToSite}</a>
+              )}
             </div>
-            {/* <div>
-              <hr />
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s,
-            </div> */}
           </div>
         </Row>
       </div>
