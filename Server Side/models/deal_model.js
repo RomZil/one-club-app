@@ -12,6 +12,18 @@ const dealSchema = new mongoose.Schema({
   imageURL: {
     type: String,
   },
+  address: {
+    type: String,
+  },
+  linkToSite: {
+    type: String,
+  },
+  latitude: {
+    type: String,
+  },
+  longitude: {
+    type: String,
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",

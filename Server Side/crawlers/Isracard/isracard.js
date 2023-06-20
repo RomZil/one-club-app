@@ -53,6 +53,8 @@ async function addIsracard() {
             category: new Category({ name: links[i] }),
             imageURL: benefit_image,
             loyaltyCardId: loyaltyCard,
+            linkToSite: "https://benefits.isracard.co.il/parentcategories/" + links[i],
+            address: "",
           });
 
           await deal.save();

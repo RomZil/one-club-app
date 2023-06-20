@@ -55,6 +55,8 @@ async function addHapoalim() {
             category: new Category({ name: links[i] }),
             imageURL: benefit_image,
             loyaltyCardId: loyaltyCard,
+            linkToSite: "https://www.bankhapoalim.co.il/he/Poalim-Wonder/" + links[i],
+            address: "",
           });
 
           await deal.save();

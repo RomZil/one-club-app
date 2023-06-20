@@ -47,6 +47,7 @@ async function deleteHeverBlue() {
 async function AddHeverYellow() {
   const url = "https://www.hvr.co.il/bs2/datasets/giftcard.json";
   const imageURLStart = "https://www.hvr.co.il/pics/giftcard/";
+  const linkToSitePrefix = "https://www.hvr.co.il/site/pg/";
   let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר צהוב" });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
@@ -66,6 +67,8 @@ async function AddHeverYellow() {
           category: new Category({ name: response.data[i].company_category }),
           imageURL: imageURLStart + response.data[i].logo,
           loyaltyCardId: loyaltyCard,
+          linkToSite: linkToSitePrefix + response.data[i].internal_link,
+          address: "",
         });
 
         await deal.save();
@@ -79,6 +82,8 @@ async function AddHeverYellow() {
 async function AddHeverBlue() {
   const url = "https://www.hvr.co.il/bs2/datasets/teamimcard_branches.json";
   const imageURLStart = "https://www.hvr.co.il/img_hvr/Gift_card_teamim/";
+  const linkToSitePrefix = "https://www.hvr.co.il/site/pg/";
+
   let loyaltyCard = await LoyaltyCard.findOne({ name: "חבר טעמים" });
   if (loyaltyCard == null) {
     loyaltyCard = new LoyaltyCard({
@@ -97,6 +102,10 @@ async function AddHeverBlue() {
           category: new Category({ name: response.data.branch[i].type.split(",")[0] }),
           imageURL: imageURLStart + response.data.branch[i].img,
           loyaltyCardId: loyaltyCard,
+          linkToSite: linkToSitePrefix + response.data.branch[i].internal_link,
+          address: response.data.branch[i].address,
+          latitude: response.data.branch[i].latitude,
+          longitude: response.data.branch[i].longitude,
         });
 
         await deal.save();

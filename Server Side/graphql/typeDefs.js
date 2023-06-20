@@ -8,6 +8,10 @@ module.exports = `#graphql
     imageURL: String
     category: Category!
     loyaltyCardId: LoyaltyCard
+    address: String
+    linkToSite: String
+    latitude: String
+    longitude: String
   }
   type LoyaltyCard {
     id:ID!
