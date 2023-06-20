@@ -71,20 +71,13 @@ export default function Welcome() {
               increasePopularCategory({ variables: { id } });
             }}
           >
-            <img
-              className="categoryImg"
-              src={setUrl(item.name)}
-              // {require(`../../images/CategoryImages/${item?.name}.png`)}
-              // onError={(e) => {
-              //   e.target.src = defaultCategoryImage;
-              // }}
-            />
+            <img className="categoryImg" src={setUrl(item.name)} />
             <p>{item?.name}</p>
           </div>
         ))}
       </div>
       <div className="divTitle">
-        <h2 className="h2ForYou">Hot Right Now</h2>
+        <h2 className="h2ForYou">מומלץ עבורך</h2>
       </div>
       <div className="scrollItems2">
         {deals.map((item) => (

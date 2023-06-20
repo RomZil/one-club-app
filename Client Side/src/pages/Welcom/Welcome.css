@@ -5,6 +5,7 @@
   flex-direction: column;
   /* align-items: center; */
   overflow: hidden;
+  gap: 5px;
 }
 
 .img {
@@ -51,14 +52,14 @@
 }
 
 .categoryImg {
-  border-radius: 50%;
+  object-fit: contain;
   height: 70px;
   width: 70px;
 }
 
 .scrollItems2 {
   width: 100vw;
-  height: 25rem;
+  height: 250px;
   display: flex;
   overflow-x: auto;
   align-items: center;
@@ -67,8 +68,8 @@
 .item2 {
   margin-left: 5px;
   margin-right: 10px;
-  width: 160px;
-  height: 60%;
+  width: 180px;
+  height: 240px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -84,8 +85,8 @@
 }
 
 .h2ForYou {
-  position: relative;
-  left: 5%;
+  position: absolute;
+  right: 15px;
   display: flex;
 }
 
@@ -96,5 +97,5 @@
 }
 
 h3 {
-  font-size: small;
+  font-size: 18px;
 }

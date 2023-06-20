@@ -42,6 +42,10 @@ const GET_DEAL_BY_ID = gql`
         id
         name
       }
+      address
+      linkToSite
+      latitude
+      longitude
     }
   }
 `;
@@ -57,22 +61,20 @@ const GET_DEAL_BY_USER = gql`
 `;
 
 const GET_POP_DEALS = gql`
-query GetPopularDeals {
-  getPopularDeals {
-    description
-    id
-    imageURL
-    title
+  query GetPopularDeals {
+    getPopularDeals {
+      description
+      id
+      imageURL
+      title
+    }
   }
-}
 `;
-
-
 
 export {
   GET_DEALS,
   GET_DEAL_BY_ID,
   GET_DEAL_BY_CATEGORY_AND_USER,
   GET_DEAL_BY_USER,
-  GET_POP_DEALS
+  GET_POP_DEALS,
 };

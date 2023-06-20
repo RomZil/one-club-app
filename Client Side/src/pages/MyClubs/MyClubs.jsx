@@ -1,7 +1,7 @@
 import "./MyClubs.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import Search from "../../components/search/search";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   GET_LOYALTYCARD,
   GET_LOYALTYCARDS,
@@ -122,9 +122,9 @@ export default function MyClubs() {
           {/* <div onClick={updateMyClubs}> update</div> */}
         </Form>
       </div>
-      <Link className="link2" to="/Profile">
+      <NavLink className="link2" to="/Profile">
         Go to your profile
-      </Link>
+      </NavLink>
     </div>
   );
 }
